@@ -8,4 +8,7 @@ export default {
 const Template = args => <Poster {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  src: require('../assets/images/poster.png'),
+  alt: 'Poster',
+};
