@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import PosterList from './components/PosterList';
-import ScreenReaderOnly from './components/ScreenReaderOnly1';
+import ScreenReaderOnly from './components/ScreenReaderOnly';
 import WatchaHeader from './assets/images/header/watcha.svg';
 
 const {
