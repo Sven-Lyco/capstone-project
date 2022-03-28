@@ -48,9 +48,8 @@ export default function App() {
   return (
     <main>
       <StyledHeader>
-        <ScreenReaderOnly>
-          <h1>WATCHA</h1>
-        </ScreenReaderOnly>
+        <h1>WATCHA</h1>
+
         <img src={WatchaHeader} alt="watcha" />
       </StyledHeader>
       <PosterList list={popularSeries} listName={'Beliebte Serien'} />
