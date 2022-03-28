@@ -9,7 +9,7 @@ describe('Poster', () => {
     expect(poster).toBeInTheDocument();
   });
 
-  it('the Poster has an alt text', () => {
+  it('has an alt text', () => {
     render(<Poster alt="Poster" />);
 
     const poster = screen.getByAltText('Poster');
