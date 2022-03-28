@@ -11,6 +11,7 @@ export default createGlobalStyle`
     --color-blue: #3D90D9;
     --color-red:#F25C78;
     --color-orange: #F2AF5C;
+    --border-color:#454545;
     --border-radius: 5px;
   }
 
