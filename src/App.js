@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+import PosterList from './components/PosterList';
+import ScreenReaderOnly from './components/ScreenReaderOnly';
+import WatchaHeader from './assets/images/header/watcha.svg';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -13,11 +18,8 @@ const popularMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/popular?api_key=${REA
 export default function App() {
   const [popularSeries, setPopularSeries] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-  console.log({ popularSeries });
-  console.log({ popularMovies });
 
   useEffect(() => {
-    /* ---LOAD POPULAR SERIES */
     async function loadPopularSeries() {
       try {
         const response = await fetch(popularSeriesUrl);
@@ -31,7 +33,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    /* ---LOAD POPULAR MOVIES */
     async function loadPopularMovies() {
       try {
         const response = await fetch(popularMoviesUrl);
@@ -45,8 +46,24 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <h1>capstone-project</h1>
-    </>
+    <main>
+      <StyledHeader>
+        <ScreenReaderOnly>
+          <h1>WATCHA</h1>
+        </ScreenReaderOnly>
+        <img src={WatchaHeader} alt="watcha" />
+      </StyledHeader>
+      <PosterList list={popularSeries} listName={'Beliebte Serien'} />
+      <PosterList list={popularMovies} listName={'Beliebte Filme'} />
+    </main>
   );
 }
+
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 20px 0px;
+  border-bottom: 1px solid var(--border-color);
+`;
