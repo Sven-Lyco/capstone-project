@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import PosterList from './components/PosterList';
-//import ScreenReaderOnly from './components/ScreenReaderOnly';
+import ScreenReaderOnly from './components/ScreenReaderOnly';
 import WatchaHeader from './assets/images/header/watcha.svg';
 
 const {
@@ -48,8 +48,9 @@ export default function App() {
   return (
     <main>
       <StyledHeader>
-        <h1>WATCHA</h1>
-
+        <ScreenReaderOnly>
+          <h1>WATCHA</h1>
+        </ScreenReaderOnly>
         <img src={WatchaHeader} alt="watcha" />
       </StyledHeader>
       <PosterList list={popularSeries} listName={'Beliebte Serien'} />
