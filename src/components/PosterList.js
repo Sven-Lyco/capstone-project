@@ -6,7 +6,7 @@ export default function PosterList({ list, listName }) {
   return (
     <>
       <ListHeader>{listName}</ListHeader>
-      <StyledList>
+      <StyledList role="list">
         {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
             <Poster
