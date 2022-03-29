@@ -23,6 +23,7 @@ export default function Navigation() {
 
 const StyledNavigation = styled.nav`
   width: 100vw;
+  padding: 10px 0px;
   display: flex;
   justify-content: space-around;
   align-items: center;

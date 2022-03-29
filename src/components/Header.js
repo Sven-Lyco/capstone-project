@@ -24,7 +24,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   margin: 0px;
-  padding: 10px 0px;
+  padding: 15px 0px;
   border-bottom: 1px solid var(--border-color);
 
   h1 {
