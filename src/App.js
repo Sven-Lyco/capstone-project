@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
+import useFetch from './hooks/useFetch';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -21,90 +20,12 @@ const moviesOnCinemaUrl = `${REACT_APP_API_BASE_MOVIES_URL}/now_playing?api_key=
 const upcomingMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/upcoming?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
 
 export default function App() {
-  const [popularSeries, setPopularSeries] = useState([]);
-  const [topRatedSeries, setTopRatedSeries] = useState([]);
-  const [seriesOnTv, setSeriesOnTv] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [moviesOnCinema, setMoviesOnCinema] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
-
-  useEffect(() => {
-    async function loadPopularSeries() {
-      try {
-        const response = await fetch(popularSeriesUrl);
-        const data = await response.json();
-        setPopularSeries(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadPopularSeries();
-  }, []);
-
-  useEffect(() => {
-    async function loadTopRatedSeries() {
-      try {
-        const response = await fetch(topRatedSeriesUrl);
-        const data = await response.json();
-        setTopRatedSeries(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadTopRatedSeries();
-  }, []);
-
-  useEffect(() => {
-    async function loadSeriesOnTv() {
-      try {
-        const response = await fetch(seriesOnTvUrl);
-        const data = await response.json();
-        setSeriesOnTv(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadSeriesOnTv();
-  }, []);
-
-  useEffect(() => {
-    async function loadPopularMovies() {
-      try {
-        const response = await fetch(popularMoviesUrl);
-        const data = await response.json();
-        setPopularMovies(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadPopularMovies();
-  }, []);
-
-  useEffect(() => {
-    async function loadMoviesOnCinema() {
-      try {
-        const response = await fetch(moviesOnCinemaUrl);
-        const data = await response.json();
-        setMoviesOnCinema(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadMoviesOnCinema();
-  }, []);
-
-  useEffect(() => {
-    async function loadUpComingMovies() {
-      try {
-        const response = await fetch(upcomingMoviesUrl);
-        const data = await response.json();
-        setUpcomingMovies(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadUpComingMovies();
-  }, []);
+  const { data: popularSeries } = useFetch(popularSeriesUrl);
+  const { data: topRatedSeries } = useFetch(topRatedSeriesUrl);
+  const { data: seriesOnTv } = useFetch(seriesOnTvUrl);
+  const { data: popularMovies } = useFetch(popularMoviesUrl);
+  const { data: moviesOnCinema } = useFetch(moviesOnCinemaUrl);
+  const { data: upcomingMovies } = useFetch(upcomingMoviesUrl);
 
   return (
     <>
