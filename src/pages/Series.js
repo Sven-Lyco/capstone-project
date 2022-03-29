@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 import Header from '../components/Header';
+import seriesHeader from '../assets/images/header/serien.svg';
 import PosterList from '../components/PosterList';
-import watchaHeader from '../assets/images/header/watcha.svg';
 
-export default function Home({ popularSeries, popularMovies }) {
+export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   return (
     <Wrapper>
-      <Header title="Watcha" src={watchaHeader} alt="watcha" />
+      <Header title="serien" src={seriesHeader} alt="serien" />
       <main>
         <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-        <PosterList list={popularMovies} listName={'Beliebte Filme'} />
+        <PosterList list={topRatedSeries} listName={'Top bewertete Serien'} />
+        <PosterList list={seriesOnTv} listName={'Serien im TV'} />
       </main>
     </Wrapper>
   );
 }
-
 const Wrapper = styled.div`
   margin-top: 95px;
   margin-bottom: 68px;
