@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import PosterList from './components/PosterList';
-import watchaHeader from './assets/images/header/watcha.svg';
-
-import Header from './components/Header';
+import Home from './pages/Home';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -47,11 +45,14 @@ export default function App() {
 
   return (
     <>
-      <Header text="Watcha" src={watchaHeader} alt="watcha" />
-      <main>
-        <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-        <PosterList list={popularMovies} listName={'Beliebte Filme'} />
-      </main>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home popularSeries={popularSeries} popularMovies={popularMovies} />
+          }
+        />
+      </Routes>
     </>
   );
 }
