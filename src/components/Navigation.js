@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import ScreenReaderOnly from './ScreenReaderOnly';
-
 import { ReactComponent as SeriesIcon } from '../assets/icons/series_icon.svg';
 import { ReactComponent as MovieIcon } from '../assets/icons/movie_icon.svg';
 
@@ -11,11 +9,11 @@ export default function Navigation() {
     <StyledNavigation>
       <StyledLink to="/serien">
         <StyledSeriesIcon />
-        <ScreenReaderOnly>Serien</ScreenReaderOnly>
+        <span>Serien</span>
       </StyledLink>
       <StyledLink to="/filme">
         <StyledMovieIcon />
-        <ScreenReaderOnly>Filme</ScreenReaderOnly>
+        <span>Filme</span>
       </StyledLink>
     </StyledNavigation>
   );
@@ -47,12 +45,17 @@ const StyledMovieIcon = styled(MovieIcon)`
 
 const StyledLink = styled(NavLink)`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 48px;
   color: inherit;
+  text-decoration: none;
 
+  span {
+    font-size: small;
+  }
   &.active {
     color: var(--color-orange);
   }
