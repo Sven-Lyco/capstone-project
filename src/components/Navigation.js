@@ -9,14 +9,14 @@ import { ReactComponent as MovieIcon } from '../assets/icons/movie_icon.svg';
 export default function Navigation() {
   return (
     <StyledNavigation>
-      <LinkStyled to="/Serien">
-        <SeriesIcon />
+      <StyledLink to="/serien">
+        <StyledSeriesIcon />
         <ScreenReaderOnly>Serien</ScreenReaderOnly>
-      </LinkStyled>
-      <LinkStyled to="/Filme">
-        <MovieIcon />
+      </StyledLink>
+      <StyledLink to="/filme">
+        <StyledMovieIcon />
         <ScreenReaderOnly>Filme</ScreenReaderOnly>
-      </LinkStyled>
+      </StyledLink>
     </StyledNavigation>
   );
 }
@@ -31,10 +31,27 @@ const StyledNavigation = styled.nav`
   bottom: 0;
 `;
 
-const LinkStyled = styled(NavLink)`
+const StyledSeriesIcon = styled(SeriesIcon)`
+  &.active {
+    color: var(--color-orange);
+  }
+`;
+
+const StyledMovieIcon = styled(MovieIcon)`
+  &.active {
+    color: var(--color-orange);
+  }
+`;
+
+const StyledLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 48px;
+  color: inherit;
+
+  &.active {
+    color: var(--color-orange);
+  }
 `;
