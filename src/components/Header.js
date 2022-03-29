@@ -2,18 +2,16 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function Header({
-  title = 'Watcha',
-  src = require('../assets/images/header/suche.svg'),
-  alt = 'suche',
-}) {
+import { ReactComponent as WatchaHeader } from '../assets/images/header/watcha.svg';
+
+export default function Header() {
   return (
     <StyledHeader>
       <StyledNavLink to="/">
         <h1>
-          <ScreenReaderOnly>{title}</ScreenReaderOnly>
+          <ScreenReaderOnly>Watcha</ScreenReaderOnly>
         </h1>
-        <img src={src} alt={alt} />
+        <WatchaHeader />
       </StyledNavLink>
     </StyledHeader>
   );
@@ -25,7 +23,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   margin: 0px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   border-bottom: 1px solid var(--border-color);
   position: fixed;
   top: 0;

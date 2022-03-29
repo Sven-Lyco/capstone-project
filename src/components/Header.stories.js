@@ -8,8 +8,4 @@ export default {
 const Template = args => <Header {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  src: require('../assets/images/header/suche.svg'),
-  alt: 'suche',
-  title: 'Suche',
-};
+Default.args = {};

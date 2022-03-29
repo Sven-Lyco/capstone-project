@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Header from '../components/Header';
-import moviesHeader from '../assets/images/header/filme.svg';
 import PosterList from '../components/PosterList';
 
 export default function Movies({
@@ -11,7 +10,7 @@ export default function Movies({
 }) {
   return (
     <Wrapper>
-      <Header title="filme" src={moviesHeader} alt="filme" />
+      <Header />
       <main>
         <PosterList list={popularMovies} listName={'Beliebte Filme'} />
         <PosterList list={moviesOnCinema} listName={'Aktuell im Kino'} />

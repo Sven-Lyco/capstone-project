@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 import Header from '../components/Header';
-import seriesHeader from '../assets/images/header/serien.svg';
 import PosterList from '../components/PosterList';
 
 export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   return (
     <Wrapper>
-      <Header title="serien" src={seriesHeader} alt="serien" />
+      <Header />
       <main>
         <PosterList list={popularSeries} listName={'Beliebte Serien'} />
         <PosterList list={topRatedSeries} listName={'Top bewertete Serien'} />
