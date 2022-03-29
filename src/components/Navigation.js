@@ -30,6 +30,7 @@ const StyledNavigation = styled.nav`
   border-top: 1px solid var(--border-color);
   position: fixed;
   bottom: 0;
+  background-color: var(--color-black);
 `;
 
 const StyledSeriesIcon = styled(SeriesIcon)`
