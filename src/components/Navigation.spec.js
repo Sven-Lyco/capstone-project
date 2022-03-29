@@ -10,9 +10,11 @@ describe('Navigation', () => {
       </MemoryRouter>
     );
 
+    const navigation = screen.getByRole('navigation');
     const seriesLink = screen.getByRole('link', { name: /serien/i });
     const movieLink = screen.getByRole('link', { name: /filme/i });
 
+    expect(navigation).toBeInTheDocument();
     expect(seriesLink).toBeInTheDocument();
     expect(movieLink).toBeInTheDocument();
   });
