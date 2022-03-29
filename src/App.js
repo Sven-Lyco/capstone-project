@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import PosterList from './components/PosterList';
-import ScreenReaderOnly from './components/ScreenReaderOnly';
-import WatchaHeader from './assets/images/header/watcha.svg';
+import watchaHeader from './assets/images/header/watcha.svg';
+
+import Header from './components/Header';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -46,24 +46,12 @@ export default function App() {
   }, []);
 
   return (
-    <main>
-      <StyledHeader>
-        <h1>
-          <ScreenReaderOnly>WATCHA</ScreenReaderOnly>
-        </h1>
-        <img src={WatchaHeader} alt="watcha" />
-      </StyledHeader>
-      <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-      <PosterList list={popularMovies} listName={'Beliebte Filme'} />
-    </main>
+    <>
+      <Header text="Watcha" src={watchaHeader} alt="watcha" />
+      <main>
+        <PosterList list={popularSeries} listName={'Beliebte Serien'} />
+        <PosterList list={popularMovies} listName={'Beliebte Filme'} />
+      </main>
+    </>
   );
 }
-
-const StyledHeader = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  padding: 10px 0px;
-  border-bottom: 1px solid var(--border-color);
-`;
