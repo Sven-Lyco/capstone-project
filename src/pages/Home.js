@@ -8,8 +8,8 @@ export default function Home({ popularSeries, popularMovies }) {
     <Wrapper>
       <Header />
       <main>
-        <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-        <PosterList list={popularMovies} listName={'Beliebte Filme'} />
+        <PosterList list={popularSeries} listName={'beliebte Serien'} />
+        <PosterList list={popularMovies} listName={'beliebte Filme'} />
       </main>
     </Wrapper>
   );
