@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import PosterList from './PosterList';
 
 const listName = 'Beliebte Serien';
@@ -12,7 +13,11 @@ const list = [
 
 describe('PosterList', () => {
   it('renders the title of the list, the list and 4 list items', () => {
-    render(<PosterList list={list} listName={listName} />);
+    render(
+      <MemoryRouter>
+        <PosterList list={list} listName={listName} />
+      </MemoryRouter>
+    );
 
     const listTitle = screen.getByText('Beliebte Serien');
     expect(listTitle).toBeInTheDocument();
@@ -25,7 +30,11 @@ describe('PosterList', () => {
   });
 
   it('renders 4 images with an alt text', () => {
-    render(<PosterList list={list} listName={listName} />);
+    render(
+      <MemoryRouter>
+        <PosterList list={list} listName={listName} />
+      </MemoryRouter>
+    );
 
     const posterListImages = screen.getAllByRole('img');
     expect(posterListImages).toHaveLength(4);
