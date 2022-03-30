@@ -30,8 +30,6 @@ export default function SeriesDetailsPage() {
     loadData();
   }, [seriesDetailsUrl]);
 
-  console.log(data.first_air_date);
-
   return (
     <Wrapper>
       <StyledLinkBack to="/serien">
@@ -54,7 +52,7 @@ export default function SeriesDetailsPage() {
             {data.number_of_seasons} Staffeln -{' '}
             {data.first_air_date
               ? data.first_air_date.substr(0, 4)
-              : 'Hello World'}
+              : 'kein Datum vorhanden'}
           </h2>
         </StyledHeaderText>
       </StyledHeader>
@@ -72,26 +70,23 @@ export default function SeriesDetailsPage() {
 
 const Wrapper = styled.div`
   position: relative;
-  max-width: 850px;
+  max-width: 768px;
+  width: 100%;
 `;
 
 const StyledBackdropImage = styled.div`
   z-index: -1;
   position: relative;
-  width: 100vw;
-  @media (min-width: 768px) {
-    min-height: 400px;
-  }
-  @media (min-width: 1200px) {
-    min-height: 500px;
+  @media (min-width: 576px) {
+    min-height: 360px;
   }
   min-height: 300px;
   height: 100%;
   background: ${({ backdropPath }) =>
-      `url(https://image.tmdb.org/t/p/w780${backdropPath})`}
+      backdropPath ? `url(https://image.tmdb.org/t/p/w780${backdropPath})` : ''}
     center 0 no-repeat;
   background-size: cover;
-  background-position: top;
+  background-position: center;
   margin-bottom: -60px;
 
   ::before {

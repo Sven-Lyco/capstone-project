@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import useFetch from './hooks/useFetch';
 
-import Navigation from './components/Navigation';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 
 import Home from './pages/Home';
@@ -61,7 +60,6 @@ export default function App() {
           }
         />
       </Routes>
-      {/* <Navigation /> */}
     </>
   );
 }
