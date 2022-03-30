@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import Poster from './Poster';
 
 export default function PosterList({ list, listName }) {
@@ -9,14 +9,16 @@ export default function PosterList({ list, listName }) {
       <StyledList role="list">
         {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
-            <Poster
-              src={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w300${poster_path}`
-                  : require('../assets/images/poster.png')
-              }
-              alt={name ? `${name}` : `${title}`}
-            />
+            <Link to={name ? `/serie/${id}` : `/`}>
+              <Poster
+                src={
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                    : require('../assets/images/poster.png')
+                }
+                alt={name ? `${name}` : `${title}`}
+              />
+            </Link>
           </li>
         ))}
       </StyledList>
