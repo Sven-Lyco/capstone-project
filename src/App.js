@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+import useFetch from './hooks/useFetch';
+
 import Navigation from './components/Navigation';
+import SeriesDetailsPage from './pages/SeriesDetailsPage';
+
 import Home from './pages/Home';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
-import useFetch from './hooks/useFetch';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -46,6 +49,7 @@ export default function App() {
             />
           }
         />
+        <Route path="serie/:id" element={<SeriesDetailsPage />} />
         <Route
           path="/filme"
           element={
