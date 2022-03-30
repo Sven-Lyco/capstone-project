@@ -8,11 +8,11 @@ export default function Navigation() {
   return (
     <StyledNavigation>
       <StyledLink to="/serien">
-        <StyledSeriesIcon />
+        <SeriesIcon />
         <span>Serien</span>
       </StyledLink>
       <StyledLink to="/filme">
-        <StyledMovieIcon />
+        <MovieIcon />
         <span>Filme</span>
       </StyledLink>
     </StyledNavigation>
@@ -31,18 +31,6 @@ const StyledNavigation = styled.nav`
   background-color: var(--color-black);
 `;
 
-const StyledSeriesIcon = styled(SeriesIcon)`
-  &.active {
-    color: var(--color-orange);
-  }
-`;
-
-const StyledMovieIcon = styled(MovieIcon)`
-  &.active {
-    color: var(--color-orange);
-  }
-`;
-
 const StyledLink = styled(NavLink)`
   display: flex;
   flex-direction: column;
@@ -56,6 +44,7 @@ const StyledLink = styled(NavLink)`
   span {
     font-size: small;
   }
+
   &.active {
     color: var(--color-orange);
   }
