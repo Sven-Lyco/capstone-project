@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px;
+  margin: 0 auto;
   padding: 10px 0px;
   border-bottom: 1px solid var(--border-color);
   position: fixed;
