@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Poster from '../components/Poster';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -31,7 +33,11 @@ export default function SeriesDetailsPage() {
   console.log(data.first_air_date);
 
   return (
-    <>
+    <Wrapper>
+      <StyledLinkBack to="/serien">
+        <StyledArrowBackIcon />
+        <ScreenReaderOnly>Zurück</ScreenReaderOnly>
+      </StyledLinkBack>
       <StyledBackdropImage backdropPath={data.backdrop_path} />
       <StyledHeader>
         <Poster
@@ -60,22 +66,33 @@ export default function SeriesDetailsPage() {
             : 'Aktuell ist leider keine Beschreibung verfügbar'}
         </p>
       </StyledMain>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  max-width: 850px;
+`;
 
 const StyledBackdropImage = styled.div`
   z-index: -1;
   position: relative;
   width: 100vw;
-  min-height: 250px;
+  @media (min-width: 768px) {
+    min-height: 400px;
+  }
+  @media (min-width: 1200px) {
+    min-height: 500px;
+  }
+  min-height: 300px;
   height: 100%;
   background: ${({ backdropPath }) =>
       `url(https://image.tmdb.org/t/p/w780${backdropPath})`}
     center 0 no-repeat;
   background-size: cover;
-  background-position: center;
-  margin-bottom: -80px;
+  background-position: top;
+  margin-bottom: -60px;
 
   ::before {
     content: '';
@@ -86,8 +103,24 @@ const StyledBackdropImage = styled.div`
   }
 `;
 
+const StyledLinkBack = styled(Link)`
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: var(--color-green);
+`;
+
+const StyledArrowBackIcon = styled(ArrowBackIcon)`
+  background-color: rgba(18, 18, 18, 0.4);
+  border-radius: var(--border-radius);
+`;
+
 const StyledHeader = styled.header`
   display: flex;
+  max-height: 180px;
   margin-left: 20px;
 `;
 
