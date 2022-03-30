@@ -22,7 +22,7 @@ export default createGlobalStyle`
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size:112.5% ;
     color: var(--color-white);
     background-color: var(--color-black);

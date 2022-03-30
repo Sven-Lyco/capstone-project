@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-import PosterList from './components/PosterList';
-import ScreenReaderOnly from './components/ScreenReaderOnly';
-import WatchaHeader from './assets/images/header/watcha.svg';
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import Series from './pages/Series';
+import Movies from './pages/Movies';
+import useFetch from './hooks/useFetch';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -13,57 +13,51 @@ const {
 } = process.env;
 
 const popularSeriesUrl = `${REACT_APP_API_BASE_SERIES_URL}/popular?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
+const topRatedSeriesUrl = `${REACT_APP_API_BASE_SERIES_URL}/top_rated?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
+const seriesOnTvUrl = `${REACT_APP_API_BASE_SERIES_URL}/on_the_air?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
 const popularMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/popular?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
+const moviesOnCinemaUrl = `${REACT_APP_API_BASE_MOVIES_URL}/now_playing?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
+const upcomingMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/upcoming?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
 
 export default function App() {
-  const [popularSeries, setPopularSeries] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-
-  useEffect(() => {
-    async function loadPopularSeries() {
-      try {
-        const response = await fetch(popularSeriesUrl);
-        const data = await response.json();
-        setPopularSeries(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadPopularSeries();
-  }, []);
-
-  useEffect(() => {
-    async function loadPopularMovies() {
-      try {
-        const response = await fetch(popularMoviesUrl);
-        const data = await response.json();
-        setPopularMovies(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadPopularMovies();
-  }, []);
+  const { data: popularSeries } = useFetch(popularSeriesUrl);
+  const { data: topRatedSeries } = useFetch(topRatedSeriesUrl);
+  const { data: seriesOnTv } = useFetch(seriesOnTvUrl);
+  const { data: popularMovies } = useFetch(popularMoviesUrl);
+  const { data: moviesOnCinema } = useFetch(moviesOnCinemaUrl);
+  const { data: upcomingMovies } = useFetch(upcomingMoviesUrl);
 
   return (
-    <main>
-      <StyledHeader>
-        <h1>
-          <ScreenReaderOnly>WATCHA</ScreenReaderOnly>
-        </h1>
-        <img src={WatchaHeader} alt="watcha" />
-      </StyledHeader>
-      <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-      <PosterList list={popularMovies} listName={'Beliebte Filme'} />
-    </main>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home popularSeries={popularSeries} popularMovies={popularMovies} />
+          }
+        />
+        <Route
+          path="/serien"
+          element={
+            <Series
+              popularSeries={popularSeries}
+              topRatedSeries={topRatedSeries}
+              seriesOnTv={seriesOnTv}
+            />
+          }
+        />
+        <Route
+          path="/filme"
+          element={
+            <Movies
+              popularMovies={popularMovies}
+              moviesOnCinema={moviesOnCinema}
+              upcomingMovies={upcomingMovies}
+            />
+          }
+        />
+      </Routes>
+      <Navigation />
+    </>
   );
 }
-
-const StyledHeader = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  padding: 20px 0px;
-  border-bottom: 1px solid var(--border-color);
-`;
