@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 
 const {
@@ -14,7 +15,7 @@ const {
 export default function SeriesDetailsPage() {
   const { id } = useParams();
   const seriesDetailsUrl = `${REACT_APP_API_BASE_SERIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-  const { data: series } = useDetails(seriesDetailsUrl);
+  const { data: series, loading: isLoading } = useDetails(seriesDetailsUrl);
 
   return (
     <Wrapper>
@@ -22,6 +23,7 @@ export default function SeriesDetailsPage() {
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledLinkBack>
+      {isLoading && <LoadingSpinner />}
       <StyledBackdropImage backdropPath={series.backdrop_path} />
       <StyledHeader>
         <Poster
