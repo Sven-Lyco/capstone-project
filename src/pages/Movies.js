@@ -21,6 +21,6 @@ export default function Movies({
   );
 }
 const Wrapper = styled.div`
-  margin-top: 95px;
+  margin-top: 70px;
   margin-bottom: 68px;
 `;

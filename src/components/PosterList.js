@@ -9,7 +9,7 @@ export default function PosterList({ list, listName }) {
       <StyledList role="list">
         {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
-            <Link to={name ? `/serie/${id}` : `/`}>
+            <Link to={name ? `/serie/${id}` : `/film/${id}`}>
               <Poster
                 src={
                   poster_path
@@ -27,7 +27,7 @@ export default function PosterList({ list, listName }) {
 }
 
 const ListHeader = styled.h2`
-  margin: 30px 0px 0px 20px;
+  margin: 10px 0px 0px 20px;
 `;
 
 const StyledList = styled.ul`
