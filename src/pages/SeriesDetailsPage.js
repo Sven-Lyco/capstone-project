@@ -88,14 +88,7 @@ const StyledBackdropImage = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: -60px;
-
-  ::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(18, 18, 18, 0) 30%, #121212 100%);
-  }
+  box-shadow: inset 0px -65px 50px 0px var(--color-black);
 `;
 
 const StyledLinkBack = styled(Link)`
@@ -123,21 +116,22 @@ const StyledHeaderText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 0;
   margin: 10px;
   width: 100%;
 
   h1 {
-    font-size: x-large;
+    font-size: xx-large;
     margin: 0;
-    padding: 5px;
+    padding: 25px 0px 5px;
   }
   h2 {
     font-size: larger;
     font-style: italic;
+    font-weight: 400;
     margin: 0;
-    padding: 5px;
+    padding: 0;
   }
 `;
 
