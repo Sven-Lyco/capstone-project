@@ -28,7 +28,6 @@ const StyledHeader = styled.header`
   top: 0;
   width: 100%;
   max-width: 768px;
-
   h1 {
     margin: 0;
   }

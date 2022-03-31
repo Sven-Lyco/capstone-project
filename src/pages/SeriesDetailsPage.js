@@ -57,7 +57,6 @@ export default function SeriesDetailsPage() {
 
 const Wrapper = styled.div`
   position: relative;
-  max-width: 768px;
   width: 100%;
 `;
 
