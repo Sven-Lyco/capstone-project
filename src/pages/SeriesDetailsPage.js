@@ -35,10 +35,12 @@ export default function SeriesDetailsPage() {
         <StyledHeaderBox>
           <StyledTitle>{series.name}</StyledTitle>
           <p>
-            {series.number_of_seasons} Staffeln -{' '}
+            {series.number_of_seasons}
+            {series.number_of_seasons === 1 ? ' Staffel - ' : ' Staffeln - '}
+
             {series.first_air_date
               ? series.first_air_date.substr(0, 4)
-              : 'kein Datum vorhanden'}
+              : 'kein Release Datum vorhanden'}
           </p>
         </StyledHeaderBox>
       </StyledHeader>
