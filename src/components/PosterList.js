@@ -9,7 +9,7 @@ export default function PosterList({ list, listName }) {
       <StyledList role="list">
         {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
-            <Link to={name ? `/serie/${id}` : `/`}>
+            <Link to={name ? `/serie/${id}` : `/film/${id}`}>
               <Poster
                 src={
                   poster_path
