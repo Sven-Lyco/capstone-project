@@ -11,11 +11,9 @@ describe('Navigation', () => {
     );
 
     const header = screen.getByRole('banner');
-    const heading = screen.getAllByRole('heading', { level: 1 });
     const backLink = screen.getByRole('link', { name: /zurück/i });
 
     expect(header).toBeInTheDocument();
-    expect(heading).toHaveLength(1);
     expect(backLink).toBeInTheDocument();
   });
 });
