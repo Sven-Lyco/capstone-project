@@ -42,8 +42,8 @@ const StyledNavLink = styled(NavLink)`
   align-self: center;
   height: 50px;
   text-decoration: none;
-  color: var(--color-black);
-  background-color: var(--color-green);
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 90, 54);
   margin: 15px;
   padding: 15px;
   border-radius: 10px;
