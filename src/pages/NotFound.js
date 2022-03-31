@@ -20,12 +20,17 @@ export default function NotFound() {
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: papayawhip;
   color: hotpink;
+
+  span {
+    text-align: center;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
