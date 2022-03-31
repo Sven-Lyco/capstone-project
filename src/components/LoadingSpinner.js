@@ -14,6 +14,5 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 768px;
   height: 100vh;
 `;
