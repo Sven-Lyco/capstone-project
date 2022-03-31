@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import useFetch from './hooks/useFetch';
 import Home from './pages/Home';
 import Series from './pages/Series';
@@ -21,6 +22,12 @@ const moviesOnCinemaUrl = `${REACT_APP_API_BASE_MOVIES_URL}/now_playing?api_key=
 const upcomingMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/upcoming?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
 
 export default function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   const { data: popularSeries } = useFetch(popularSeriesUrl);
   const { data: topRatedSeries } = useFetch(topRatedSeriesUrl);
   const { data: seriesOnTv } = useFetch(seriesOnTvUrl);
