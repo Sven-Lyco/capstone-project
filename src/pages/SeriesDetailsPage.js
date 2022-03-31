@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
@@ -14,21 +14,8 @@ const {
 
 export default function SeriesDetailsPage() {
   const { id } = useParams();
-  const [data, setData] = useState([]);
   const seriesDetailsUrl = `${REACT_APP_API_BASE_SERIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const response = await fetch(seriesDetailsUrl);
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadData();
-  }, [seriesDetailsUrl]);
+  const { data: series } = useDetails(seriesDetailsUrl);
 
   return (
     <Wrapper>
@@ -36,22 +23,22 @@ export default function SeriesDetailsPage() {
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledLinkBack>
-      <StyledBackdropImage backdropPath={data.backdrop_path} />
+      <StyledBackdropImage backdropPath={series.backdrop_path} />
       <StyledHeader>
         <Poster
           src={
-            data.poster_path
-              ? `https://image.tmdb.org/t/p/w300${data.poster_path}`
+            series.poster_path
+              ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
               : require('../assets/images/poster.png')
           }
-          alt={`${data.name}`}
+          alt={`${series.name}`}
         />
         <StyledHeaderText>
-          <h1>{data.name}</h1>
+          <h1>{series.name}</h1>
           <h2>
-            {data.number_of_seasons} Staffeln -{' '}
-            {data.first_air_date
-              ? data.first_air_date.substr(0, 4)
+            {series.number_of_seasons} Staffeln -{' '}
+            {series.first_air_date
+              ? series.first_air_date.substr(0, 4)
               : 'kein Datum vorhanden'}
           </h2>
         </StyledHeaderText>
@@ -59,8 +46,8 @@ export default function SeriesDetailsPage() {
       <StyledMain>
         <h3>Handlung</h3>
         <p>
-          {data.overview
-            ? data.overview
+          {series.overview
+            ? series.overview
             : 'Aktuell ist leider keine Beschreibung verfügbar'}
         </p>
       </StyledMain>
