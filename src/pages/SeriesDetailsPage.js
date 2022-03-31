@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
@@ -33,15 +32,15 @@ export default function SeriesDetailsPage() {
           }
           alt={`${series.name}`}
         />
-        <StyledHeaderText>
-          <h1>{series.name}</h1>
-          <h2>
+        <StyledHeaderBox>
+          <StyledTitle>{series.name}</StyledTitle>
+          <p>
             {series.number_of_seasons} Staffeln -{' '}
             {series.first_air_date
               ? series.first_air_date.substr(0, 4)
               : 'kein Datum vorhanden'}
-          </h2>
-        </StyledHeaderText>
+          </p>
+        </StyledHeaderBox>
       </StyledHeader>
       <StyledMain>
         <h3>Handlung</h3>
@@ -98,7 +97,14 @@ const StyledHeader = styled.header`
   margin-left: 20px;
 `;
 
-const StyledHeaderText = styled.div`
+const StyledTitle = styled.span`
+  font-size: xx-large;
+  font-weight: bold;
+  margin: 0;
+  padding: 25px 0px 5px;
+`;
+
+const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -107,12 +113,7 @@ const StyledHeaderText = styled.div`
   margin: 10px;
   width: 100%;
 
-  h1 {
-    font-size: xx-large;
-    margin: 0;
-    padding: 25px 0px 5px;
-  }
-  h2 {
+  p {
     font-size: larger;
     font-style: italic;
     font-weight: 400;

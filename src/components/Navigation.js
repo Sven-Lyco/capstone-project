@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { ReactComponent as SeriesIcon } from '../assets/icons/series_icon.svg';
 import { ReactComponent as MovieIcon } from '../assets/icons/movie_icon.svg';
 

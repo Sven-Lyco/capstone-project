@@ -1,8 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import useFetch from './hooks/useFetch';
-
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
-
 import Home from './pages/Home';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
