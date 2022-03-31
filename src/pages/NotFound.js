@@ -1,19 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { isChrome } from 'react-device-detect';
-import { GoHome } from 'react-icons/go';
-import { GoChevronLeft } from 'react-icons/go';
-import styled from 'styled-components';
-import { keyframes } from 'styled-components';
+import { GoHome, GoChevronLeft } from 'react-icons/go';
+import styled, { keyframes } from 'styled-components';
 
 export default function NotFound() {
   return (
     <Wrapper>
-      {isChrome ? (
-        <h1>ERROR 404</h1>
-      ) : (
-        <AnimatedGradientText>ERROR 404</AnimatedGradientText>
-      )}
-
+      <AnimatedGradientText>ERROR 404</AnimatedGradientText>
       <span>🎉🥳</span>
       <span>Herzlichen Glückwunsch!</span>
       <span>Du hast eine Seite gefunden, die es nicht gibt!</span>
