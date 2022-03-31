@@ -6,6 +6,7 @@ import Series from './pages/Series';
 import Movies from './pages/Movies';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
+import NotFound from './pages/NotFound';
 
 const {
   REACT_APP_API_BASE_SERIES_URL,
@@ -38,6 +39,7 @@ export default function App() {
   return (
     <>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/"
           element={
