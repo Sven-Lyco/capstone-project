@@ -72,7 +72,9 @@ const StyledBackdropImage = styled.div`
   min-height: 300px;
   height: 100%;
   background: ${({ backdropPath }) =>
-      backdropPath ? `url(https://image.tmdb.org/t/p/w780${backdropPath})` : ''}
+      backdropPath
+        ? `url(https://image.tmdb.org/t/p/original${backdropPath})`
+        : ''}
     center 0 no-repeat;
   background-size: cover;
   background-position: center;
