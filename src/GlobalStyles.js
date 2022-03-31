@@ -20,10 +20,12 @@ export default createGlobalStyle`
 }
 
 body{
-    margin: 0;
+    max-width: 768px;
+    margin: 0 auto;
     padding: 0;
     font-family: 'Roboto', sans-serif;
     font-size:112.5% ;
+    line-height: 1.5;
     color: var(--color-white);
     background-color: var(--color-black);
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
 import Header from '../components/Header';
 import PosterList from '../components/PosterList';
+import Navigation from '../components/Navigation';
 
 export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   return (
@@ -12,6 +12,7 @@ export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
         <PosterList list={topRatedSeries} listName={'Top bewertete Serien'} />
         <PosterList list={seriesOnTv} listName={'Serien im TV'} />
       </main>
+      <Navigation />
     </Wrapper>
   );
 }

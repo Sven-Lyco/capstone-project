@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
 import Header from '../components/Header';
 import PosterList from '../components/PosterList';
+import Navigation from '../components/Navigation';
 
 export default function Home({ popularSeries, popularMovies }) {
   return (
@@ -11,6 +11,7 @@ export default function Home({ popularSeries, popularMovies }) {
         <PosterList list={popularSeries} listName={'Beliebte Serien'} />
         <PosterList list={popularMovies} listName={'Beliebte Filme'} />
       </main>
+      <Navigation />
     </Wrapper>
   );
 }
