@@ -89,7 +89,7 @@ const StyledLinkBack = styled(Link)`
   position: absolute;
   top: 12px;
   left: 12px;
-  color: var(--color-green);
+  color: var(--color-white);
 `;
 
 const StyledArrowBackIcon = styled(ArrowBackIcon)`
