@@ -92,9 +92,9 @@ export default function SearchPage() {
                             first_air_date
                               ? first_air_date.substr(0, 4)
                               : 'kein Release Datum vorhanden'
-                          }`}
+                          }`}{' '}
+                      - {media_type === 'movie' ? 'Film' : 'Serie'}
                     </span>
-                    <p>{media_type === 'movie' ? 'Film' : 'Serie'}</p>
                   </TextBox>
                 </StyledListItem>
               )
