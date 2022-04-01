@@ -108,7 +108,7 @@ const StyledHeader = styled.header`
 `;
 
 const StyledTitle = styled.span`
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
   margin: 0;
   padding: 25px 0px 5px;
@@ -124,7 +124,7 @@ const StyledHeaderBox = styled.div`
   width: 100%;
 
   p {
-    font-size: larger;
+    font-size: large;
     font-style: italic;
     font-weight: 400;
     margin: 0;
