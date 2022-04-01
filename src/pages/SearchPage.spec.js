@@ -1,9 +1,8 @@
 import SearchPage from './SearchPage';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { userEvent } from '@storybook/testing-library';
 
-describe('Navigation', () => {
+describe('SearchPage', () => {
   it('renders an input', () => {
     const callback = jest.fn();
     render(
