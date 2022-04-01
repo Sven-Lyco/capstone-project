@@ -6,6 +6,7 @@ import Series from './pages/Series';
 import Movies from './pages/Movies';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
+import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
 
 const {
@@ -58,6 +59,7 @@ export default function App() {
         />
         <Route path="serie/:id" element={<SeriesDetailsPage />} />
         <Route path="film/:id" element={<MovieDetailsPage />} />
+        <Route path="suche" element={<SearchPage />} />
         <Route
           path="/filme"
           element={
