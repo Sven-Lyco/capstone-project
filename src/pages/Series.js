@@ -16,6 +16,7 @@ export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
     </Wrapper>
   );
 }
+
 const Wrapper = styled.div`
   margin-top: 70px;
   margin-bottom: 68px;
