@@ -13,9 +13,11 @@ describe('Navigation', () => {
     const navigation = screen.getByRole('navigation');
     const seriesLink = screen.getByRole('link', { name: /serien/i });
     const movieLink = screen.getByRole('link', { name: /filme/i });
+    const searchLink = screen.getByRole('link', { name: /suche/i });
 
     expect(navigation).toBeInTheDocument();
     expect(seriesLink).toBeInTheDocument();
     expect(movieLink).toBeInTheDocument();
+    expect(searchLink).toBeInTheDocument();
   });
 });
