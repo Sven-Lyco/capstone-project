@@ -66,5 +66,6 @@ const AnimatedGradientText = styled.h1`
   );
   background-size: 300%;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
