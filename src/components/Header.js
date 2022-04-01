@@ -8,7 +8,7 @@ export default function Header() {
     <StyledHeader>
       <StyledNavLink to="/">
         <h1>
-          <ScreenReaderOnly>Watched</ScreenReaderOnly>
+          <ScreenReaderOnly>Watcha</ScreenReaderOnly>
         </h1>
         <WatchaHeader />
       </StyledNavLink>
