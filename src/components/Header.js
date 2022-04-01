@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
-import { ReactComponent as WatchedHeader } from '../assets/images/header/watched.svg';
+import { ReactComponent as WatchaHeader } from '../assets/images/header/watcha.svg';
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
         <h1>
           <ScreenReaderOnly>Watcha</ScreenReaderOnly>
         </h1>
-        <WatchedHeader />
+        <WatchaHeader />
       </StyledNavLink>
     </StyledHeader>
   );
