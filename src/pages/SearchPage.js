@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
@@ -14,28 +14,32 @@ const {
 } = process.env;
 
 export default function SearchPage() {
+  const [query, setQuery] = useState([]);
   const [results, setResults] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
-  let searchUrl = '';
+  const searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}/?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  useEffect(() => {
+    setIsLoading(true);
     async function loadData() {
-      setIsLoading(true);
       try {
-        const form = event.target;
-        const query = form.elements.search.value;
-        searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}/?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
         const response = await fetch(searchUrl);
         const data = await response.json();
         setResults(data.results);
-        form.reset();
       } catch (error) {
         console.error(error);
       }
       setIsLoading(false);
     }
     loadData();
+  }, [searchUrl]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const text = form.elements.search.value;
+    setQuery(text);
+    form.reset();
   }
 
   return (
@@ -54,7 +58,7 @@ export default function SearchPage() {
         />
       </StyledForm>
       {isLoading && <LoadingSpinner />}
-      {results.length !== 0 ? (
+      {results ? (
         <StyledList>
           {results
             .filter(result => result.media_type !== 'person')
