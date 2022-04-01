@@ -25,7 +25,7 @@ export default function SearchPage() {
       try {
         const form = event.target;
         const query = form.elements.search.value;
-        searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}/?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
+        searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
         const response = await fetch(searchUrl);
         const data = await response.json();
         setResults(data.results);
