@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
@@ -6,7 +6,6 @@ import Poster from '../components/Poster';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { queries } from '@testing-library/react';
 
 const {
   REACT_APP_API_BASE_URL_SEARCH,
