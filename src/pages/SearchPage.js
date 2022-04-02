@@ -21,9 +21,29 @@ export default function SearchPage() {
 
   function handleSearch(event) {
     const currentQuery = event.target.value;
-    currentQuery !== '' ? setQuery(currentQuery) : setResults(null);
+    if (currentQuery === '') {
+      setResults([]);
+    }
+    setQuery(currentQuery);
+
+    async function loadData() {
+      try {
+        const response = await fetch(searchUrl);
+        const data = await response.json();
+        setResults(data.results);
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoading(false);
+    }
+    if (query !== '') {
+      loadData();
+    }
   }
 
+  console.log(results);
+
+  /*
   useEffect(() => {
     setIsLoading(true);
     async function loadData() {
@@ -38,6 +58,7 @@ export default function SearchPage() {
     }
     loadData();
   }, [searchUrl]);
+  */
 
   return (
     <Wrapper>
@@ -56,7 +77,7 @@ export default function SearchPage() {
         />
       </StyledForm>
       {isLoading && <LoadingSpinner />}
-      {results ? (
+      {results.length !== 0 ? (
         <StyledList>
           {results
             .filter(result => result.media_type !== 'person')
