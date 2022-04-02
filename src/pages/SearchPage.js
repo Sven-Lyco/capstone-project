@@ -39,39 +39,47 @@ export default function SearchPage() {
         />
       </SearchWrapper>
       {isLoading && <LoadingSpinner />}
-      {results.length !== 0 ? (
-        <StyledList>
-          {results
-            .filter(result => result.media_type !== 'person')
-            .map(
-              ({
-                id,
-                name,
-                title,
-                poster_path,
-                release_date,
-                first_air_date,
-                media_type,
-              }) => (
-                <StyledListItem key={id}>
-                  <SearchResultCard
-                    id={id}
-                    name={name}
-                    title={title}
-                    posterPath={poster_path}
-                    releaseDate={release_date}
-                    firstAirDate={first_air_date}
-                    mediaType={media_type}
-                  />
-                </StyledListItem>
-              )
-            )}
-        </StyledList>
+      {results ? (
+        results.length !== 0 ? (
+          <StyledList>
+            {results
+              .filter(result => result.media_type !== 'person')
+              .map(
+                ({
+                  id,
+                  name,
+                  title,
+                  poster_path,
+                  release_date,
+                  first_air_date,
+                  media_type,
+                }) => (
+                  <StyledListItem key={id}>
+                    <SearchResultCard
+                      id={id}
+                      name={name}
+                      title={title}
+                      posterPath={poster_path}
+                      releaseDate={release_date}
+                      firstAirDate={first_air_date}
+                      mediaType={media_type}
+                    />
+                  </StyledListItem>
+                )
+              )}
+          </StyledList>
+        ) : (
+          <InfoBox>
+            <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
+            <span>Bitte gib einen Suchbegriff ein</span>
+          </InfoBox>
+        )
       ) : (
         <InfoBox>
           <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
-          <span>Bitte gib einen Suchbegriff ein</span>
-          <span> oder ändere deine Suche </span>
+          <span>Kein Film oder keine Serie </span>
+          <span>entspricht deiner Suche</span>
+          <span>Bitte ändere deinen Suchbegriff</span>
         </InfoBox>
       )}
       <Navigation />
@@ -96,7 +104,7 @@ export default function SearchPage() {
       }
       setIsLoading(false);
     }
-    if (query !== '') {
+    if (query !== null) {
       loadData();
     }
   }
