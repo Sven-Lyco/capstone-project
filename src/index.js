@@ -9,8 +9,8 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
     <BrowserRouter>
+      <GlobalStyles />
       <App />
     </BrowserRouter>
   </React.StrictMode>,
