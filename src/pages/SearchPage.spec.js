@@ -4,10 +4,9 @@ import { render, screen } from '@testing-library/react';
 
 describe('SearchPage', () => {
   it('renders an input', () => {
-    const callback = jest.fn();
     render(
       <MemoryRouter>
-        <SearchPage onSubmit={callback} />
+        <SearchPage />
       </MemoryRouter>
     );
 
