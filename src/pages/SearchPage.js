@@ -6,6 +6,7 @@ import Poster from '../components/Poster';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { queries } from '@testing-library/react';
 
 const {
   REACT_APP_API_BASE_URL_SEARCH,
@@ -41,25 +42,6 @@ export default function SearchPage() {
     }
   }
 
-  console.log(results);
-
-  /*
-  useEffect(() => {
-    setIsLoading(true);
-    async function loadData() {
-      try {
-        const response = await fetch(searchUrl);
-        const data = await response.json();
-        setResults(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-      setIsLoading(false);
-    }
-    loadData();
-  }, [searchUrl]);
-  */
-
   return (
     <Wrapper>
       <Header />
@@ -71,7 +53,7 @@ export default function SearchPage() {
           id="search"
           name="search"
           placeholder="Star Wars, Suits,..."
-          type="search"
+          type="text"
           onChange={event => handleSearch(event)}
           required
         />
