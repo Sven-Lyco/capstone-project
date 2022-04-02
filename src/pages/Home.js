@@ -17,6 +17,5 @@ export default function Home({ popularSeries, popularMovies }) {
 }
 
 const Wrapper = styled.div`
-  margin-top: 70px;
-  margin-bottom: 68px;
+  margin: 70px 0 68px;
 `;

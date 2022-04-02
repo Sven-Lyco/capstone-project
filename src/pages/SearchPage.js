@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
@@ -15,46 +15,48 @@ const {
 
 export default function SearchPage() {
   const [results, setResults] = useState([]);
-  let [isLoading, setIsLoading] = useState(false);
-  let searchUrl = '';
+  const [query, setQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSearch(event) {
+    const currentQuery = event.target.value;
+    currentQuery !== '' ? setQuery(currentQuery) : setResults(null);
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
     async function loadData() {
-      setIsLoading(true);
       try {
-        const form = event.target;
-        const query = form.elements.search.value;
-        searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
         const response = await fetch(searchUrl);
         const data = await response.json();
         setResults(data.results);
-        form.reset();
       } catch (error) {
         console.error(error);
       }
       setIsLoading(false);
     }
     loadData();
-  }
+  }, [searchUrl]);
 
   return (
     <Wrapper>
       <Header />
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm>
         <label htmlFor="search">
           <ScreenReaderOnly>Suche</ScreenReaderOnly>
         </label>
         <input
           id="search"
           name="search"
-          placeholder="Star Wars, Shameless,..."
+          placeholder="Star Wars, Suits,..."
           type="search"
+          onChange={event => handleSearch(event)}
           required
         />
       </StyledForm>
       {isLoading && <LoadingSpinner />}
-      {results.length !== 0 ? (
+      {results ? (
         <StyledList>
           {results
             .filter(result => result.media_type !== 'person')
@@ -103,7 +105,7 @@ export default function SearchPage() {
       ) : (
         <InfoBox>
           <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
-          <span>Bitte gib ein Suchbegriff ein</span>
+          <span>Bitte gib einen Suchbegriff ein</span>
           <span> oder ändere deine Suche </span>
         </InfoBox>
       )}
@@ -112,11 +114,10 @@ export default function SearchPage() {
   );
 }
 const Wrapper = styled.div`
-  margin-top: 60px;
-  margin-bottom: 68px;
+  margin: 60px 0 68px;
 `;
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   background-color: var(--color-black);
   border-bottom: 1px solid var(--border-color);
   padding: 15px;
@@ -134,13 +135,13 @@ const StyledForm = styled.form`
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 0px 25px;
-  margin: 0px;
+  padding: 0 25px;
+  margin: 0;
 
   li {
-    border-top: 1px solid var(--border-color);
-    margin: 20px 0px;
-    padding: 10px 0px;
+    border-bottom: 1px solid var(--border-color);
+    margin: 20px 0;
+    padding: 10px 0;
   }
 `;
 
