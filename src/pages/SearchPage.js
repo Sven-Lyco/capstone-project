@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import Poster from '../components/Poster';
+import SearchResultCard from '../components/SearchResultCard';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -19,7 +18,68 @@ export default function SearchPage() {
   const [isLoading, setIsLoading] = useState(false);
   const searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
 
+  return (
+    <Wrapper>
+      <Header />
+      <SearchWrapper>
+        <label htmlFor="search">
+          <ScreenReaderOnly>Suche</ScreenReaderOnly>
+        </label>
+        <input
+          id="search"
+          name="search"
+          placeholder="Star Wars, Suits,..."
+          type="text"
+          onChange={event => handleSearch(event)}
+          onKeyDown={event =>
+            (event.key === 'Enter' || event.key === 'Escape') &&
+            event.target.blur()
+          }
+          required
+        />
+      </SearchWrapper>
+      {isLoading && <LoadingSpinner />}
+      {results.length !== 0 ? (
+        <StyledList>
+          {results
+            .filter(result => result.media_type !== 'person')
+            .map(
+              ({
+                id,
+                name,
+                title,
+                poster_path,
+                release_date,
+                first_air_date,
+                media_type,
+              }) => (
+                <StyledListItem key={id}>
+                  <SearchResultCard
+                    id={id}
+                    name={name}
+                    title={title}
+                    posterPath={poster_path}
+                    releaseDate={release_date}
+                    firstAirDate={first_air_date}
+                    mediaType={media_type}
+                  />
+                </StyledListItem>
+              )
+            )}
+        </StyledList>
+      ) : (
+        <InfoBox>
+          <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
+          <span>Bitte gib einen Suchbegriff ein</span>
+          <span> oder ändere deine Suche </span>
+        </InfoBox>
+      )}
+      <Navigation />
+    </Wrapper>
+  );
+
   function handleSearch(event) {
+    setIsLoading(true);
     const currentQuery = event.target.value;
     if (currentQuery === '') {
       setResults([]);
@@ -40,86 +100,13 @@ export default function SearchPage() {
       loadData();
     }
   }
-
-  return (
-    <Wrapper>
-      <Header />
-      <StyledForm>
-        <label htmlFor="search">
-          <ScreenReaderOnly>Suche</ScreenReaderOnly>
-        </label>
-        <input
-          id="search"
-          name="search"
-          placeholder="Star Wars, Suits,..."
-          type="text"
-          onChange={event => handleSearch(event)}
-          required
-        />
-      </StyledForm>
-      {isLoading && <LoadingSpinner />}
-      {results.length !== 0 ? (
-        <StyledList>
-          {results
-            .filter(result => result.media_type !== 'person')
-            .map(
-              ({
-                id,
-                name,
-                title,
-                poster_path,
-                release_date,
-                first_air_date,
-                media_type,
-              }) => (
-                <StyledListItem key={id}>
-                  <Link to={name ? `/serie/${id}` : `/film/${id}`}>
-                    <Poster
-                      src={
-                        poster_path
-                          ? `https://image.tmdb.org/t/p/w300${poster_path}`
-                          : require('../assets/images/poster.png')
-                      }
-                      alt={name ? `${name}` : `${title}`}
-                    />
-                  </Link>
-                  <TextBox>
-                    <span>{name ? `${name}` : `${title}`}</span>
-                    <span>
-                      {release_date
-                        ? `${
-                            release_date
-                              ? release_date.substr(0, 4)
-                              : 'kein Release Datum vorhanden'
-                          }`
-                        : `${
-                            first_air_date
-                              ? first_air_date.substr(0, 4)
-                              : 'kein Release Datum vorhanden'
-                          }`}{' '}
-                      - {media_type === 'movie' ? 'Film' : 'Serie'}
-                    </span>
-                  </TextBox>
-                </StyledListItem>
-              )
-            )}
-        </StyledList>
-      ) : (
-        <InfoBox>
-          <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
-          <span>Bitte gib einen Suchbegriff ein</span>
-          <span> oder ändere deine Suche </span>
-        </InfoBox>
-      )}
-      <Navigation />
-    </Wrapper>
-  );
 }
+
 const Wrapper = styled.div`
   margin: 60px 0 68px;
 `;
 
-const StyledForm = styled.div`
+const SearchWrapper = styled.div`
   background-color: var(--color-black);
   border-bottom: 1px solid var(--border-color);
   padding: 15px;
@@ -152,16 +139,6 @@ const StyledListItem = styled.li`
   font-size: larger;
   color: inherit;
   text-decoration: none;
-`;
-
-const TextBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  padding: 10px;
-  p {
-    font-style: italic;
-  }
 `;
 
 const InfoBox = styled.div`
