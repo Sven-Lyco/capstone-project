@@ -13,7 +13,7 @@ export default function SearchResultCard({
 }) {
   return (
     <>
-      <Link to={name ? `/serie/${id}` : `/film/${id}`}>
+      <StyledLink to={name ? `/serie/${id}` : `/film/${id}`}>
         <Poster
           src={
             posterPath
@@ -22,24 +22,25 @@ export default function SearchResultCard({
           }
           alt={name ? `${name}` : `${title}`}
         />
-      </Link>
-      <TextBox>
-        <span>{name ? `${name}` : `${title}`}</span>
-        <span>
-          {releaseDate
-            ? `${
-                releaseDate
-                  ? releaseDate.substr(0, 4)
-                  : 'kein Release Datum vorhanden'
-              }`
-            : `${
-                firstAirDate
-                  ? firstAirDate.substr(0, 4)
-                  : 'kein Release Datum vorhanden'
-              }`}{' '}
-          - {mediaType === 'movie' ? 'Film' : 'Serie'}
-        </span>
-      </TextBox>
+
+        <TextBox>
+          <span>{name ? `${name}` : `${title}`}</span>
+          <span>
+            {releaseDate
+              ? `${
+                  releaseDate
+                    ? releaseDate.substr(0, 4)
+                    : 'kein Release Datum vorhanden'
+                }`
+              : `${
+                  firstAirDate
+                    ? firstAirDate.substr(0, 4)
+                    : 'kein Release Datum vorhanden'
+                }`}{' '}
+            - {mediaType === 'movie' ? 'Film' : 'Serie'}
+          </span>
+        </TextBox>
+      </StyledLink>
     </>
   );
 }
@@ -52,4 +53,10 @@ const TextBox = styled.div`
   p {
     font-style: italic;
   }
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  color: inherit;
+  text-decoration: none;
 `;
