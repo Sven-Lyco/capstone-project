@@ -71,9 +71,11 @@ const StyledBackdropImage = styled.div`
   z-index: -1;
   position: relative;
   @media (min-width: 576px) {
-    min-height: 360px;
+    min-height: ${({ backdropPath }) => (backdropPath ? `360px` : `140px`)};
   }
-  min-height: 300px;
+
+  min-height: ${({ backdropPath }) => (backdropPath ? `300px` : `140px`)};
+
   height: 100%;
   background: ${({ backdropPath }) =>
       backdropPath
