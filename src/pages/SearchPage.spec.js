@@ -10,7 +10,7 @@ describe('SearchPage', () => {
       </MemoryRouter>
     );
 
-    const input = screen.getByRole('searchbox', { name: 'Suche' });
+    const input = screen.getByRole('textbox', { name: 'Suche' });
     expect(input).toBeInTheDocument();
   });
 });
