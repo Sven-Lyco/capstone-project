@@ -15,7 +15,7 @@ const {
 export default function SeriesDetailsPage() {
   const { id } = useParams();
   const seriesDetailsUrl = `${REACT_APP_API_BASE_SERIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-  const { data: series, loading: isLoading } = useDetails(seriesDetailsUrl);
+  const { data: series, isLoading } = useDetails(seriesDetailsUrl);
   const navigate = useNavigate();
 
   return (

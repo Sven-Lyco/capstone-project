@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import SearchResultCard from '../components/SearchResultCard';
@@ -7,17 +6,10 @@ import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 
-const {
-  REACT_APP_API_BASE_URL_SEARCH,
-  REACT_APP_API_KEY,
-  REACT_APP_API_LANGUAGE,
-} = process.env;
+import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
-  const [results, setResults] = useState([]);
-  const [query, setQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const searchUrl = `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`;
+  const { isLoading, results, handleSearch } = useSearch();
 
   return (
     <Wrapper>
@@ -78,30 +70,6 @@ export default function SearchPage() {
       <Navigation />
     </Wrapper>
   );
-
-  function handleSearch(event) {
-    setIsLoading(true);
-    const currentQuery = event.target.value.trim();
-    if (currentQuery === '') {
-      setResults([]);
-    }
-    setQuery(currentQuery);
-
-    async function loadData() {
-      try {
-        const response = await fetch(searchUrl);
-        const data = await response.json();
-        setResults(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    if (query.length >= 1) {
-      loadData();
-      setIsLoading(false);
-    }
-    setIsLoading(false);
-  }
 }
 
 const Wrapper = styled.div`
@@ -128,7 +96,6 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0 25px;
   margin: 0;
-
   li {
     border-bottom: 1px solid var(--border-color);
     margin: 20px 0;
@@ -150,7 +117,6 @@ const InfoBox = styled.div`
   align-items: center;
   gap: 20px;
   height: 60vh;
-
   span {
     text-align: center;
   }

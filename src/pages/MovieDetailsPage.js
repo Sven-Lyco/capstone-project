@@ -15,7 +15,7 @@ const {
 export default function SeriesDetailsPage() {
   const { id } = useParams();
   const movieDetailsUrl = `${REACT_APP_API_BASE_MOVIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-  const { data: movie, loading: isLoading } = useDetails(movieDetailsUrl);
+  const { data: movie, isLoading } = useDetails(movieDetailsUrl);
   const navigate = useNavigate();
 
   return (
