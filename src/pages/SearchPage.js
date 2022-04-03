@@ -5,6 +5,7 @@ import SearchResultCard from '../components/SearchResultCard';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 
 const {
   REACT_APP_API_BASE_URL_SEARCH,
@@ -39,47 +40,39 @@ export default function SearchPage() {
         />
       </SearchWrapper>
       {isLoading && <LoadingSpinner />}
-      {results ? (
-        results.length !== 0 ? (
-          <StyledList>
-            {results
-              .filter(result => result.media_type !== 'person')
-              .map(
-                ({
-                  id,
-                  name,
-                  title,
-                  poster_path,
-                  release_date,
-                  first_air_date,
-                  media_type,
-                }) => (
-                  <StyledListItem key={id}>
-                    <SearchResultCard
-                      id={id}
-                      name={name}
-                      title={title}
-                      posterPath={poster_path}
-                      releaseDate={release_date}
-                      firstAirDate={first_air_date}
-                      mediaType={media_type}
-                    />
-                  </StyledListItem>
-                )
-              )}
-          </StyledList>
-        ) : (
-          <InfoBox>
-            <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
-            <span>Bitte gib einen Suchbegriff ein</span>
-          </InfoBox>
-        )
+      {results.length !== 0 ? (
+        <StyledList>
+          {results
+            .filter(result => result.media_type !== 'person')
+            .map(
+              ({
+                id,
+                name,
+                title,
+                poster_path,
+                release_date,
+                first_air_date,
+                media_type,
+              }) => (
+                <StyledListItem key={id}>
+                  <SearchResultCard
+                    id={id}
+                    name={name}
+                    title={title}
+                    posterPath={poster_path}
+                    releaseDate={release_date}
+                    firstAirDate={first_air_date}
+                    mediaType={media_type}
+                  />
+                </StyledListItem>
+              )
+            )}
+        </StyledList>
       ) : (
         <InfoBox>
-          <span>🕵🏼‍♀️ 🕵🏼 🕵🏻‍♂️</span>
-          <span>Kein Film oder keine Serie </span>
-          <span>entspricht deiner Suche</span>
-          <span>Bitte ändere deinen Suchbegriff</span>
+          <SearchIcon />
+          <span>Bitte gib einen Suchbegriff ein</span>
+          <span>oder ändere deine Suche</span>
         </InfoBox>
       )}
       <Navigation />
@@ -88,7 +81,7 @@ export default function SearchPage() {
 
   function handleSearch(event) {
     setIsLoading(true);
-    const currentQuery = event.target.value;
+    const currentQuery = event.target.value.trim();
     if (currentQuery === '') {
       setResults([]);
     }
@@ -102,11 +95,12 @@ export default function SearchPage() {
       } catch (error) {
         console.error(error);
       }
+    }
+    if (query.length >= 1) {
+      loadData();
       setIsLoading(false);
     }
-    if (query !== null) {
-      loadData();
-    }
+    setIsLoading(false);
   }
 }
 
