@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
@@ -16,13 +16,14 @@ export default function SeriesDetailsPage() {
   const { id } = useParams();
   const movieDetailsUrl = `${REACT_APP_API_BASE_MOVIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
   const { data: movie, loading: isLoading } = useDetails(movieDetailsUrl);
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
-      <StyledLinkBack to="/filme">
+      <StyledButtonBack onClick={goBack}>
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </StyledLinkBack>
+      </StyledButtonBack>
       {isLoading && <LoadingSpinner />}
       <StyledBackdropImage backdropPath={movie.backdrop_path} />
       <StyledHeader>
@@ -54,6 +55,10 @@ export default function SeriesDetailsPage() {
       </StyledMain>
     </Wrapper>
   );
+
+  function goBack() {
+    navigate(-1);
+  }
 
   function calcMovieTime(movieRunTime) {
     const hours = Math.floor(movieRunTime / 60);
@@ -88,13 +93,16 @@ const StyledBackdropImage = styled.div`
   box-shadow: inset 0px -65px 50px 0px var(--color-black);
 `;
 
-const StyledLinkBack = styled(Link)`
+const StyledButtonBack = styled.button`
   display: flex;
   align-items: center;
   align-self: flex-start;
   position: absolute;
   top: 12px;
   left: 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   color: var(--color-white);
 `;
 
