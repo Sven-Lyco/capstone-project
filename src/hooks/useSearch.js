@@ -13,7 +13,7 @@ export default function useSearch() {
   useEffect(() => {
     query &&
       fetch(
-        `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&query=${query}&language=${REACT_APP_API_LANGUAGE})`
+        `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&query=${query}&page=1&include_adult=false&region=DE`
       )
         .then(res => res.json())
         .then(data => setResults(data.results))
