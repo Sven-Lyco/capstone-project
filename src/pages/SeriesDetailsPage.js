@@ -20,7 +20,7 @@ export default function SeriesDetailsPage() {
 
   return (
     <Wrapper>
-      <StyledButtonBack onClick={goBack}>
+      <StyledButtonBack onClick={() => navigate(-1)}>
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
@@ -57,10 +57,6 @@ export default function SeriesDetailsPage() {
       </StyledMain>
     </Wrapper>
   );
-
-  function goBack() {
-    navigate(-1);
-  }
 }
 
 const Wrapper = styled.div`

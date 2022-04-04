@@ -16,7 +16,7 @@ describe('SearchResultCard', () => {
     expect(poster).toBeInTheDocument();
   });
 
-  it('a Poster has an alt text', () => {
+  it('a poster has an alt text', () => {
     render(
       <MemoryRouter>
         <SearchResultCard name={name} />
