@@ -1,7 +1,7 @@
 import { GoSync } from 'react-icons/go';
 import styled from 'styled-components';
 
-export default function NotFound() {
+export default function FetchError() {
   return (
     <Wrapper>
       <h1>ERROR</h1>
