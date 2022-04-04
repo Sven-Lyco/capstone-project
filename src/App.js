@@ -1,7 +1,8 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import useFetch from './hooks/useFetch';
 import Home from './pages/Home';
+import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
@@ -24,7 +25,19 @@ const moviesOnCinemaUrl = `${REACT_APP_API_BASE_MOVIES_URL}/now_playing?api_key=
 const upcomingMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/upcoming?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
 
 export default function App() {
+  const [isAdult, setIsAdult] = useState(false);
+  const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  function checkIsAdult(age) {
+    if (age === 18) {
+      setIsAdult(true);
+      navigate('./serien');
+    } else {
+      setIsAdult(false);
+      navigate('./child');
+    }
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,10 +56,9 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
         <Route
           path="/"
-          element={
-            <Home popularSeries={popularSeries} popularMovies={popularMovies} />
-          }
+          element={<Home isAdult={isAdult} handleCheckIsAdult={checkIsAdult} />}
         />
+        <Route path="/child" element={<ChildPage />} />
         <Route
           path="/serien"
           element={
