@@ -1,19 +1,21 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GoHome, GoChevronLeft } from 'react-icons/go';
 import styled, { keyframes } from 'styled-components';
+import Button from '../components/Button';
 
 export default function NotFound() {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <AnimatedGradientText>ERROR 404</AnimatedGradientText>
       <span>🎉🥳</span>
       <span>Herzlichen Glückwunsch!</span>
       <span>Du hast eine Seite gefunden, die es nicht gibt!</span>
-      <StyledNavLink to="/">
+      <Button buttonType="neueFische" onClick={() => navigate(-1)}>
         <GoHome />
         <GoChevronLeft />
         <span>zurück</span>
-      </StyledNavLink>
+      </Button>
     </Wrapper>
   );
 }
@@ -31,19 +33,6 @@ const Wrapper = styled.div`
   span {
     text-align: center;
   }
-`;
-
-const StyledNavLink = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  align-self: center;
-  height: 50px;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  background-color: rgb(255, 90, 54);
-  margin: 15px;
-  padding: 15px;
-  border-radius: 10px;
 `;
 
 const gradient = keyframes`
