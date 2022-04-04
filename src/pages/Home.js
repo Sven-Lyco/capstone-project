@@ -1,34 +1,43 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
-import PosterList from '../components/PosterList';
-import Navigation from '../components/Navigation';
-import FetchError from '../components/FetchError';
-import useCheckFetch from '../hooks/useCheckFetch';
+import Button from '../components/Button';
 
-export default function Home({ popularSeries, popularMovies }) {
-  /* This page is still being modified. 
-There will be no more movies and series displayed on the page in the future. 
-popularMovies is intentionally duplicated to fulfill the condition. */
-  const { data } = useCheckFetch(popularSeries, popularMovies, popularMovies);
-
+export default function Home({ handleCheckIsAdult }) {
   return (
     <Wrapper>
       <Header />
-      {!data ? (
-        <FetchError />
-      ) : (
-        <>
-          <main>
-            <PosterList list={popularSeries} listName={'Beliebte Serien'} />
-            <PosterList list={popularMovies} listName={'Beliebte Filme'} />
-          </main>
-          <Navigation />
-        </>
-      )}
+      <StyledSection>
+        <span>Diese Seite enthält Inhalte für Erwachsene!</span>
+        <span>
+          Um Die Inhalte dieser Seite sehen zu können, musst du bestätigen dass
+          du mindestens 18 Jahre alt bist!
+        </span>
+        <Button buttonType="green" onClick={() => handleCheckIsAdult(18)}>
+          über 18
+        </Button>
+        <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
+          unter 18
+        </Button>
+      </StyledSection>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  span {
+    padding: 10px;
+    text-align: center;
+    line-height: 1.5;
+  }
 `;
