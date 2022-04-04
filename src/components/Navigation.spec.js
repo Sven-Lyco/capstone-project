@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 describe('Navigation', () => {
-  it('renders a Navigation with two links', () => {
+  it('renders a Navigation with three links', () => {
     render(
       <MemoryRouter>
         <Navigation />
@@ -11,11 +11,9 @@ describe('Navigation', () => {
     );
 
     const navigation = screen.getByRole('navigation');
-    const seriesLink = screen.getByRole('link', { name: /serien/i });
-    const movieLink = screen.getByRole('link', { name: /filme/i });
+    const navigationLinks = screen.getAllByRole('link');
 
     expect(navigation).toBeInTheDocument();
-    expect(seriesLink).toBeInTheDocument();
-    expect(movieLink).toBeInTheDocument();
+    expect(navigationLinks).toHaveLength(3);
   });
 });

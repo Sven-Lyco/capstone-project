@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 export default function useDetails(url) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     async function loadData() {
       try {
         const response = await fetch(url);
@@ -14,9 +14,9 @@ export default function useDetails(url) {
       } catch (error) {
         console.error(error);
       }
-      setLoading(false);
+      setIsLoading(false);
     }
     loadData();
   }, [url]);
-  return { data, loading };
+  return { data, isLoading };
 }

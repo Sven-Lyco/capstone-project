@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as SeriesIcon } from '../assets/icons/series_icon.svg';
 import { ReactComponent as MovieIcon } from '../assets/icons/movie_icon.svg';
+import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 
 export default function Navigation() {
   return (
@@ -13,6 +14,10 @@ export default function Navigation() {
       <StyledLink to="/filme">
         <MovieIcon />
         <span>Filme</span>
+      </StyledLink>
+      <StyledLink to="/suche">
+        <SearchIcon />
+        <span>Suche</span>
       </StyledLink>
     </StyledNavigation>
   );

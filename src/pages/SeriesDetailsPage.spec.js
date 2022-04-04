@@ -11,7 +11,7 @@ describe('Navigation', () => {
     );
 
     const header = screen.getByRole('banner');
-    const backLink = screen.getByRole('link', { name: /zurück/i });
+    const backLink = screen.getByRole('button', { name: /zurück/i });
 
     expect(header).toBeInTheDocument();
     expect(backLink).toBeInTheDocument();
