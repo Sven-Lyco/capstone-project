@@ -8,8 +8,6 @@ import useCheckFetch from '../hooks/useCheckFetch';
 export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   const { data } = useCheckFetch(popularSeries, topRatedSeries, seriesOnTv);
 
-  console.log(data);
-
   return (
     <Wrapper>
       <Header />
