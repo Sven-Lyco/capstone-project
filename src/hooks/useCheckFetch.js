@@ -5,9 +5,9 @@ export default function useCheckFetch(data1, data2, data3) {
 
   useEffect(() => {
     function checkData() {
-      data1 || data2 || data3 ? setData(true) : setData(false);
+      data1 && data2 && data3 ? setData(true) : setData(false);
     }
     checkData();
-  });
+  }, [data1, data2, data3]);
   return { data };
 }
