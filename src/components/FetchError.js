@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   display: flex;
   align-items: center;
   align-self: center;
