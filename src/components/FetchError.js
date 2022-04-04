@@ -39,5 +39,6 @@ const StyledButton = styled.button`
   margin: 15px;
   padding: 15px;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
 `;
