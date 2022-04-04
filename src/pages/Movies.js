@@ -15,8 +15,9 @@ export default function Movies({
   return (
     <Wrapper>
       <Header />
-      {!data && <FetchError />}
-      {data && (
+      {!data ? (
+        <FetchError />
+      ) : (
         <>
           <main>
             <PosterList list={popularMovies} listName={'Beliebte Filme'} />

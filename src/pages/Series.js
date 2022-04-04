@@ -8,11 +8,14 @@ import useCheckFetch from '../hooks/useCheckFetch';
 export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   const { data } = useCheckFetch(popularSeries, topRatedSeries, seriesOnTv);
 
+  console.log(data);
+
   return (
     <Wrapper>
       <Header />
-      {!data && <FetchError />}
-      {data && (
+      {!data ? (
+        <FetchError />
+      ) : (
         <>
           <main>
             <PosterList list={popularSeries} listName={'Beliebte Serien'} />

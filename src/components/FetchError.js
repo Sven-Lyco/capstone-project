@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <Wrapper>
       <h1>ERROR</h1>
-      <span>Irgendetwas ist funktioniert nicht</span>
+      <span>Irgendetwas funktioniert nicht,</span>
       <span>wie es sollte</span>
       <StyledButton onClick={() => window.location.reload(false)}>
         <GoSync />
@@ -15,7 +15,7 @@ export default function NotFound() {
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
