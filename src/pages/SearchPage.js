@@ -5,7 +5,6 @@ import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
-
 import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
