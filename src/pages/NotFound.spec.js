@@ -2,7 +2,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import NotFound from './NotFound';
 
-describe('Navigation', () => {
+describe('NotFound', () => {
   it('renders the Page with heading and one link', () => {
     render(
       <MemoryRouter>
