@@ -2,20 +2,20 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Button from '../components/Button';
 
-export default function Home({ handleCheckIsAdult }) {
+export default function Home({ onCheckIsAdult }) {
   return (
     <Wrapper>
       <Header />
       <StyledSection>
-        <span>Diese Seite enthält Inhalte für Erwachsene!</span>
-        <span>
-          Um Die Inhalte dieser Seite sehen zu können, musst du bestätigen dass
+        <p>Diese Seite enthält Inhalte für Erwachsene!</p>
+        <p>
+          Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
           du mindestens 18 Jahre alt bist!
-        </span>
-        <Button buttonType="green" onClick={() => handleCheckIsAdult(18)}>
+        </p>
+        <Button buttonType="green" onClick={() => onCheckIsAdult(18)}>
           über 18
         </Button>
-        <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
+        <Button buttonType="red" onClick={() => onCheckIsAdult()}>
           unter 18
         </Button>
       </StyledSection>
@@ -35,7 +35,7 @@ const StyledSection = styled.section`
   flex-wrap: wrap;
   flex-direction: column;
 
-  span {
+  p {
     padding: 10px;
     text-align: center;
     line-height: 1.5;

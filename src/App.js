@@ -29,8 +29,8 @@ export default function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  function checkIsAdult(age) {
-    if (age === 18) {
+  function handleCheckIsAdult(age) {
+    if (age > 17) {
       setIsAdult(true);
       navigate('./serien');
     } else {
@@ -56,7 +56,9 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
         <Route
           path="/"
-          element={<Home isAdult={isAdult} handleCheckIsAdult={checkIsAdult} />}
+          element={
+            <Home isAdult={isAdult} onCheckIsAdult={handleCheckIsAdult} />
+          }
         />
         <Route path="/child" element={<ChildPage />} />
         <Route

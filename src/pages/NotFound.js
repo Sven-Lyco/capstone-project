@@ -8,9 +8,9 @@ export default function NotFound() {
   return (
     <Wrapper>
       <AnimatedGradientText>ERROR 404</AnimatedGradientText>
-      <span>🎉🥳</span>
-      <span>Herzlichen Glückwunsch!</span>
-      <span>Du hast eine Seite gefunden, die es nicht gibt!</span>
+      <p>🎉🥳</p>
+      <p>Herzlichen Glückwunsch!</p>
+      <p>Du hast eine Seite gefunden, die es nicht gibt!</p>
       <Button buttonType="neueFische" onClick={() => navigate(-1)}>
         <GoHome />
         <GoChevronLeft />
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   background-color: papayawhip;
   color: hotpink;
 
-  span {
+  p {
     text-align: center;
   }
 `;
