@@ -1,23 +1,16 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
-import Button from '../components/Button';
 
-export default function Home({ handleCheckIsAdult }) {
+export default function ChildPage() {
   return (
     <Wrapper>
       <Header />
       <StyledSection>
-        <p>Diese Seite enthält Inhalte für Erwachsene!</p>
+        <p>Du bist leider noch zu jung, um diese Seite nutzen zu können</p>
         <p>
-          Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
-          du mindestens 18 Jahre alt bist!
+          <a href="https://www.schau-hin.info/filme-serien">Hier</a> findest du
+          weitere Informationen 🙂
         </p>
-        <Button buttonType="green" onClick={() => handleCheckIsAdult(18)}>
-          über 18
-        </Button>
-        <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
-          unter 18
-        </Button>
       </StyledSection>
     </Wrapper>
   );
@@ -39,5 +32,9 @@ const StyledSection = styled.section`
     padding: 10px;
     text-align: center;
     line-height: 1.5;
+  }
+
+  a {
+    color: inherit;
   }
 `;
