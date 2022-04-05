@@ -55,6 +55,7 @@ export default function App() {
           path="/serien"
           element={
             <Series
+              isAdult={isAdult}
               popularSeries={popularSeries}
               topRatedSeries={topRatedSeries}
               seriesOnTv={seriesOnTv}
@@ -63,11 +64,12 @@ export default function App() {
         />
         <Route path="serie/:id" element={<SeriesDetailsPage />} />
         <Route path="film/:id" element={<MovieDetailsPage />} />
-        <Route path="suche" element={<SearchPage />} />
+        <Route path="suche" element={<SearchPage isAdult={isAdult} />} />
         <Route
           path="/filme"
           element={
             <Movies
+              isAdult={isAdult}
               popularMovies={popularMovies}
               moviesOnCinema={moviesOnCinema}
               upcomingMovies={upcomingMovies}

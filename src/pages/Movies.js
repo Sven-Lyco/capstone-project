@@ -4,17 +4,21 @@ import PosterList from '../components/PosterList';
 import Navigation from '../components/Navigation';
 import FetchError from '../components/FetchError';
 import useCheckFetch from '../hooks/useCheckFetch';
+import { useNavigate } from 'react-router-dom';
 
 export default function Movies({
+  isAdult,
   popularMovies,
   moviesOnCinema,
   upcomingMovies,
 }) {
   const { data } = useCheckFetch(popularMovies, moviesOnCinema, upcomingMovies);
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
       <Header />
+      {!isAdult ? navigate('../child') : navigate('../filme')}
       {!data ? (
         <FetchError />
       ) : (

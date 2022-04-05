@@ -6,13 +6,16 @@ import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 import useSearch from '../hooks/useSearch';
+import { useNavigate } from 'react-router-dom';
 
-export default function SearchPage() {
+export default function SearchPage({ isAdult }) {
   const { isLoading, results, handleSearch } = useSearch();
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
       <Header />
+      {!isAdult ? navigate('../child') : navigate('../suche')}
       <SearchWrapper>
         <label htmlFor="search">
           <ScreenReaderOnly>Suche</ScreenReaderOnly>

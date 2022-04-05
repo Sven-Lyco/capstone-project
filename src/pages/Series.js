@@ -4,13 +4,20 @@ import PosterList from '../components/PosterList';
 import Navigation from '../components/Navigation';
 import FetchError from '../components/FetchError';
 import useCheckFetch from '../hooks/useCheckFetch';
+import { useNavigate } from 'react-router-dom';
 
-export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
+export default function Series({
+  popularSeries,
+  topRatedSeries,
+  seriesOnTv,
+  isAdult,
+}) {
   const { data } = useCheckFetch(popularSeries, topRatedSeries, seriesOnTv);
-
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <Header />
+      {!isAdult ? navigate('../child') : navigate('../serien')}
       {!data ? (
         <FetchError />
       ) : (
