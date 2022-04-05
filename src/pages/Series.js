@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import PosterList from '../components/PosterList';
 import Navigation from '../components/Navigation';
-import FetchError from '../components/FetchError';
-import useCheckFetch from '../hooks/useCheckFetch';
 import { useNavigate } from 'react-router-dom';
+import useCheckFetch from '../hooks/useCheckFetch';
+import FetchError from '../components/FetchError';
 
 export default function Series({
   popularSeries,
