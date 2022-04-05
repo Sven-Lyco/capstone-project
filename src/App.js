@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import Home from './pages/Home';
 import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
@@ -8,10 +9,13 @@ import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
+
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
+
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
+import Header from './components/Header';
 
 export default function App() {
   const [isAdult, setIsAdult] = useState(false);
@@ -71,7 +75,6 @@ export default function App() {
             path="/serien"
             element={
               <Series
-                isAdult={isAdult}
                 popularSeries={popularSeries.results}
                 topRatedSeries={topRatedSeries.results}
                 seriesOnTv={seriesOnTv.results}
@@ -80,12 +83,11 @@ export default function App() {
           />
           <Route path="serie/:id" element={<SeriesDetailsPage />} />
           <Route path="film/:id" element={<MovieDetailsPage />} />
-          <Route path="suche" element={<SearchPage isAdult={isAdult} />} />
+          <Route path="suche" element={<SearchPage />} />
           <Route
             path="/filme"
             element={
               <Movies
-                isAdult={isAdult}
                 popularMovies={popularMovies.results}
                 moviesOnCinema={moviesOnCinema.results}
                 upcomingMovies={upcomingMovies.results}
@@ -94,7 +96,10 @@ export default function App() {
           />
         </Routes>
       ) : (
-        <LoadingSpinner />
+        <>
+          <Header />
+          <LoadingSpinner />
+        </>
       )}
     </>
   );

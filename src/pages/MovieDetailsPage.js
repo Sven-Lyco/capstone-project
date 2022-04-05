@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import useDetails from '../hooks/useDetails';
 
 const {
   REACT_APP_API_BASE_MOVIES_URL,

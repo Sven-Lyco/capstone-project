@@ -1,21 +1,15 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import useDetails from '../hooks/useDetails';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-
-const {
-  REACT_APP_API_BASE_SERIES_URL,
-  REACT_APP_API_KEY,
-  REACT_APP_API_LANGUAGE,
-} = process.env;
+import useSeriesDetails from '../hooks/useSeriesDetails';
 
 export default function SeriesDetailsPage() {
   const { id } = useParams();
-  const seriesDetailsUrl = `${REACT_APP_API_BASE_SERIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-  const { data: series, isLoading } = useDetails(seriesDetailsUrl);
+  const { series, isLoading } = useSeriesDetails(id);
+
   const navigate = useNavigate();
 
   return (

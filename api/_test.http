@@ -15,5 +15,9 @@ GET {{baseURL}}/getPopularMovies
 ### GET/moviesOnCinema
 GET {{baseURL}}/getMoviesOnCinema
 
-### GET/UpcommingMovies
+### GET/upcommingMovies
 GET {{baseURL}}/getUpcommingMovies
+
+### GET/seriesDetails
+GET {{baseURL}}/getSeriesDetails/
+
