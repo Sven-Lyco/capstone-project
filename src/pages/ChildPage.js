@@ -6,7 +6,7 @@ export default function ChildPage() {
     <Wrapper>
       <Header />
       <StyledSection>
-        <p>Du bist leider noch zu jung, um diese App nutzen zu können</p>
+        <p>Du bist leider noch zu jung, um diese Seite nutzen zu können</p>
       </StyledSection>
     </Wrapper>
   );
