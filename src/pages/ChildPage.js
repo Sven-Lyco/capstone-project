@@ -24,7 +24,7 @@ const StyledSection = styled.section`
   flex-wrap: wrap;
   flex-direction: column;
 
-  span {
+  p {
     padding: 10px;
     text-align: center;
     line-height: 1.5;
