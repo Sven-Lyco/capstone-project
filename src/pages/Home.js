@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Button from '../components/Button';
 
-export default function Home({ onCheckIsAdult }) {
+export default function Home({ handleCheckIsAdult }) {
   return (
     <Wrapper>
       <Header />
@@ -12,10 +12,10 @@ export default function Home({ onCheckIsAdult }) {
           Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
           du mindestens 18 Jahre alt bist!
         </p>
-        <Button buttonType="green" onClick={() => onCheckIsAdult(18)}>
+        <Button buttonType="green" onClick={() => handleCheckIsAdult(18)}>
           über 18
         </Button>
-        <Button buttonType="red" onClick={() => onCheckIsAdult()}>
+        <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
           unter 18
         </Button>
       </StyledSection>

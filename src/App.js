@@ -29,16 +29,6 @@ export default function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  function handleCheckIsAdult(age) {
-    if (age > 17) {
-      setIsAdult(true);
-      navigate('./serien');
-    } else {
-      setIsAdult(false);
-      navigate('./child');
-    }
-  }
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -57,7 +47,7 @@ export default function App() {
         <Route
           path="/"
           element={
-            <Home isAdult={isAdult} onCheckIsAdult={handleCheckIsAdult} />
+            <Home isAdult={isAdult} handleCheckIsAdult={handleCheckIsAdult} />
           }
         />
         <Route path="/child" element={<ChildPage />} />
@@ -87,4 +77,14 @@ export default function App() {
       </Routes>
     </>
   );
+
+  function handleCheckIsAdult(age) {
+    if (age > 17) {
+      setIsAdult(true);
+      navigate('./serien');
+    } else {
+      setIsAdult(false);
+      navigate('./child');
+    }
+  }
 }
