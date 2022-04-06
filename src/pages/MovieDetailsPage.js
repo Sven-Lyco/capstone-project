@@ -6,10 +6,19 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 
-export default function SeriesDetailsPage() {
+export default function SeriesDetailsPage({ onHandleAddMovie }) {
   const { id } = useParams();
-  const { data: movie, isLoading } = useMovieDetails(id);
   const navigate = useNavigate();
+  const { data: movieDetails, isLoading } = useMovieDetails(id);
+
+  const {
+    title,
+    poster_path: posterPath,
+    runtime,
+    release_date: releaseDate,
+    overview,
+    backdrop_path: backdropPath,
+  } = movieDetails;
 
   return (
     <Wrapper>
@@ -19,31 +28,34 @@ export default function SeriesDetailsPage() {
       </StyledButtonBack>
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={movie.backdrop_path} />
+          <StyledBackdropImage backdropPath={backdropPath} />
           <StyledHeader>
             <Poster
               src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                posterPath
+                  ? `https://image.tmdb.org/t/p/w300${posterPath}`
                   : require('../assets/images/poster.png')
               }
-              alt={`${movie.title}`}
+              alt={`${title}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{movie.title}</StyledTitle>
+              <StyledTitle>{title}</StyledTitle>
               <p>
-                {movie.release_date
-                  ? movie.release_date.substr(0, 4)
+                {releaseDate
+                  ? releaseDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}{' '}
-                - {calcMovieTime(movie.runtime)}
+                - {calcMovieTime(runtime)}
               </p>
+              <button onClick={() => onHandleAddMovie(id, title, posterPath)}>
+                ADD
+              </button>
             </StyledHeaderBox>
           </StyledHeader>
           <StyledMain>
             <h3>Handlung</h3>
             <p>
-              {movie.overview
-                ? movie.overview
+              {overview
+                ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
           </StyledMain>

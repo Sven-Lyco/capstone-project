@@ -6,11 +6,19 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 
-export default function SeriesDetailsPage() {
+export default function SeriesDetailsPage({ onHandleAddSeries }) {
   const { id } = useParams();
-  const { data: series, isLoading } = useSeriesDetails(id);
-
   const navigate = useNavigate();
+  const { data: seriesDetails, isLoading } = useSeriesDetails(id);
+
+  const {
+    name,
+    poster_path: posterPath,
+    number_of_seasons: seasons,
+    first_air_date: firstAirDate,
+    overview,
+    backdrop_path: backdropPath,
+  } = seriesDetails;
 
   return (
     <Wrapper>
@@ -20,35 +28,36 @@ export default function SeriesDetailsPage() {
       </StyledButtonBack>
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={series.backdrop_path} />
+          <StyledBackdropImage backdropPath={backdropPath} />
           <StyledHeader>
             <Poster
               src={
-                series.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
+                posterPath
+                  ? `https://image.tmdb.org/t/p/w300${posterPath}`
                   : require('../assets/images/poster.png')
               }
-              alt={`${series.name}`}
+              alt={`${name}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{series.name}</StyledTitle>
+              <StyledTitle>{name}</StyledTitle>
               <p>
-                {series.number_of_seasons}
-                {series.number_of_seasons === 1
-                  ? ' Staffel - '
-                  : ' Staffeln - '}
+                {seasons}
+                {seasons === 1 ? ' Staffel - ' : ' Staffeln - '}
 
-                {series.first_air_date
-                  ? series.first_air_date.substr(0, 4)
+                {firstAirDate
+                  ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
+              <button onClick={() => onHandleAddSeries(id, name, posterPath)}>
+                ADD
+              </button>
             </StyledHeaderBox>
           </StyledHeader>
           <StyledMain>
             <h3>Handlung</h3>
             <p>
-              {series.overview
-                ? series.overview
+              {overview
+                ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
           </StyledMain>

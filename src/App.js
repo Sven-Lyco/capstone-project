@@ -1,6 +1,5 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
 import Home from './pages/Home';
 import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
@@ -10,18 +9,37 @@ import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
 import WatchlistPage from './pages/WatchlistPage';
-
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
-
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 
 export default function App() {
+  const [watchlist, setWatchlist] = useState([]);
   const [isAdult, setIsAdult] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  function handleAddSeries(id, name, posterPath) {
+    const watchlistItem = { id, name, posterPath };
+    if (watchlist.find(item => item.id === watchlistItem.id)) {
+      alert('Diese Serie ist schon auf deiner Watchlist');
+    } else {
+      setWatchlist([...watchlist, watchlistItem]);
+    }
+  }
+
+  function handleAddMovie(id, title, posterPath) {
+    const watchlistItem = { id, title, posterPath };
+    if (watchlist.find(item => item.id === watchlistItem.id)) {
+      alert('Diese Serie ist schon auf deiner Watchlist');
+    } else {
+      setWatchlist([...watchlist, watchlistItem]);
+    }
+  }
+
+  console.log(watchlist);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -82,8 +100,14 @@ export default function App() {
               />
             }
           />
-          <Route path="serie/:id" element={<SeriesDetailsPage />} />
-          <Route path="film/:id" element={<MovieDetailsPage />} />
+          <Route
+            path="serie/:id"
+            element={<SeriesDetailsPage onHandleAddSeries={handleAddSeries} />}
+          />
+          <Route
+            path="film/:id"
+            element={<MovieDetailsPage onHandleAddMovie={handleAddMovie} />}
+          />
           <Route
             path="/filme"
             element={
@@ -95,7 +119,10 @@ export default function App() {
             }
           />
           <Route path="suche" element={<SearchPage />} />
-          <Route path="watchlist" element={<WatchlistPage />} />
+          <Route
+            path="watchlist"
+            element={<WatchlistPage watchlist={watchlist} />}
+          />
         </Routes>
       ) : (
         <>
