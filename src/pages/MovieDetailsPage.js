@@ -177,6 +177,9 @@ const StyledAddButton = styled.button`
   justify-content: center;
   align-items: center;
   align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-orange);
@@ -186,7 +189,7 @@ const StyledAddButton = styled.button`
 `;
 
 const StyledDeleteIcon = styled(PlusIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
+  background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
 
@@ -195,6 +198,9 @@ const StyledDeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-red);
@@ -204,6 +210,6 @@ const StyledDeleteButton = styled.button`
 `;
 
 const StyledPlusIcon = styled(DeleteIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
+  background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
