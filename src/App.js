@@ -9,6 +9,7 @@ import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
+import WatchlistPage from './pages/WatchlistPage';
 
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
@@ -83,7 +84,6 @@ export default function App() {
           />
           <Route path="serie/:id" element={<SeriesDetailsPage />} />
           <Route path="film/:id" element={<MovieDetailsPage />} />
-          <Route path="suche" element={<SearchPage />} />
           <Route
             path="/filme"
             element={
@@ -94,6 +94,8 @@ export default function App() {
               />
             }
           />
+          <Route path="suche" element={<SearchPage />} />
+          <Route path="watchlist" element={<WatchlistPage />} />
         </Routes>
       ) : (
         <>
