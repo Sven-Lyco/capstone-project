@@ -15,9 +15,10 @@ import useWatchlist from './hooks/useWatchlist';
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
+import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 export default function App() {
-  const [isAdult, setIsAdult] = useState(false);
+  const [isAdult, setIsAdult] = useState(loadFromLocal('isAdult') ?? false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const {
@@ -47,6 +48,10 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    saveToLocal('isAdult', isAdult);
+  }, [isAdult]);
 
   if (
     topRatedSeriesError &&
