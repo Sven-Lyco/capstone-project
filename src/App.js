@@ -11,52 +11,22 @@ import NotFound from './pages/NotFound';
 import WatchlistPage from './pages/WatchlistPage';
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
+import useWatchlist from './hooks/useWatchlist';
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 
 export default function App() {
-  const [watchlist, setWatchlist] = useState([]);
   const [isAdult, setIsAdult] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  function handleDeleteItem(id) {
-    setWatchlist(watchlist.filter(item => item.id !== id));
-  }
-
-  function checkIsOnWatchlist(id) {
-    if (watchlist.find(item => item.id === id)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function handleAddSeries(id, name, posterPath) {
-    const watchlistItem = { id, name, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
-      alert('Diese Serie ist schon auf deiner Watchlist');
-    } else {
-      setWatchlist([...watchlist, watchlistItem]);
-    }
-  }
-
-  function handleAddMovie(id, title, posterPath) {
-    const watchlistItem = { id, title, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
-      alert('Diese Serie ist schon auf deiner Watchlist');
-    } else {
-      setWatchlist([...watchlist, watchlistItem]);
-    }
-  }
-
-  console.log(watchlist);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
+  const {
+    watchlist,
+    checkIsOnWatchlist,
+    handleDeleteItem,
+    handleAddSeries,
+    handleAddMovie,
+  } = useWatchlist();
   const {
     popularSeries,
     topRatedSeries,
@@ -65,7 +35,6 @@ export default function App() {
     topRatedSeriesError,
     seriesOnTvError,
   } = useSeries();
-
   const {
     popularMovies,
     moviesOnCinema,
@@ -74,6 +43,10 @@ export default function App() {
     moviesOnCinemaError,
     upcomingMoviesError,
   } = useMovies();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   if (
     topRatedSeriesError &&

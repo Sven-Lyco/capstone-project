@@ -9,7 +9,10 @@ export default function WatchlistPage({ watchlist }) {
     <Wrapper>
       <Header />
       {watchlist.length === 0 ? (
-        <p>Du hast noch keine Serien oder Filme auf deiner Watchlist.</p>
+        <InfoBox>
+          <p>👻</p>
+          <p>Deine Watchlist ist aktuell leer.</p>
+        </InfoBox>
       ) : (
         <StyledList role="list">
           {watchlist.map(({ name, title, posterPath, id }) => (
@@ -36,6 +39,16 @@ export default function WatchlistPage({ watchlist }) {
 
 const Wrapper = styled.div`
   margin: 70px 0 80px;
+`;
+
+const InfoBox = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  padding: 20px;
 
   p {
     text-align: center;

@@ -17,7 +17,6 @@ export default function SeriesDetailsPage({
   const navigate = useNavigate();
   const { data: seriesDetails, isLoading } = useSeriesDetails(id);
   const isOnWatchlist = checkIsOnWatchlist(id);
-
   const {
     name,
     poster_path: posterPath,
