@@ -2,11 +2,14 @@ import SeriesDetailsPage from './SeriesDetailsPage';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
-describe('Navigation', () => {
+describe('SeriesDetailsPage', () => {
+  const checkIsOnWatchlist = jest.fn();
   it('renders the Page with one link', () => {
     render(
       <MemoryRouter>
-        <SeriesDetailsPage />
+        <SeriesDetailsPage
+          checkIsOnWatchlist={checkIsOnWatchlist.mockReturnValueOnce(true)}
+        />
       </MemoryRouter>
     );
 
