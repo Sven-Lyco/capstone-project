@@ -2,18 +2,19 @@ import SeriesDetailsPage from './SeriesDetailsPage';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
-describe('Navigation', () => {
-  it('renders the Page with header, headings and one link', () => {
+describe('SeriesDetailsPage', () => {
+  const checkIsOnWatchlist = jest.fn();
+  it('renders the Page with one link', () => {
     render(
       <MemoryRouter>
-        <SeriesDetailsPage />
+        <SeriesDetailsPage
+          checkIsOnWatchlist={checkIsOnWatchlist.mockReturnValueOnce(true)}
+        />
       </MemoryRouter>
     );
 
-    const header = screen.getByRole('banner');
     const backLink = screen.getByRole('button', { name: /zurück/i });
 
-    expect(header).toBeInTheDocument();
     expect(backLink).toBeInTheDocument();
   });
 });

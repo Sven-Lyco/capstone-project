@@ -4,13 +4,27 @@ import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 
-export default function SeriesDetailsPage() {
+export default function SeriesDetailsPage({
+  onHandleAddSeries,
+  checkIsOnWatchlist,
+  onHandleDeleteItem,
+}) {
   const { id } = useParams();
-  const { data: series, isLoading } = useSeriesDetails(id);
-
   const navigate = useNavigate();
+  const { data: seriesDetails, isLoading } = useSeriesDetails(id);
+  const isOnWatchlist = checkIsOnWatchlist(id);
+  const {
+    name,
+    poster_path: posterPath,
+    number_of_seasons: seasons,
+    first_air_date: firstAirDate,
+    overview,
+    backdrop_path: backdropPath,
+  } = seriesDetails;
 
   return (
     <Wrapper>
@@ -20,35 +34,46 @@ export default function SeriesDetailsPage() {
       </StyledButtonBack>
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={series.backdrop_path} />
+          <StyledBackdropImage backdropPath={backdropPath} />
           <StyledHeader>
             <Poster
               src={
-                series.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
+                posterPath
+                  ? `https://image.tmdb.org/t/p/w300${posterPath}`
                   : require('../assets/images/poster.png')
               }
-              alt={`${series.name}`}
+              alt={`${name}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{series.name}</StyledTitle>
+              <StyledTitle>{name}</StyledTitle>
               <p>
-                {series.number_of_seasons}
-                {series.number_of_seasons === 1
-                  ? ' Staffel - '
-                  : ' Staffeln - '}
+                {seasons}
+                {seasons === 1 ? ' Staffel - ' : ' Staffeln - '}
 
-                {series.first_air_date
-                  ? series.first_air_date.substr(0, 4)
+                {firstAirDate
+                  ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddSeries(id, name, posterPath)}
+                >
+                  <StyledPlusIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledDeleteIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                </StyledDeleteButton>
+              )}
             </StyledHeaderBox>
           </StyledHeader>
           <StyledMain>
             <h3>Handlung</h3>
             <p>
-              {series.overview
-                ? series.overview
+              {overview
+                ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
           </StyledMain>
@@ -116,16 +141,17 @@ const StyledTitle = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
-  padding: 25px 0px 5px;
+  padding: 20px 0px 5px;
 `;
 
 const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
   padding: 0;
-  margin: 10px;
+  margin: 0 10px;
   width: 100%;
 
   p {
@@ -140,4 +166,46 @@ const StyledHeaderBox = styled.div`
 const StyledMain = styled.main`
   margin: 20px;
   padding: 0;
+`;
+
+const StyledAddButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-orange);
+  font-size: large;
+  border: none;
+  cursor: pointer;
+`;
+
+const StyledDeleteIcon = styled(DeleteIcon)`
+  background-color: rgba(18, 18, 18, 0.6);
+  border-radius: 50%;
+`;
+
+const StyledDeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-red);
+  font-size: large;
+  border: none;
+  cursor: pointer;
+`;
+
+const StyledPlusIcon = styled(PlusIcon)`
+  background-color: rgba(18, 18, 18, 0.6);
+  border-radius: 50%;
 `;

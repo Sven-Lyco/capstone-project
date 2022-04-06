@@ -6,8 +6,8 @@ export default function FetchError() {
   return (
     <Wrapper>
       <h1>ERROR</h1>
-      <span>Irgendetwas funktioniert nicht,</span>
-      <span>wie es sollte</span>
+      <p>Irgendetwas funktioniert nicht,</p>
+      <p>wie es sollte</p>
       <Button buttonType="normal" onClick={() => window.location.reload(false)}>
         <GoSync />
         <span>Seite neu laden</span>
@@ -24,7 +24,7 @@ const Wrapper = styled.section`
   align-items: center;
   height: 80vh;
 
-  span {
+  p {
     text-align: center;
   }
 `;

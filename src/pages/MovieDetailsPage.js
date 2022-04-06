@@ -4,12 +4,27 @@ import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 
-export default function SeriesDetailsPage() {
+export default function SeriesDetailsPage({
+  onHandleAddMovie,
+  checkIsOnWatchlist,
+  onHandleDeleteItem,
+}) {
   const { id } = useParams();
-  const { data: movie, isLoading } = useMovieDetails(id);
   const navigate = useNavigate();
+  const { data: movieDetails, isLoading } = useMovieDetails(id);
+  const isOnWatchlist = checkIsOnWatchlist(id);
+  const {
+    title,
+    poster_path: posterPath,
+    runtime,
+    release_date: releaseDate,
+    overview,
+    backdrop_path: backdropPath,
+  } = movieDetails;
 
   return (
     <Wrapper>
@@ -19,31 +34,44 @@ export default function SeriesDetailsPage() {
       </StyledButtonBack>
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={movie.backdrop_path} />
+          <StyledBackdropImage backdropPath={backdropPath} />
           <StyledHeader>
             <Poster
               src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                posterPath
+                  ? `https://image.tmdb.org/t/p/w300${posterPath}`
                   : require('../assets/images/poster.png')
               }
-              alt={`${movie.title}`}
+              alt={`${title}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{movie.title}</StyledTitle>
+              <StyledTitle>{title}</StyledTitle>
               <p>
-                {movie.release_date
-                  ? movie.release_date.substr(0, 4)
+                {releaseDate
+                  ? releaseDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}{' '}
-                - {calcMovieTime(movie.runtime)}
+                - {calcMovieTime(runtime)}
               </p>
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddMovie(id, title, posterPath)}
+                >
+                  <StyledPlusIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledDeleteIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                </StyledDeleteButton>
+              )}
             </StyledHeaderBox>
           </StyledHeader>
           <StyledMain>
             <h3>Handlung</h3>
             <p>
-              {movie.overview
-                ? movie.overview
+              {overview
+                ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
           </StyledMain>
@@ -117,16 +145,17 @@ const StyledTitle = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
-  padding: 25px 0px 5px;
+  padding: 20px 0px 5px;
 `;
 
 const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
   padding: 0;
-  margin: 10px;
+  margin: 0 10px;
   width: 100%;
 
   p {
@@ -141,4 +170,46 @@ const StyledHeaderBox = styled.div`
 const StyledMain = styled.main`
   margin: 20px;
   padding: 0;
+`;
+
+const StyledAddButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-orange);
+  font-size: large;
+  border: none;
+  cursor: pointer;
+`;
+
+const StyledDeleteIcon = styled(DeleteIcon)`
+  background-color: rgba(18, 18, 18, 0.6);
+  border-radius: 50%;
+`;
+
+const StyledDeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-red);
+  font-size: large;
+  border: none;
+  cursor: pointer;
+`;
+
+const StyledPlusIcon = styled(PlusIcon)`
+  background-color: rgba(18, 18, 18, 0.6);
+  border-radius: 50%;
 `;
