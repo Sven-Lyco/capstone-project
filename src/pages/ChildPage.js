@@ -8,8 +8,10 @@ export default function ChildPage() {
       <StyledSection>
         <p>Du bist leider noch zu jung, um diese Seite nutzen zu können</p>
         <p>
-          <a href="https://www.schau-hin.info/filme-serien">Hier</a> findest du
-          weitere Informationen 🙂
+          <a href="https://www.schau-hin.info/sicherheit-risiken/wie-arbeitet-und-entscheidet-die-fsk">
+            Hier
+          </a>{' '}
+          findest du weitere Informationen 🙂
         </p>
       </StyledSection>
     </Wrapper>
