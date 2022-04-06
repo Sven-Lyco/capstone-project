@@ -4,12 +4,19 @@ import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 
-export default function SeriesDetailsPage({ onHandleAddSeries }) {
+export default function SeriesDetailsPage({
+  onHandleAddSeries,
+  checkIsOnWatchlist,
+  onHandleDeleteItem,
+}) {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: seriesDetails, isLoading } = useSeriesDetails(id);
+  const isOnWatchlist = checkIsOnWatchlist(id);
 
   const {
     name,
@@ -48,9 +55,17 @@ export default function SeriesDetailsPage({ onHandleAddSeries }) {
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
-              <button onClick={() => onHandleAddSeries(id, name, posterPath)}>
-                ADD
-              </button>
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddSeries(id, name, posterPath)}
+                >
+                  <StyledDeleteIcon />
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledPlusIcon />
+                </StyledDeleteButton>
+              )}
             </StyledHeaderBox>
           </StyledHeader>
           <StyledMain>
@@ -149,4 +164,40 @@ const StyledHeaderBox = styled.div`
 const StyledMain = styled.main`
   margin: 20px;
   padding: 0;
+`;
+
+const StyledAddButton = styled.button`
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-orange);
+`;
+
+const StyledDeleteIcon = styled(PlusIcon)`
+  background-color: rgba(18, 18, 18, 0.4);
+  border-radius: 50%;
+`;
+
+const StyledDeleteButton = styled.button`
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-orange);
+`;
+
+const StyledPlusIcon = styled(DeleteIcon)`
+  background-color: rgba(18, 18, 18, 0.4);
+  border-radius: 50%;
 `;

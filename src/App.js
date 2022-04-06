@@ -21,6 +21,18 @@ export default function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  function handleDeleteItem(id) {
+    setWatchlist(watchlist.filter(item => item.id !== id));
+  }
+
+  function checkIsOnWatchlist(id) {
+    if (watchlist.find(item => item.id === id)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function handleAddSeries(id, name, posterPath) {
     const watchlistItem = { id, name, posterPath };
     if (watchlist.find(item => item.id === watchlistItem.id)) {
@@ -102,11 +114,23 @@ export default function App() {
           />
           <Route
             path="serie/:id"
-            element={<SeriesDetailsPage onHandleAddSeries={handleAddSeries} />}
+            element={
+              <SeriesDetailsPage
+                onHandleAddSeries={handleAddSeries}
+                checkIsOnWatchlist={checkIsOnWatchlist}
+                onHandleDeleteItem={handleDeleteItem}
+              />
+            }
           />
           <Route
             path="film/:id"
-            element={<MovieDetailsPage onHandleAddMovie={handleAddMovie} />}
+            element={
+              <MovieDetailsPage
+                onHandleAddMovie={handleAddMovie}
+                checkIsOnWatchlist={checkIsOnWatchlist}
+                onHandleDeleteItem={handleDeleteItem}
+              />
+            }
           />
           <Route
             path="/filme"
