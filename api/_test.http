@@ -1,0 +1,38 @@
+@baseURL = http://localhost:3000/api
+
+### GET/getPopularSeries
+GET {{baseURL}}/getPopularSeries
+
+### GET/topRatedSeries
+GET {{baseURL}}/getTopRatedSeries
+
+### GET/seriesOnTv
+GET {{baseURL}}/getSeriesOnTv
+
+### GET/popularMovies
+GET {{baseURL}}/getPopularMovies
+
+### GET/moviesOnCinema
+GET {{baseURL}}/getMoviesOnCinema
+
+### GET/upcommingMovies
+GET {{baseURL}}/getUpcommingMovies
+
+### GET/seriesDetails
+GET {{baseURL}}/getSeriesDetails/
+
+### POST/seriesDetails
+POST {{baseURL}}/getSeriesDetails/
+Content-Type: application/json
+
+{
+    "id":"1399"
+}
+
+### POST/searchResults
+POST {{baseURL}}/getSearchResults/
+Content-Type: application/json
+
+{
+    "query":"Suits"
+}

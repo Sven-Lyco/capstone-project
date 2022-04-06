@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import useFetch from './hooks/useFetch';
+
 import Home from './pages/Home';
 import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
@@ -10,19 +10,12 @@ import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
 
-const {
-  REACT_APP_API_BASE_SERIES_URL,
-  REACT_APP_API_BASE_MOVIES_URL,
-  REACT_APP_API_KEY,
-  REACT_APP_API_LANGUAGE,
-} = process.env;
+import useSeries from './hooks/useSeries';
+import useMovies from './hooks/useMovies';
 
-const popularSeriesUrl = `${REACT_APP_API_BASE_SERIES_URL}/popular?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-const topRatedSeriesUrl = `${REACT_APP_API_BASE_SERIES_URL}/top_rated?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-const seriesOnTvUrl = `${REACT_APP_API_BASE_SERIES_URL}/on_the_air?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-const popularMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/popular?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
-const moviesOnCinemaUrl = `${REACT_APP_API_BASE_MOVIES_URL}/now_playing?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
-const upcomingMoviesUrl = `${REACT_APP_API_BASE_MOVIES_URL}/upcoming?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&region=DE`;
+import LoadingSpinner from './components/LoadingSpinner';
+import FetchError from './components/FetchError';
+import Header from './components/Header';
 
 export default function App() {
   const [isAdult, setIsAdult] = useState(false);
@@ -33,50 +26,81 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const { data: popularSeries } = useFetch(popularSeriesUrl);
-  const { data: topRatedSeries } = useFetch(topRatedSeriesUrl);
-  const { data: seriesOnTv } = useFetch(seriesOnTvUrl);
-  const { data: popularMovies } = useFetch(popularMoviesUrl);
-  const { data: moviesOnCinema } = useFetch(moviesOnCinemaUrl);
-  const { data: upcomingMovies } = useFetch(upcomingMoviesUrl);
+  const {
+    popularSeries,
+    topRatedSeries,
+    seriesOnTv,
+    popularSeriesError,
+    topRatedSeriesError,
+    seriesOnTvError,
+  } = useSeries();
+
+  const {
+    popularMovies,
+    moviesOnCinema,
+    upcomingMovies,
+    popularMoviesError,
+    moviesOnCinemaError,
+    upcomingMoviesError,
+  } = useMovies();
+
+  if (
+    topRatedSeriesError &&
+    popularSeriesError &&
+    seriesOnTvError &&
+    popularMoviesError &&
+    moviesOnCinemaError &&
+    upcomingMoviesError
+  )
+    return <FetchError />;
 
   return (
     <>
-      <Routes>
-        <Route path="*" element={<NotFound />} />
-        <Route
-          path="/"
-          element={
-            <Home isAdult={isAdult} handleCheckIsAdult={handleCheckIsAdult} />
-          }
-        />
-        <Route path="/child" element={<ChildPage />} />
-        <Route
-          path="/serien"
-          element={
-            <Series
-              isAdult={isAdult}
-              popularSeries={popularSeries}
-              topRatedSeries={topRatedSeries}
-              seriesOnTv={seriesOnTv}
-            />
-          }
-        />
-        <Route path="serie/:id" element={<SeriesDetailsPage />} />
-        <Route path="film/:id" element={<MovieDetailsPage />} />
-        <Route path="suche" element={<SearchPage isAdult={isAdult} />} />
-        <Route
-          path="/filme"
-          element={
-            <Movies
-              isAdult={isAdult}
-              popularMovies={popularMovies}
-              moviesOnCinema={moviesOnCinema}
-              upcomingMovies={upcomingMovies}
-            />
-          }
-        />
-      </Routes>
+      {topRatedSeries &&
+      popularSeries &&
+      seriesOnTv &&
+      popularMovies &&
+      moviesOnCinema &&
+      upcomingMovies ? (
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/"
+            element={
+              <Home isAdult={isAdult} handleCheckIsAdult={handleCheckIsAdult} />
+            }
+          />
+          <Route path="/child" element={<ChildPage />} />
+          <Route
+            path="/serien"
+            element={
+              <Series
+                popularSeries={popularSeries.results}
+                topRatedSeries={topRatedSeries.results}
+                seriesOnTv={seriesOnTv.results}
+              />
+            }
+          />
+          <Route path="serie/:id" element={<SeriesDetailsPage />} />
+          <Route path="film/:id" element={<MovieDetailsPage />} />
+          <Route path="suche" element={<SearchPage />} />
+          <Route
+            path="/filme"
+            element={
+              <Movies
+                popularMovies={popularMovies.results}
+                moviesOnCinema={moviesOnCinema.results}
+                upcomingMovies={upcomingMovies.results}
+              />
+            }
+          />
+        </Routes>
+      ) : (
+        <>
+          <Header />
+          <LoadingSpinner />
+        </>
+      )}
     </>
   );
 

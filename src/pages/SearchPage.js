@@ -3,19 +3,15 @@ import Header from '../components/Header';
 import SearchResultCard from '../components/SearchResultCard';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 import useSearch from '../hooks/useSearch';
-import { useNavigate } from 'react-router-dom';
 
-export default function SearchPage({ isAdult }) {
-  const { isLoading, results, handleSearch } = useSearch();
-  const navigate = useNavigate();
+export default function SearchPage() {
+  const { results, handleSearch } = useSearch();
 
   return (
     <Wrapper>
       <Header />
-      {!isAdult ? navigate('../child') : navigate('../suche')}
       <SearchWrapper>
         <label htmlFor="search">
           <ScreenReaderOnly>Suche</ScreenReaderOnly>
@@ -33,7 +29,6 @@ export default function SearchPage({ isAdult }) {
           required
         />
       </SearchWrapper>
-      {isLoading && <LoadingSpinner />}
       {results.length !== 0 ? (
         <StyledList>
           {results
