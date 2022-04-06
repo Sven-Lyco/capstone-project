@@ -59,10 +59,12 @@ export default function SeriesDetailsPage({
                   onClick={() => onHandleAddSeries(id, name, posterPath)}
                 >
                   <StyledDeleteIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
                 </StyledAddButton>
               ) : (
                 <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
                   <StyledPlusIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
             </StyledHeaderBox>
@@ -139,16 +141,17 @@ const StyledTitle = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
-  padding: 25px 0px 5px;
+  padding: 20px 0px 5px;
 `;
 
 const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
   padding: 0;
-  margin: 10px;
+  margin: 0 10px;
   width: 100%;
 
   p {
@@ -167,15 +170,15 @@ const StyledMain = styled.main`
 
 const StyledAddButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  padding: 0;
   background-color: transparent;
+  color: var(--color-orange);
+  font-size: large;
   border: none;
   cursor: pointer;
-  color: var(--color-orange);
 `;
 
 const StyledDeleteIcon = styled(PlusIcon)`
@@ -185,15 +188,15 @@ const StyledDeleteIcon = styled(PlusIcon)`
 
 const StyledDeleteButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  padding: 0;
   background-color: transparent;
+  color: var(--color-red);
+  font-size: large;
   border: none;
   cursor: pointer;
-  color: var(--color-orange);
 `;
 
 const StyledPlusIcon = styled(DeleteIcon)`
