@@ -3,12 +3,7 @@ import Header from '../components/Header';
 import PosterList from '../components/PosterList';
 import Navigation from '../components/Navigation';
 
-export default function Series({
-  isAdult,
-  popularSeries,
-  topRatedSeries,
-  seriesOnTv,
-}) {
+export default function Series({ popularSeries, topRatedSeries, seriesOnTv }) {
   return (
     <Wrapper>
       <Header />

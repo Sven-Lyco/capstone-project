@@ -7,7 +7,7 @@ export default async function getPopularSeries(req, res) {
     const popularSeriesUrl = `${API_BASE_SERIES_URL}/popular?api_key=${API_KEY}&language=${API_LANGUAGE}`;
     const fetchResponse = await fetch(popularSeriesUrl);
     const data = await fetchResponse.json();
-    res.json(data);
+    res.status(200).json(data);
     return;
   }
 }
