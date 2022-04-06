@@ -21,3 +21,18 @@ GET {{baseURL}}/getUpcommingMovies
 ### GET/seriesDetails
 GET {{baseURL}}/getSeriesDetails/
 
+### POST/seriesDetails
+POST {{baseURL}}/getSeriesDetails/
+Content-Type: application/json
+
+{
+    "id":"1399"
+}
+
+### POST/searchResults
+POST {{baseURL}}/getSearchResults/
+Content-Type: application/json
+
+{
+    "query":"Suits"
+}
