@@ -4,18 +4,11 @@ import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import useDetails from '../hooks/useDetails';
-
-const {
-  REACT_APP_API_BASE_MOVIES_URL,
-  REACT_APP_API_KEY,
-  REACT_APP_API_LANGUAGE,
-} = process.env;
+import useMovieDetails from '../hooks/useMovieDetails';
 
 export default function SeriesDetailsPage() {
   const { id } = useParams();
-  const movieDetailsUrl = `${REACT_APP_API_BASE_MOVIES_URL}/${id}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}`;
-  const { data: movie, isLoading } = useDetails(movieDetailsUrl);
+  const { data: movie, isLoading } = useMovieDetails(id);
   const navigate = useNavigate();
 
   return (
@@ -24,35 +17,42 @@ export default function SeriesDetailsPage() {
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {isLoading && <LoadingSpinner />}
-      <StyledBackdropImage backdropPath={movie.backdrop_path} />
-      <StyledHeader>
-        <Poster
-          src={
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-              : require('../assets/images/poster.png')
-          }
-          alt={`${movie.title}`}
-        />
-        <StyledHeaderBox>
-          <StyledTitle>{movie.title}</StyledTitle>
-          <p>
-            {movie.release_date
-              ? movie.release_date.substr(0, 4)
-              : 'kein Release Datum vorhanden'}{' '}
-            - {calcMovieTime(movie.runtime)}
-          </p>
-        </StyledHeaderBox>
-      </StyledHeader>
-      <StyledMain>
-        <h3>Handlung</h3>
-        <p>
-          {movie.overview
-            ? movie.overview
-            : 'Aktuell ist leider keine Beschreibung verfügbar'}
-        </p>
-      </StyledMain>
+      {!isLoading ? (
+        <>
+          <StyledBackdropImage backdropPath={movie.backdrop_path} />
+          <StyledHeader>
+            <Poster
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  : require('../assets/images/poster.png')
+              }
+              alt={`${movie.title}`}
+            />
+            <StyledHeaderBox>
+              <StyledTitle>{movie.title}</StyledTitle>
+              <p>
+                {movie.release_date
+                  ? movie.release_date.substr(0, 4)
+                  : 'kein Release Datum vorhanden'}{' '}
+                - {calcMovieTime(movie.runtime)}
+              </p>
+            </StyledHeaderBox>
+          </StyledHeader>
+          <StyledMain>
+            <h3>Handlung</h3>
+            <p>
+              {movie.overview
+                ? movie.overview
+                : 'Aktuell ist leider keine Beschreibung verfügbar'}
+            </p>
+          </StyledMain>
+        </>
+      ) : (
+        <>
+          <LoadingSpinner />
+        </>
+      )}
     </Wrapper>
   );
 

@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 
-const {
-  REACT_APP_API_BASE_URL_SEARCH,
-  REACT_APP_API_KEY,
-  REACT_APP_API_LANGUAGE,
-} = process.env;
-
 export default function useSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
   useEffect(() => {
     query &&
-      fetch(
-        `${REACT_APP_API_BASE_URL_SEARCH}?api_key=${REACT_APP_API_KEY}&language=${REACT_APP_API_LANGUAGE}&query=${query}&page=1&include_adult=false&region=DE`
-      )
+      fetch('/api/getSearchResults/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(query),
+      })
         .then(res => res.json())
         .then(data => setResults(data.results))
         .catch(error => {

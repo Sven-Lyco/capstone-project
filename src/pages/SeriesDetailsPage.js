@@ -8,7 +8,7 @@ import useSeriesDetails from '../hooks/useSeriesDetails';
 
 export default function SeriesDetailsPage() {
   const { id } = useParams();
-  const { series, isLoading } = useSeriesDetails(id);
+  const { data: series, isLoading } = useSeriesDetails(id);
 
   const navigate = useNavigate();
 
@@ -18,37 +18,46 @@ export default function SeriesDetailsPage() {
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {isLoading && <LoadingSpinner />}
-      <StyledBackdropImage backdropPath={series.backdrop_path} />
-      <StyledHeader>
-        <Poster
-          src={
-            series.poster_path
-              ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
-              : require('../assets/images/poster.png')
-          }
-          alt={`${series.name}`}
-        />
-        <StyledHeaderBox>
-          <StyledTitle>{series.name}</StyledTitle>
-          <p>
-            {series.number_of_seasons}
-            {series.number_of_seasons === 1 ? ' Staffel - ' : ' Staffeln - '}
+      {!isLoading ? (
+        <>
+          <StyledBackdropImage backdropPath={series.backdrop_path} />
+          <StyledHeader>
+            <Poster
+              src={
+                series.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
+                  : require('../assets/images/poster.png')
+              }
+              alt={`${series.name}`}
+            />
+            <StyledHeaderBox>
+              <StyledTitle>{series.name}</StyledTitle>
+              <p>
+                {series.number_of_seasons}
+                {series.number_of_seasons === 1
+                  ? ' Staffel - '
+                  : ' Staffeln - '}
 
-            {series.first_air_date
-              ? series.first_air_date.substr(0, 4)
-              : 'kein Release Datum vorhanden'}
-          </p>
-        </StyledHeaderBox>
-      </StyledHeader>
-      <StyledMain>
-        <h3>Handlung</h3>
-        <p>
-          {series.overview
-            ? series.overview
-            : 'Aktuell ist leider keine Beschreibung verfügbar'}
-        </p>
-      </StyledMain>
+                {series.first_air_date
+                  ? series.first_air_date.substr(0, 4)
+                  : 'kein Release Datum vorhanden'}
+              </p>
+            </StyledHeaderBox>
+          </StyledHeader>
+          <StyledMain>
+            <h3>Handlung</h3>
+            <p>
+              {series.overview
+                ? series.overview
+                : 'Aktuell ist leider keine Beschreibung verfügbar'}
+            </p>
+          </StyledMain>
+        </>
+      ) : (
+        <>
+          <LoadingSpinner />
+        </>
+      )}
     </Wrapper>
   );
 }

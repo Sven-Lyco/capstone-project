@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useDetails(url) {
+export default function useMovieDetails(id) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -8,7 +8,13 @@ export default function useDetails(url) {
     setIsLoading(true);
     async function loadData() {
       try {
-        const response = await fetch(url);
+        const response = await fetch('/api/getMovieDetails/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(id),
+        });
         const data = await response.json();
         setData(data);
       } catch (error) {
@@ -17,6 +23,6 @@ export default function useDetails(url) {
       setIsLoading(false);
     }
     loadData();
-  }, [url]);
+  }, [id]);
   return { data, isLoading };
 }

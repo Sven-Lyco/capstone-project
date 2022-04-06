@@ -3,12 +3,11 @@ import Header from '../components/Header';
 import SearchResultCard from '../components/SearchResultCard';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
 import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
-  const { isLoading, results, handleSearch } = useSearch();
+  const { results, handleSearch } = useSearch();
 
   return (
     <Wrapper>
@@ -30,7 +29,6 @@ export default function SearchPage() {
           required
         />
       </SearchWrapper>
-      {isLoading && <LoadingSpinner />}
       {results.length !== 0 ? (
         <StyledList>
           {results
