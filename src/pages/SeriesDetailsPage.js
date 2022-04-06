@@ -58,12 +58,12 @@ export default function SeriesDetailsPage({
                 <StyledAddButton
                   onClick={() => onHandleAddSeries(id, name, posterPath)}
                 >
-                  <StyledDeleteIcon />
+                  <StyledPlusIcon />
                   <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
                 </StyledAddButton>
               ) : (
                 <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledPlusIcon />
+                  <StyledDeleteIcon />
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
@@ -184,7 +184,7 @@ const StyledAddButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledDeleteIcon = styled(PlusIcon)`
+const StyledDeleteIcon = styled(DeleteIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
@@ -205,7 +205,7 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledPlusIcon = styled(DeleteIcon)`
+const StyledPlusIcon = styled(PlusIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
