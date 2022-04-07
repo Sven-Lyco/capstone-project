@@ -43,11 +43,11 @@ export default function SeasonsList({ seasons, seriesId }) {
           <p>{seasonEpisodes?.length} Episoden</p>
         </TextBox>
       </InfoWrapper>
-      <div>
+      <StyledEpisodeList role="list">
         {seasonEpisodes?.map(episode => (
           <EpisodeCard key={episode.id} episode={episode} />
         ))}
-      </div>
+      </StyledEpisodeList>
     </section>
   );
 
@@ -81,4 +81,9 @@ const TextBox = styled.div`
   p {
     font-size: larger;
   }
+`;
+
+const StyledEpisodeList = styled.ul`
+  list-style: none;
+  padding: 0;
 `;

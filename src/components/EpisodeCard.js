@@ -4,14 +4,14 @@ export default function EpisodeCard({ episode }) {
   const { name, episode_number } = episode;
 
   return (
-    <Wrapper>
-      <p>Episode :{episode_number}</p>
+    <ListItem>
+      <p>Episode: {episode_number}</p>
       <span>{name}</span>
-    </Wrapper>
+    </ListItem>
   );
 }
 
-const Wrapper = styled.div`
+const ListItem = styled.li`
   padding: 5px;
   margin: 5px 20px;
   border-radius: var(--border-radius);
