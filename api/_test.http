@@ -29,6 +29,15 @@ Content-Type: application/json
     "id":"1399"
 }
 
+### POST / getSeason
+POST {{baseURL}}/getSeason/
+Content-Type: application/json
+
+{
+    "seriesId":"1399",
+    "currentSeasonNumber":"1"
+}
+
 ### POST/searchResults
 POST {{baseURL}}/getSearchResults/
 Content-Type: application/json
