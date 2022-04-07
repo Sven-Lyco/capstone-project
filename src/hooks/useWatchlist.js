@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 
 export default function useWatchlist() {
-  const [watchlist, setWatchlist] = useState([]);
+  const [watchlist, setWatchlist] = useState(loadFromLocal('watchlist') ?? []);
+
+  useEffect(() => {
+    saveToLocal('watchlist', watchlist);
+  }, [watchlist]);
 
   function handleAddMovie(id, title, posterPath) {
     const watchlistItem = { id, title, posterPath };

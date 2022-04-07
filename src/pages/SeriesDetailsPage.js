@@ -15,7 +15,7 @@ export default function SeriesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: seriesDetails, isLoading } = useSeriesDetails(id);
+  const { data: seriesDetails, isLoading } = useSeriesDetails({ id });
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     name,
