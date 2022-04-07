@@ -6,7 +6,7 @@ export default function useSeriesDetails(obj) {
 
   useEffect(() => {
     setIsLoading(true);
-    async function loadData() {
+    async function loadSeriesDetails() {
       try {
         const response = await fetch('/api/getSeriesDetails/', {
           method: 'POST',
@@ -22,7 +22,7 @@ export default function useSeriesDetails(obj) {
       }
       setIsLoading(false);
     }
-    loadData();
+    loadSeriesDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { seriesDetails, isLoading };
