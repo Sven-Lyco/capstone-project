@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useSeriesDetails(id) {
+export default function useSeriesDetails(obj) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,7 +13,7 @@ export default function useSeriesDetails(id) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(id),
+          body: JSON.stringify(obj),
         });
         const data = await response.json();
         setData(data);
@@ -23,6 +23,7 @@ export default function useSeriesDetails(id) {
       setIsLoading(false);
     }
     loadData();
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return { data, isLoading };
 }

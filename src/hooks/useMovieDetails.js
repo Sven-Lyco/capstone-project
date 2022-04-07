@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useMovieDetails(id) {
+export default function useMovieDetails(obj) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,7 +13,7 @@ export default function useMovieDetails(id) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(id),
+          body: JSON.stringify(obj),
         });
         const data = await response.json();
         setData(data);
@@ -23,6 +23,7 @@ export default function useMovieDetails(id) {
       setIsLoading(false);
     }
     loadData();
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return { data, isLoading };
 }
