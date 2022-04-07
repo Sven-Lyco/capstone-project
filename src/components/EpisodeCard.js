@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
 export default function EpisodeCard({ episode }) {
-  const { name, episode_number } = episode;
+  const { name, episode_number, still_path } = episode;
 
   return (
     <ListItem>
-      <p>Episode: {episode_number}</p>
-      <span>{name}</span>
+      <ImageBox stillPath={still_path} />
+      <section>
+        <p>Episode: {episode_number}</p>
+        <span>{name}</span>
+      </section>
     </ListItem>
   );
 }
 
 const ListItem = styled.li`
-  padding: 5px;
+  display: flex;
+  padding: 0px;
   margin: 5px 20px;
   border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
   background-color: var(--color-dark-gray);
 
   p {
@@ -23,8 +28,24 @@ const ListItem = styled.li`
   }
 
   span {
+    margin: 0;
+    padding: 0;
     color: var(--color-light-gray);
-    font-size: medium;
+    font-size: small;
     font-style: italic;
   }
+
+  section {
+    padding: 10px;
+  }
+`;
+
+const ImageBox = styled.div`
+  height: 80px;
+  width: 80px;
+  background: ${({ stillPath }) =>
+      stillPath ? `url(https://image.tmdb.org/t/p/original${stillPath})` : ''}
+    center 0 no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
