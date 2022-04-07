@@ -31,7 +31,7 @@ const StyledDetailsButton = styled.button`
   padding: 3px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  font-size: larger;
+  font-size: large;
   color: inherit;
   background-color: ${({ showDetails }) =>
     showDetails ? `var(--border-color)` : `transparent`};
@@ -39,10 +39,10 @@ const StyledDetailsButton = styled.button`
 
 const StyledSeasonButton = styled.button`
   width: 100%;
-  padding: 3px;
+  padding: 8px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  font-size: larger;
+  font-size: large;
   color: inherit;
   background-color: ${({ showSeasons }) =>
     showSeasons ? `var(--border-color)` : `transparent`};
