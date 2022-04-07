@@ -91,7 +91,7 @@ export default function SeriesDetailsPage({
             </StyledMain>
           ) : (
             <>
-              <SeasonsList seasons={seasons} />
+              <SeasonsList seriesId={id} seasons={seasons} />
             </>
           )}
         </>
