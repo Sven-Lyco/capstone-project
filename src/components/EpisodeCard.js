@@ -17,7 +17,7 @@ export default function EpisodeCard({ episode }) {
 const ListItem = styled.li`
   display: flex;
   padding: 0px;
-  margin: 5px 20px;
+  margin: 10px 20px;
   border-radius: var(--border-radius);
   border: 2px solid var(--border-color);
   background-color: var(--color-dark-gray);
@@ -41,8 +41,8 @@ const ListItem = styled.li`
 `;
 
 const ImageBox = styled.div`
-  height: 80px;
-  width: 80px;
+  width: 70px;
+  height: auto;
   background: ${({ stillPath }) =>
       stillPath ? `url(https://image.tmdb.org/t/p/original${stillPath})` : ''}
     center 0 no-repeat;

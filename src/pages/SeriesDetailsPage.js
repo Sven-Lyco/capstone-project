@@ -170,14 +170,14 @@ const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10px;
   padding: 0;
   margin: 0 10px;
   width: 100%;
 
   p {
-    font-size: large;
+    font-size: larger;
     font-style: italic;
     font-weight: 400;
     margin: 0;
