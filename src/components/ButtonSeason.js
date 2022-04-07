@@ -8,12 +8,12 @@ export default function ButtonSeason({ name, onClick, isActive }) {
   );
 }
 const StyledButton = styled.button`
-  width: 100%;
+  white-space: nowrap;
   padding: 5px;
-  border: 2px solid var(--color-blue);
+  border: 2px solid var(--color-orange);
   border-radius: var(--border-radius);
-  font-size: larger;
+  font-size: large;
   color: ${({ isActive }) => (isActive ? `var(--color-black)` : `inherit`)};
   background-color: ${({ isActive }) =>
-    isActive ? `var(--color-blue)` : `transparent`};
+    isActive ? `var(--color-orange)` : `transparent`};
 `;
