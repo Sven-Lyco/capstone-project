@@ -16,6 +16,8 @@ export default function SeriesDetailsPage({
   onHandleAddSeries,
   checkIsOnWatchlist,
   onHandleDeleteItem,
+  handleCheckEpisode,
+  isEpisodeWatched,
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -30,7 +32,11 @@ export default function SeriesDetailsPage({
     overview,
     backdrop_path: backdropPath,
     seasons,
+    episode_run_time,
   } = seriesDetails;
+
+  //console.log(seriesDetails);
+  console.log(seriesDetails.episode_run_time[0]);
 
   return (
     <Wrapper>
@@ -94,6 +100,9 @@ export default function SeriesDetailsPage({
               seriesId={id}
               seasons={seasons}
               isOnWatchlist={isOnWatchlist}
+              handleCheckEpisode={handleCheckEpisode}
+              isEpisodeWatched={isEpisodeWatched}
+              episodeRunTime={episode_run_time[0]}
             />
           )}
         </>

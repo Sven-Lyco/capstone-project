@@ -1,18 +1,22 @@
 import styled from 'styled-components';
+import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
 export default function ButtonEpisodeCheck({
   id,
+  handleCheckEpisode,
   isEpisodeWatched,
-  onCheckEpisode,
   ...buttonProps
 }) {
   return (
     <StyledButton
       {...buttonProps}
-      onClick={() => onCheckEpisode(id)}
+      onClick={() => handleCheckEpisode(id)}
       isEpisodeWatched={isEpisodeWatched}
     >
+      <ScreenReaderOnly>
+        {isEpisodeWatched ? 'gesehen' : 'ungesehen'}
+      </ScreenReaderOnly>
       <StyledIcon />
     </StyledButton>
   );
