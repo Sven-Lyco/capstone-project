@@ -8,7 +8,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 
-export default function SeriesDetailsPage({
+export default function MoviesDetailsPage({
   onHandleAddMovie,
   checkIsOnWatchlist,
   onHandleDeleteItem,
