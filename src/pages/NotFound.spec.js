@@ -11,7 +11,7 @@ describe('NotFoundPage', () => {
     );
 
     const heading = screen.getByRole('heading', { level: 1 });
-    const backLink = screen.getByRole('button', { name: /zurück/i });
+    const backLink = screen.getByRole('button');
 
     expect(heading).toBeInTheDocument();
     expect(backLink).toBeInTheDocument();
