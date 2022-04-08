@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-export default function ButtonSeason({ name, onClick, isActive }) {
+export default function ButtonSeason({
+  name,
+  onClick,
+  isActive,
+  ...buttonProps
+}) {
   return (
-    <StyledButton onClick={onClick} isActive={isActive}>
+    <StyledButton {...buttonProps} onClick={onClick} isActive={isActive}>
       {name}
     </StyledButton>
   );

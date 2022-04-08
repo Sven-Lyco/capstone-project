@@ -10,6 +10,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import SeasonsList from '../components/SeasonsList';
+import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
   onHandleAddSeries,
@@ -18,8 +19,7 @@ export default function SeriesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [showDetails, setShowDetails] = useState(true);
-  const [showSeasons, setShowSeasons] = useState(false);
+  const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
   const { seriesDetails, isLoading } = useSeriesDetails({ id });
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
@@ -76,11 +76,10 @@ export default function SeriesDetailsPage({
             </StyledHeaderBox>
           </StyledHeader>
           <InnerNavigation
-            showDetails={showDetails}
-            showSeasons={showSeasons}
+            currentPage={currentPage}
             handleNavigation={handleNavigation}
           />
-          {showDetails ? (
+          {currentPage === PAGES.DETAILS && (
             <StyledMain>
               <h3>Handlung</h3>
               <p>
@@ -89,10 +88,13 @@ export default function SeriesDetailsPage({
                   : 'Aktuell ist leider keine Beschreibung verfügbar'}
               </p>
             </StyledMain>
-          ) : (
-            <>
-              <SeasonsList seriesId={id} seasons={seasons} />
-            </>
+          )}
+          {currentPage === PAGES.SEASONS && (
+            <SeasonsList
+              seriesId={id}
+              seasons={seasons}
+              isOnWatchlist={isOnWatchlist}
+            />
           )}
         </>
       ) : (
@@ -104,8 +106,9 @@ export default function SeriesDetailsPage({
   );
 
   function handleNavigation() {
-    setShowDetails(!showDetails);
-    setShowSeasons(!showSeasons);
+    currentPage === PAGES.DETAILS
+      ? setCurrentPage(PAGES.SEASONS)
+      : setCurrentPage(PAGES.DETAILS);
   }
 }
 

@@ -2,10 +2,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import ButtonSeason from './ButtonSeason';
 import Poster from './Poster';
+import defaultPoster from '../assets/images/poster.png';
 import useSeasonDetails from '../hooks/useSeasonDetails';
 import EpisodeCard from './EpisodeCard';
 
-export default function SeasonsList({ seasons, seriesId }) {
+export default function SeasonsList({ seasons, seriesId, isOnWatchlist }) {
   const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
   const currentSeason = seasons?.find(
     ({ season_number: seasonNumber }) => seasonNumber === currentSeasonNumber
@@ -21,12 +22,13 @@ export default function SeasonsList({ seasons, seriesId }) {
         {seasons
           .filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
-            <ButtonSeason
-              key={id}
-              name={name}
-              isActive={seasonNumber === currentSeasonNumber}
-              onClick={() => handleSwitchSeason(seasonNumber)}
-            />
+            <li key={id}>
+              <ButtonSeason
+                name={name}
+                isActive={seasonNumber === currentSeasonNumber}
+                onClick={() => handleSwitchSeason(seasonNumber)}
+              />
+            </li>
           ))}
       </StyledList>
       <InfoWrapper>
@@ -34,7 +36,7 @@ export default function SeasonsList({ seasons, seriesId }) {
           src={
             posterPath
               ? `https://image.tmdb.org/t/p/w300${posterPath}`
-              : require('../assets/images/poster.png')
+              : defaultPoster
           }
           alt={name}
         />
@@ -45,7 +47,11 @@ export default function SeasonsList({ seasons, seriesId }) {
       </InfoWrapper>
       <StyledEpisodeList role="list">
         {seasonEpisodes?.map(episode => (
-          <EpisodeCard key={episode.id} episode={episode} />
+          <EpisodeCard
+            key={episode.id}
+            episode={episode}
+            isOnWatchlist={isOnWatchlist}
+          />
         ))}
       </StyledEpisodeList>
     </section>

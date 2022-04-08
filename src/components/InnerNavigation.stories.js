@@ -8,4 +8,4 @@ export default {
 const Template = args => <InnerNavigation {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = { showDetails: true, showSeasons: false };

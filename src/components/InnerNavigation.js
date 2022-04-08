@@ -1,16 +1,13 @@
 import styled from 'styled-components';
+import PAGES from '../assets/pages';
 
-export default function InnerNavigation({
-  showDetails,
-  showSeasons,
-  handleNavigation,
-}) {
+export default function InnerNavigation({ currentPage, handleNavigation }) {
   return (
     <Wrapper>
-      <StyledDetailsButton showDetails={showDetails} onClick={handleNavigation}>
+      <StyledDetailsButton currentPage={currentPage} onClick={handleNavigation}>
         Details
       </StyledDetailsButton>
-      <StyledSeasonButton showSeasons={showSeasons} onClick={handleNavigation}>
+      <StyledSeasonButton currentPage={currentPage} onClick={handleNavigation}>
         Staffeln
       </StyledSeasonButton>
     </Wrapper>
@@ -33,8 +30,8 @@ const StyledDetailsButton = styled.button`
   border-radius: var(--border-radius);
   font-size: large;
   color: inherit;
-  background-color: ${({ showDetails }) =>
-    showDetails ? `var(--border-color)` : `transparent`};
+  background-color: ${({ currentPage }) =>
+    currentPage === PAGES.DETAILS ? `var(--border-color)` : `transparent`};
 `;
 
 const StyledSeasonButton = styled.button`
@@ -44,6 +41,6 @@ const StyledSeasonButton = styled.button`
   border-radius: var(--border-radius);
   font-size: large;
   color: inherit;
-  background-color: ${({ showSeasons }) =>
-    showSeasons ? `var(--border-color)` : `transparent`};
+  background-color: ${({ currentPage }) =>
+    currentPage === PAGES.SEASONS ? `var(--border-color)` : `transparent`};
 `;
