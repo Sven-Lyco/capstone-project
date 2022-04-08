@@ -2,11 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ButtonCheckEpisode from './ButtonCheckEpisode';
 
-describe('ButtonEpisodeCheck', () => {
+describe('ButtonCheckEpisode', () => {
   it('renders', () => {
     render(
       <ButtonCheckEpisode
-        id={123}
         handleCheckEpisode={() => jest.fn()}
         isEpisodeWatched={false}
       />
@@ -20,7 +19,6 @@ describe('ButtonEpisodeCheck', () => {
     const handleOnClick = jest.fn();
     render(
       <ButtonCheckEpisode
-        id={123}
         handleCheckEpisode={handleOnClick}
         isEpisodeWatched={false}
       />

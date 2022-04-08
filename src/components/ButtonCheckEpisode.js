@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
-export default function ButtonEpisodeCheck({
+export default function ButtonCheckEpisode({
   id,
   handleCheckEpisode,
   isEpisodeWatched,
