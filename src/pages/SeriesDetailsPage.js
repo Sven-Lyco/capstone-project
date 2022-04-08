@@ -105,10 +105,8 @@ export default function SeriesDetailsPage({
     </Wrapper>
   );
 
-  function handleNavigation() {
-    currentPage === PAGES.DETAILS
-      ? setCurrentPage(PAGES.SEASONS)
-      : setCurrentPage(PAGES.DETAILS);
+  function handleNavigation(page) {
+    setCurrentPage(page);
   }
 }
 

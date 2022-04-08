@@ -4,10 +4,16 @@ import PAGES from '../assets/pages';
 export default function InnerNavigation({ currentPage, handleNavigation }) {
   return (
     <Wrapper>
-      <StyledDetailsButton currentPage={currentPage} onClick={handleNavigation}>
+      <StyledDetailsButton
+        currentPage={currentPage}
+        onClick={() => handleNavigation('details')}
+      >
         Details
       </StyledDetailsButton>
-      <StyledSeasonButton currentPage={currentPage} onClick={handleNavigation}>
+      <StyledSeasonButton
+        currentPage={currentPage}
+        onClick={() => handleNavigation('seasons')}
+      >
         Staffeln
       </StyledSeasonButton>
     </Wrapper>
