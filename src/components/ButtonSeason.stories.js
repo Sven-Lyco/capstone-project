@@ -1,7 +1,7 @@
 import ButtonSeason from './ButtonSeason';
 
 export default {
-  title: 'components/ButtonSeason',
+  title: 'buttons/ButtonSeason',
   component: ButtonSeason,
 };
 
