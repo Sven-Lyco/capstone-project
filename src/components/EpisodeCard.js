@@ -31,7 +31,7 @@ const ListItem = styled.li`
     margin: 0;
     padding: 0;
     color: var(--color-light-gray);
-    font-size: small;
+    font-size: 0.8rem;
     font-style: italic;
   }
 
