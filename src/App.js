@@ -46,7 +46,10 @@ export default function App() {
   } = useMovies();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [pathname]);
 
   useEffect(() => {

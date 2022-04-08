@@ -1,12 +1,16 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
+import InnerNavigation from '../components/InnerNavigation';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
+import SeasonsList from '../components/SeasonsList';
+import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
   onHandleAddSeries,
@@ -15,15 +19,17 @@ export default function SeriesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: seriesDetails, isLoading } = useSeriesDetails({ id });
+  const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
+  const { seriesDetails, isLoading } = useSeriesDetails({ id });
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     name,
     poster_path: posterPath,
-    number_of_seasons: seasons,
+    number_of_seasons: numberOfSeasons,
     first_air_date: firstAirDate,
     overview,
     backdrop_path: backdropPath,
+    seasons,
   } = seriesDetails;
 
   return (
@@ -47,8 +53,8 @@ export default function SeriesDetailsPage({
             <StyledHeaderBox>
               <StyledTitle>{name}</StyledTitle>
               <p>
-                {seasons}
-                {seasons === 1 ? ' Staffel - ' : ' Staffeln - '}
+                {numberOfSeasons}
+                {numberOfSeasons === 1 ? ' Staffel - ' : ' Staffeln - '}
 
                 {firstAirDate
                   ? firstAirDate.substr(0, 4)
@@ -69,14 +75,27 @@ export default function SeriesDetailsPage({
               )}
             </StyledHeaderBox>
           </StyledHeader>
-          <StyledMain>
-            <h3>Handlung</h3>
-            <p>
-              {overview
-                ? overview
-                : 'Aktuell ist leider keine Beschreibung verfügbar'}
-            </p>
-          </StyledMain>
+          <InnerNavigation
+            currentPage={currentPage}
+            handleNavigation={handleNavigation}
+          />
+          {currentPage === PAGES.DETAILS && (
+            <StyledMain>
+              <h3>Handlung</h3>
+              <p>
+                {overview
+                  ? overview
+                  : 'Aktuell ist leider keine Beschreibung verfügbar'}
+              </p>
+            </StyledMain>
+          )}
+          {currentPage === PAGES.SEASONS && (
+            <SeasonsList
+              seriesId={id}
+              seasons={seasons}
+              isOnWatchlist={isOnWatchlist}
+            />
+          )}
         </>
       ) : (
         <>
@@ -85,6 +104,10 @@ export default function SeriesDetailsPage({
       )}
     </Wrapper>
   );
+
+  function handleNavigation(page) {
+    setCurrentPage(page);
+  }
 }
 
 const Wrapper = styled.div`
@@ -148,14 +171,14 @@ const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10px;
   padding: 0;
   margin: 0 10px;
   width: 100%;
 
   p {
-    font-size: large;
+    font-size: larger;
     font-style: italic;
     font-weight: 400;
     margin: 0;

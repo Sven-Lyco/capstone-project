@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Poster from './Poster';
+import defaultPoster from '../assets/images/poster.png';
 
 export default function PosterList({ list, listName }) {
   return (
@@ -14,7 +15,7 @@ export default function PosterList({ list, listName }) {
                 src={
                   poster_path
                     ? `https://image.tmdb.org/t/p/w300${poster_path}`
-                    : require('../assets/images/poster.png')
+                    : defaultPoster
                 }
                 alt={name ? `${name}` : `${title}`}
               />
