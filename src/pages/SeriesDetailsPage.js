@@ -35,9 +35,6 @@ export default function SeriesDetailsPage({
     episode_run_time,
   } = seriesDetails;
 
-  //console.log(seriesDetails);
-  console.log(seriesDetails.episode_run_time[0]);
-
   return (
     <Wrapper>
       <StyledButtonBack onClick={() => navigate(-1)}>

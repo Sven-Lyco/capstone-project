@@ -101,7 +101,7 @@ const TextBox = styled.div`
 
   p {
     margin: 0;
-    font-size: medium;
+    font-size: large;
     font-style: italic;
   }
 `;
