@@ -1,7 +1,7 @@
 import Button from './Button';
 
 export default {
-  title: 'components/Button',
+  title: 'buttons/Button',
   component: Button,
   argTypes: { onClick: 'onClick' },
 };
