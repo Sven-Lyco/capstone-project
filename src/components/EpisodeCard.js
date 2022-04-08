@@ -41,7 +41,7 @@ const ListItem = styled.li`
 `;
 
 const ImageBox = styled.div`
-  width: 70px;
+  width: ${({ stillPath }) => (stillPath ? `70px` : '0px')};
   height: auto;
   background: ${({ stillPath }) =>
       stillPath ? `url(https://image.tmdb.org/t/p/original${stillPath})` : ''}
