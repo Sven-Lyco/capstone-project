@@ -6,7 +6,14 @@ import defaultPoster from '../assets/images/poster.png';
 import useSeasonDetails from '../hooks/useSeasonDetails';
 import EpisodeCard from './EpisodeCard';
 
-export default function SeasonsList({ seasons, seriesId, isOnWatchlist }) {
+export default function SeasonsList({
+  seasons,
+  seriesId,
+  episodeRunTime,
+  isOnWatchlist,
+  handleCheckEpisode,
+  isEpisodeWatched,
+}) {
   const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
   const currentSeason = seasons?.find(
     ({ season_number: seasonNumber }) => seasonNumber === currentSeasonNumber
@@ -41,8 +48,9 @@ export default function SeasonsList({ seasons, seriesId, isOnWatchlist }) {
           alt={name}
         />
         <TextBox>
-          <p>Staffel {currentSeasonNumber}</p>
+          <span>Staffel {currentSeasonNumber}</span>
           <p>{seasonEpisodes?.length} Episoden</p>
+          <p>{episodeRunTime}min. pro Episode</p>
         </TextBox>
       </InfoWrapper>
       <StyledEpisodeList role="list">
@@ -51,6 +59,8 @@ export default function SeasonsList({ seasons, seriesId, isOnWatchlist }) {
             key={episode.id}
             episode={episode}
             isOnWatchlist={isOnWatchlist}
+            isEpisodeWatched={isEpisodeWatched(episode.id)}
+            handleCheckEpisode={handleCheckEpisode}
           />
         ))}
       </StyledEpisodeList>
@@ -78,14 +88,21 @@ const InfoWrapper = styled.div`
 `;
 
 const TextBox = styled.div`
+  max-height: 180px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 0 20px;
   margin: 0;
 
-  p {
+  span {
     font-size: larger;
+  }
+
+  p {
+    margin: 0;
+    font-size: large;
+    font-style: italic;
   }
 `;
 

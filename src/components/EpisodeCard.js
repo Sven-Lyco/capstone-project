@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import ButtonCheckEpisode from './ButtonCheckEpisode';
 
-export default function EpisodeCard({ episode }) {
-  const { name, episode_number, still_path } = episode;
+export default function EpisodeCard({
+  episode,
+  isOnWatchlist,
+  handleCheckEpisode,
+  isEpisodeWatched,
+}) {
+  const { name, episode_number, still_path, id } = episode;
 
   return (
     <ListItem>
@@ -10,6 +16,13 @@ export default function EpisodeCard({ episode }) {
         <p>Episode: {episode_number}</p>
         <span>{name}</span>
       </section>
+      {isOnWatchlist && (
+        <ButtonCheckEpisode
+          id={id}
+          handleCheckEpisode={handleCheckEpisode}
+          isEpisodeWatched={isEpisodeWatched}
+        />
+      )}
     </ListItem>
   );
 }

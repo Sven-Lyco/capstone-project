@@ -12,6 +12,7 @@ import WatchlistPage from './pages/WatchlistPage';
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
 import useWatchlist from './hooks/useWatchlist';
+import useEpisodes from './hooks/useEpisodes';
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
@@ -28,6 +29,7 @@ export default function App() {
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
+  const { checkIsEpisodeWatched, handleCheckEpisode } = useEpisodes();
   const {
     popularSeries,
     topRatedSeries,
@@ -78,9 +80,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
           <Route
             path="/"
-            element={
-              <Home isAdult={isAdult} handleCheckIsAdult={handleCheckIsAdult} />
-            }
+            element={<Home handleCheckIsAdult={handleCheckIsAdult} />}
           />
           <Route path="/child" element={<ChildPage />} />
           <Route
@@ -100,6 +100,8 @@ export default function App() {
                 onHandleAddSeries={handleAddSeries}
                 checkIsOnWatchlist={checkIsOnWatchlist}
                 onHandleDeleteItem={handleDeleteItem}
+                handleCheckEpisode={handleCheckEpisode}
+                isEpisodeWatched={checkIsEpisodeWatched}
               />
             }
           />
