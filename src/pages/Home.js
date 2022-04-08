@@ -12,16 +12,12 @@ export default function Home({ handleCheckIsAdult }) {
           Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
           du mindestens 18 Jahre alt bist!
         </p>
-        <Button
-          buttonType="green"
-          onClick={() => handleCheckIsAdult(18)}
-          text={'über 18'}
-        />
-        <Button
-          buttonType="red"
-          onClick={() => handleCheckIsAdult()}
-          text={'unter 18'}
-        />
+        <Button buttonType="green" onClick={() => handleCheckIsAdult(18)}>
+          über 18
+        </Button>
+        <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
+          unter 18
+        </Button>
       </StyledSection>
     </Wrapper>
   );

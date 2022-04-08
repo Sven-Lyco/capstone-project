@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 
-export default function Button({ onClick, buttonType, text, ...buttonProps }) {
+export default function Button({
+  onClick,
+  buttonType,
+  children,
+  ...buttonProps
+}) {
   return (
     <StyledButton {...buttonProps} onClick={onClick} buttonType={buttonType}>
-      {text}
+      {children}
     </StyledButton>
   );
 }
