@@ -6,7 +6,7 @@ describe('FetchError', () => {
     render(<FetchError />);
 
     const heading = screen.getByRole('heading', { level: 1 });
-    const backLink = screen.getByRole('button');
+    const backLink = screen.getByRole('button', { name: /seite neu laden/i });
 
     expect(heading).toBeInTheDocument();
     expect(backLink).toBeInTheDocument();
