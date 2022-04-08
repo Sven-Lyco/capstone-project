@@ -13,7 +13,7 @@ export default function useWatchlist() {
     if (watchlist.find(item => item.id === watchlistItem.id)) {
       setWatchlist([...watchlist]);
     } else {
-      setWatchlist([...watchlist, watchlistItem]);
+      setWatchlist([watchlistItem, ...watchlist]);
     }
   }
 
@@ -22,7 +22,7 @@ export default function useWatchlist() {
     if (watchlist.find(item => item.id === watchlistItem.id)) {
       setWatchlist([...watchlist]);
     } else {
-      setWatchlist([...watchlist, watchlistItem]);
+      setWatchlist([watchlistItem, ...watchlist]);
     }
   }
 
