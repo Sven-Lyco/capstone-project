@@ -80,9 +80,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
           <Route
             path="/"
-            element={
-              <Home isAdult={isAdult} handleCheckIsAdult={handleCheckIsAdult} />
-            }
+            element={<Home handleCheckIsAdult={handleCheckIsAdult} />}
           />
           <Route path="/child" element={<ChildPage />} />
           <Route
