@@ -74,6 +74,7 @@ export default function MoviesDetailsPage({
             {isOnWatchlist && (
               <ButtonCheckMovie
                 id={id}
+                title={title}
                 handleCheckMovie={handleCheckMovie}
                 isMovieWatched={checkIsMovieWatched(id)}
               />

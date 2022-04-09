@@ -4,6 +4,7 @@ import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
 export default function ButtonCheckMovie({
   id,
+  title,
   handleCheckMovie,
   isMovieWatched,
   ...buttonProps
@@ -11,7 +12,7 @@ export default function ButtonCheckMovie({
   return (
     <StyledButton
       {...buttonProps}
-      onClick={() => handleCheckMovie(id)}
+      onClick={() => handleCheckMovie(id, title)}
       isMovieWatched={isMovieWatched}
     >
       <StyledIcon />

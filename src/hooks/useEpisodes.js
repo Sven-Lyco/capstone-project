@@ -2,32 +2,38 @@ import { useState, useEffect } from 'react';
 import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 
 export default function useWatchlist() {
-  const [watchedEpisode, setWatchedEpisode] = useState(
+  const [watchedEpisodes, setWatchedEpisodes] = useState(
     loadFromLocal('watchedEpisodes') ?? []
   );
 
   useEffect(() => {
-    saveToLocal('watchedEpisodes', watchedEpisode);
-  }, [watchedEpisode]);
+    saveToLocal('watchedEpisodes', watchedEpisodes);
+  }, [watchedEpisodes]);
 
   function handleCheckEpisode(episodeId) {
-    const isOnList = watchedEpisode.some(episode => episode === episodeId);
+    const watchedEpisode = { episodeId };
+    const isOnList = watchedEpisodes.some(
+      episode => episode.episodeId === watchedEpisode.episodeId
+    );
 
     if (isOnList) {
-      const indexToRemove = watchedEpisode.findIndex(
-        episode => episode === episodeId
+      const indexToRemove = watchedEpisodes.findIndex(
+        episode => episode.episodeId === watchedEpisode.episodeId
       );
-      setWatchedEpisode([
-        ...watchedEpisode.slice(0, indexToRemove),
-        ...watchedEpisode.slice(indexToRemove + 1),
+      setWatchedEpisodes([
+        ...watchedEpisodes.slice(0, indexToRemove),
+        ...watchedEpisodes.slice(indexToRemove + 1),
       ]);
     } else {
-      setWatchedEpisode([...watchedEpisode, episodeId]);
+      setWatchedEpisodes([...watchedEpisodes, watchedEpisode]);
     }
   }
 
   function checkIsEpisodeWatched(episodeId) {
-    return watchedEpisode.some(episode => episode === episodeId);
+    const watchedEpisode = { episodeId };
+    return watchedEpisodes.some(
+      episode => episode.episodeId === watchedEpisode.episodeId
+    );
   }
 
   return { handleCheckEpisode, checkIsEpisodeWatched };
