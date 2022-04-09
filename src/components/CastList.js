@@ -37,7 +37,7 @@ const StyledList = styled.ul`
   padding: 0 20px;
   margin: 0px -20px;
   display: grid;
-  grid-template-columns: repeat(10, auto);
+  grid-template-columns: repeat(20, auto);
   grid-template-rows: 1fr;
   gap: 20px;
   overflow-x: auto;
@@ -54,10 +54,16 @@ const ImageBox = styled.div`
 `;
 
 const ActorName = styled.p`
+  font-size: medium;
   color: var(--color-white);
+  margin: 0;
+  padding: 0;
 `;
 
 const CharacterName = styled.p`
   font-size: small;
+  font-style: italic;
   color: var(--color-light-gray);
+  margin: 0;
+  padding: 0;
 `;
