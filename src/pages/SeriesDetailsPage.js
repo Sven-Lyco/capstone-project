@@ -10,6 +10,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import SeasonsList from '../components/SeasonsList';
+import CastList from '../components/CastList';
 import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
@@ -22,7 +23,7 @@ export default function SeriesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
-  const { seriesDetails, isLoading } = useSeriesDetails({ id });
+  const { seriesCast, seriesDetails, isLoading } = useSeriesDetails({ id });
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     name,
@@ -92,6 +93,7 @@ export default function SeriesDetailsPage({
                   ? overview
                   : 'Aktuell ist leider keine Beschreibung verfügbar'}
               </p>
+              <CastList seriesCast={seriesCast} listName="Besetzung" />
             </StyledMain>
           )}
           {currentPage === PAGES.SEASONS && (
@@ -197,6 +199,14 @@ const StyledHeaderBox = styled.div`
 const StyledMain = styled.main`
   margin: 20px;
   padding: 0;
+
+  h3 {
+    margin: 20px 0;
+  }
+
+  p {
+    margin: 5px 0;
+  }
 `;
 
 const StyledAddButton = styled.button`
