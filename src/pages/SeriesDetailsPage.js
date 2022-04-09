@@ -41,6 +41,19 @@ export default function SeriesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
+      {!isOnWatchlist ? (
+        <StyledAddButton
+          onClick={() => onHandleAddSeries(id, name, posterPath)}
+        >
+          <StyledPlusIcon />
+          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+        </StyledAddButton>
+      ) : (
+        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+          <StyledDeleteIcon />
+          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+        </StyledDeleteButton>
+      )}
       {!isLoading ? (
         <>
           <StyledBackdropImage backdropPath={backdropPath} />
@@ -63,19 +76,6 @@ export default function SeriesDetailsPage({
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
-              {!isOnWatchlist ? (
-                <StyledAddButton
-                  onClick={() => onHandleAddSeries(id, name, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
-              )}
             </StyledHeaderBox>
           </StyledHeader>
           <InnerNavigation
@@ -213,7 +213,7 @@ const StyledAddButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledDeleteIcon = styled(DeleteIcon)`
+const StyledPlusIcon = styled(PlusIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
@@ -234,7 +234,7 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledPlusIcon = styled(PlusIcon)`
+const StyledDeleteIcon = styled(DeleteIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
