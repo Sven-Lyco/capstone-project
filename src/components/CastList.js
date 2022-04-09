@@ -6,24 +6,30 @@ export default function CastList({ seriesCast, listName }) {
   return (
     <>
       <ListHeader>{listName}</ListHeader>
-      <StyledList role="list">
-        {seriesCast?.map(({ id, name, character, profile_path }) => (
-          <li key={id}>
-            <ImageBox>
-              <PosterActor
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w300${profile_path}`
-                    : defaultPoster
-                }
-                alt={name}
-              />
-              <ActorName>{name}</ActorName>
-              <CharacterName>{character}</CharacterName>
-            </ImageBox>
-          </li>
-        ))}
-      </StyledList>
+      {seriesCast?.length >= 1 ? (
+        <StyledList role="list">
+          {seriesCast?.map(({ id, name, character, profile_path }) => (
+            <li key={id}>
+              <ImageBox>
+                <PosterActor
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                      : defaultPoster
+                  }
+                  alt={name}
+                />
+                <ActorName>{name}</ActorName>
+                <CharacterName>{character}</CharacterName>
+              </ImageBox>
+            </li>
+          ))}
+        </StyledList>
+      ) : (
+        <>
+          <p>Es ist leider keine Besetzung verfügbar</p>
+        </>
+      )}
     </>
   );
 }
