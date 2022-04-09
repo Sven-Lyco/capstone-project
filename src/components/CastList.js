@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import PosterActor from './PosterActor';
 import defaultPoster from '../assets/images/profile.png';
 
-export default function CastList({ seriesCast, listName }) {
+export default function CastList({ castList, listName }) {
+  const listLength = castList?.length;
+
   return (
     <>
       <ListHeader>{listName}</ListHeader>
-      {seriesCast?.length >= 1 ? (
-        <StyledList role="list">
-          {seriesCast?.map(({ id, name, character, profile_path }) => (
+      {castList?.length >= 1 ? (
+        <StyledList role="list" listLength={listLength}>
+          {castList?.map(({ id, name, character, profile_path }) => (
             <li key={id}>
               <ImageBox>
                 <PosterActor
@@ -43,7 +45,8 @@ const StyledList = styled.ul`
   padding: 0 20px;
   margin: 0 -20px;
   display: grid;
-  grid-template-columns: repeat(20, auto);
+  grid-template-columns: ${({ listLength }) =>
+    listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
   grid-template-rows: 1fr;
   gap: 20px;
   overflow-x: auto;
