@@ -93,7 +93,7 @@ export default function SeriesDetailsPage({
                   ? overview
                   : 'Aktuell ist leider keine Beschreibung verfügbar'}
               </p>
-              <CastList seriesCast={seriesCast} listName="Besetzung" />
+              <CastList castList={seriesCast} listName="Besetzung" />
             </StyledMain>
           )}
           {currentPage === PAGES.SEASONS && (

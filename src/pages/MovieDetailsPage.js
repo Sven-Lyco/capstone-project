@@ -8,6 +8,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
+import CastList from '../components/CastList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
 
 export default function MoviesDetailsPage({
@@ -17,7 +18,7 @@ export default function MoviesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: movieDetails, isLoading } = useMovieDetails({ id });
+  const { movieCast, movieDetails, isLoading } = useMovieDetails({ id });
   const { handleCheckMovie, checkIsMovieWatched } = useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
@@ -87,6 +88,7 @@ export default function MoviesDetailsPage({
                 ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
+            <CastList castList={movieCast} listName="Besetzung" />
           </StyledMain>
         </>
       ) : (
