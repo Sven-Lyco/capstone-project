@@ -33,6 +33,7 @@ export default function SeriesDetailsPage({
     backdrop_path: backdropPath,
     seasons,
     episode_run_time,
+    vote_average: rating,
   } = seriesDetails;
 
   return (
@@ -41,6 +42,19 @@ export default function SeriesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
+      {!isOnWatchlist ? (
+        <StyledAddButton
+          onClick={() => onHandleAddSeries(id, name, posterPath)}
+        >
+          <StyledPlusIcon />
+          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+        </StyledAddButton>
+      ) : (
+        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+          <StyledDeleteIcon />
+          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+        </StyledDeleteButton>
+      )}
       {!isLoading ? (
         <>
           <StyledBackdropImage backdropPath={backdropPath} />
@@ -63,19 +77,7 @@ export default function SeriesDetailsPage({
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
-              {!isOnWatchlist ? (
-                <StyledAddButton
-                  onClick={() => onHandleAddSeries(id, name, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
-              )}
+              <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
           </StyledHeader>
           <InnerNavigation
@@ -162,7 +164,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 
 const StyledHeader = styled.header`
   display: flex;
-  max-height: 180px;
+  max-height: 170px;
   margin-left: 20px;
 `;
 
@@ -177,14 +179,14 @@ const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 10px;
   padding: 0;
   margin: 0 10px;
   width: 100%;
 
   p {
-    font-size: larger;
+    font-size: large;
     font-style: italic;
     font-weight: 400;
     margin: 0;
@@ -213,7 +215,7 @@ const StyledAddButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledDeleteIcon = styled(DeleteIcon)`
+const StyledPlusIcon = styled(PlusIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;
@@ -234,7 +236,7 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledPlusIcon = styled(PlusIcon)`
+const StyledDeleteIcon = styled(DeleteIcon)`
   background-color: rgba(18, 18, 18, 0.6);
   border-radius: 50%;
 `;

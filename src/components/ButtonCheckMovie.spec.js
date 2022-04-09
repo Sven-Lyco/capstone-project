@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ButtonCheckEpisode from './ButtonCheckEpisode';
+import ButtonCheckMovie from './ButtonCheckMovie';
 
-describe('ButtonCheckEpisode', () => {
+describe('ButtonCheckMovie', () => {
   it('renders a button', () => {
     render(
-      <ButtonCheckEpisode
-        handleCheckEpisode={() => jest.fn()}
-        isEpisodeWatched={false}
+      <ButtonCheckMovie
+        handleCheckMovie={() => jest.fn()}
+        isMovieWatched={false}
       />
     );
 
@@ -18,9 +18,9 @@ describe('ButtonCheckEpisode', () => {
   it('has onClick function', () => {
     const handleOnClick = jest.fn();
     render(
-      <ButtonCheckEpisode
-        handleCheckEpisode={handleOnClick}
-        isEpisodeWatched={false}
+      <ButtonCheckMovie
+        handleCheckMovie={handleOnClick}
+        isMovieWatched={false}
       />
     );
 

@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
@@ -13,14 +13,13 @@ import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
 import useWatchlist from './hooks/useWatchlist';
 import useEpisodes from './hooks/useEpisodes';
+import useIsAdult from './hooks/useIsAdult';
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
-import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 export default function App() {
-  const [isAdult, setIsAdult] = useState(loadFromLocal('isAdult') ?? false);
-  const navigate = useNavigate();
+  const { handleCheckIsAdult } = useIsAdult();
   const { pathname } = useLocation();
   const {
     watchlist,
@@ -53,10 +52,6 @@ export default function App() {
       behavior: 'smooth',
     });
   }, [pathname]);
-
-  useEffect(() => {
-    saveToLocal('isAdult', isAdult);
-  }, [isAdult]);
 
   if (
     topRatedSeriesError &&
@@ -139,14 +134,4 @@ export default function App() {
       )}
     </>
   );
-
-  function handleCheckIsAdult(age) {
-    if (age > 17) {
-      setIsAdult(true);
-      navigate('./serien');
-    } else {
-      setIsAdult(false);
-      navigate('./child');
-    }
-  }
 }

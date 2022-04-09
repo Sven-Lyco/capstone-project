@@ -2,40 +2,40 @@ import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
-export default function ButtonCheckEpisode({
+export default function ButtonCheckMovie({
   id,
-  handleCheckEpisode,
-  isEpisodeWatched,
+  handleCheckMovie,
+  isMovieWatched,
   ...buttonProps
 }) {
   return (
     <StyledButton
       {...buttonProps}
-      onClick={() => handleCheckEpisode(id)}
-      isEpisodeWatched={isEpisodeWatched}
+      onClick={() => handleCheckMovie(id)}
+      isMovieWatched={isMovieWatched}
     >
-      <ScreenReaderOnly>
-        {isEpisodeWatched ? 'gesehen' : 'ungesehen'}
-      </ScreenReaderOnly>
       <StyledIcon />
+      <ScreenReaderOnly>
+        {isMovieWatched ? 'gesehen' : 'ungesehen'}
+      </ScreenReaderOnly>
     </StyledButton>
   );
 }
 
 const StyledButton = styled.button`
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0;
-  margin: 0 7px 0 auto;
+  margin-right: 12px;
   background-color: transparent;
-  color: ${({ isEpisodeWatched }) =>
-    isEpisodeWatched ? 'var(--color-green)' : 'var(--color-black)'};
-  font-size: large;
+  color: ${({ isMovieWatched }) =>
+    isMovieWatched ? 'var(--color-green)' : 'var(--color-light-gray)'};
   border: none;
   cursor: pointer;
 `;
 
 const StyledIcon = styled(CheckIcon)`
+  background-color: rgba(18, 18, 18, 0.4);
   border-radius: 50%;
+  height: 40px;
+  width: 40px;
 `;

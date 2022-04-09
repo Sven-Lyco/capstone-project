@@ -7,8 +7,10 @@ import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg'
 import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
+import useMovie from '../hooks/useMovie';
+import ButtonCheckMovie from '../components/ButtonCheckMovie';
 
-export default function SeriesDetailsPage({
+export default function MoviesDetailsPage({
   onHandleAddMovie,
   checkIsOnWatchlist,
   onHandleDeleteItem,
@@ -16,6 +18,7 @@ export default function SeriesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: movieDetails, isLoading } = useMovieDetails({ id });
+  const { handleCheckMovie, checkIsMovieWatched } = useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     title,
@@ -24,6 +27,7 @@ export default function SeriesDetailsPage({
     release_date: releaseDate,
     overview,
     backdrop_path: backdropPath,
+    vote_average: rating,
   } = movieDetails;
 
   return (
@@ -32,6 +36,19 @@ export default function SeriesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
+      {!isOnWatchlist ? (
+        <StyledAddButton
+          onClick={() => onHandleAddMovie(id, title, posterPath)}
+        >
+          <StyledPlusIcon />
+          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+        </StyledAddButton>
+      ) : (
+        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+          <StyledDeleteIcon />
+          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+        </StyledDeleteButton>
+      )}
       {!isLoading ? (
         <>
           <StyledBackdropImage backdropPath={backdropPath} />
@@ -52,20 +69,15 @@ export default function SeriesDetailsPage({
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>
-              {!isOnWatchlist ? (
-                <StyledAddButton
-                  onClick={() => onHandleAddMovie(id, title, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
-              )}
+              <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
+            {isOnWatchlist && (
+              <ButtonCheckMovie
+                id={id}
+                handleCheckMovie={handleCheckMovie}
+                isMovieWatched={checkIsMovieWatched(id)}
+              />
+            )}
           </StyledHeader>
           <StyledMain>
             <h3>Handlung</h3>
@@ -137,7 +149,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 
 const StyledHeader = styled.header`
   display: flex;
-  max-height: 180px;
+  max-height: 170px;
   margin-left: 20px;
 `;
 
@@ -152,7 +164,7 @@ const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   gap: 10px;
   padding: 0;
   margin: 0 10px;
