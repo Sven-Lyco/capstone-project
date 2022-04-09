@@ -35,13 +35,13 @@ export default function CastList({ seriesCast, listName }) {
 }
 
 const ListHeader = styled.h3`
-  margin: 10px 0px 0px 0px;
+  margin-top: 10px;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
   padding: 0 20px;
-  margin: 0px -20px;
+  margin: 0 -20px;
   display: grid;
   grid-template-columns: repeat(20, auto);
   grid-template-rows: 1fr;
