@@ -33,6 +33,7 @@ export default function SeriesDetailsPage({
     backdrop_path: backdropPath,
     seasons,
     episode_run_time,
+    vote_average: rating,
   } = seriesDetails;
 
   return (
@@ -76,6 +77,7 @@ export default function SeriesDetailsPage({
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
+              <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
           </StyledHeader>
           <InnerNavigation
@@ -184,7 +186,7 @@ const StyledHeaderBox = styled.div`
   width: 100%;
 
   p {
-    font-size: larger;
+    font-size: large;
     font-style: italic;
     font-weight: 400;
     margin: 0;

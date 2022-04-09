@@ -27,6 +27,7 @@ export default function MoviesDetailsPage({
     release_date: releaseDate,
     overview,
     backdrop_path: backdropPath,
+    vote_average: rating,
   } = movieDetails;
 
   return (
@@ -68,6 +69,7 @@ export default function MoviesDetailsPage({
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>
+              <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
             {isOnWatchlist && (
               <ButtonCheckMovie
