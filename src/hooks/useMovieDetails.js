@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export default function useMovieDetails(obj) {
-  const [data, setData] = useState([]);
+  const [movieDetails, setMovieDetails] = useState([]);
+  const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    async function loadData() {
+    async function loadMovieDetails() {
       try {
         const response = await fetch('/api/getMovieDetails/', {
           method: 'POST',
@@ -16,14 +17,32 @@ export default function useMovieDetails(obj) {
           body: JSON.stringify(obj),
         });
         const data = await response.json();
-        setData(data);
+        setMovieDetails(data);
       } catch (error) {
         console.error(error);
       }
       setIsLoading(false);
     }
-    loadData();
+    loadMovieDetails();
+
+    async function loadMovieCredits() {
+      try {
+        const response = await fetch('/api/getMovieCredits/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(obj),
+        });
+        const data = await response.json();
+        setMovieCast(data.cast);
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoading(false);
+    }
+    loadMovieCredits();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { data, isLoading };
+  return { movieCast, movieDetails, isLoading };
 }
