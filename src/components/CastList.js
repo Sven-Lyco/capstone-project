@@ -3,7 +3,6 @@ import PosterActor from './PosterActor';
 import defaultPoster from '../assets/images/profile.png';
 
 export default function CastList({ seriesCast, listName }) {
-  console.log(seriesCast?.length);
   return (
     <>
       <ListHeader>{listName}</ListHeader>
