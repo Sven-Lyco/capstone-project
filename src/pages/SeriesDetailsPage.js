@@ -164,7 +164,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 
 const StyledHeader = styled.header`
   display: flex;
-  max-height: 180px;
+  max-height: 170px;
   margin-left: 20px;
 `;
 
@@ -179,7 +179,7 @@ const StyledHeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 10px;
   padding: 0;
   margin: 0 10px;
