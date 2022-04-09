@@ -29,6 +29,14 @@ Content-Type: application/json
     "id":"1399"
 }
 
+### POST/seriesDetails
+POST {{baseURL}}/getSeriesCredits/
+Content-Type: application/json
+
+{
+    "id":"1399"
+}
+
 ### POST / getSeason
 POST {{baseURL}}/getSeason/
 Content-Type: application/json
