@@ -10,22 +10,28 @@ export default function useMovie() {
     saveToLocal('watchedMovies', watchedMovies);
   }, [watchedMovies]);
 
-  function handleCheckMovie(movieId) {
-    const isOnList = watchedMovies.some(movie => movie === movieId);
+  function handleCheckMovie(movieId, title) {
+    const watchedMovie = { movieId, title };
+    const isOnList = watchedMovies.some(
+      movie => movie.movieId === watchedMovie.movieId
+    );
 
     if (isOnList) {
-      const indexToRemove = watchedMovies.findIndex(movie => movie === movieId);
+      const indexToRemove = watchedMovies.findIndex(
+        movie => movie.movieId === watchedMovie.movieId
+      );
       setWatchedMovies([
         ...watchedMovies.slice(0, indexToRemove),
         ...watchedMovies.slice(indexToRemove + 1),
       ]);
     } else {
-      setWatchedMovies([...watchedMovies, movieId]);
+      setWatchedMovies([...watchedMovies, watchedMovie]);
     }
   }
 
   function checkIsMovieWatched(movieId) {
-    return watchedMovies.some(movie => movie === movieId);
+    const watchedMovie = { movieId };
+    return watchedMovies.some(movie => movie.movieId === watchedMovie.movieId);
   }
   return { handleCheckMovie, checkIsMovieWatched };
 }
