@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import ButtonCheckEpisode from './ButtonCheckEpisode';
 
 describe('ButtonCheckEpisode', () => {
-  it('renders', () => {
+  it('renders a button', () => {
     render(
       <ButtonCheckEpisode
         handleCheckEpisode={() => jest.fn()}

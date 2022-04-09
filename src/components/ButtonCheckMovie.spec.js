@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import ButtonCheckMovie from './ButtonCheckMovie';
 
 describe('ButtonCheckMovie', () => {
-  it('renders', () => {
+  it('renders a button', () => {
     render(
       <ButtonCheckMovie
         handleCheckMovie={() => jest.fn()}
