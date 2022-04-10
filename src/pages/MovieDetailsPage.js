@@ -9,8 +9,8 @@ import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
 import CastList from '../components/CastList';
-import ButtonCheckMovie from '../components/ButtonCheckMovie';
 import ProviderList from '../components/ProviderList';
+import ButtonCheckMovie from '../components/ButtonCheckMovie';
 
 export default function MoviesDetailsPage({
   onHandleAddMovie,
@@ -156,7 +156,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 const StyledHeader = styled.header`
   display: flex;
   max-height: 170px;
-  margin-left: 20px;
+  margin: 0 0 20px 20px;
 `;
 
 const StyledTitle = styled.span`
@@ -188,7 +188,6 @@ const StyledHeaderBox = styled.div`
 const StyledMain = styled.main`
   margin: 10px 20px;
   padding: 0;
-  border-top: 1px solid var(--color-dark-gray);
 
   h3 {
     font-size: x-large;
