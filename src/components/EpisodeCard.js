@@ -29,7 +29,7 @@ export default function EpisodeCard({
 
 const ListItem = styled.li`
   display: flex;
-  padding: 0px;
+  padding: 0;
   margin: 10px 20px;
   border-radius: var(--border-radius);
   border: 2px solid var(--border-color);

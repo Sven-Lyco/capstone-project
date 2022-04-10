@@ -13,7 +13,7 @@ describe('CastList', () => {
   it('renders the title of the list, the list and 2 list items', () => {
     render(
       <MemoryRouter>
-        <CastList seriesCast={list} listName={listName} />
+        <CastList castList={list} listName={listName} />
       </MemoryRouter>
     );
 
@@ -30,7 +30,7 @@ describe('CastList', () => {
   it('renders 2 images with an alt text', () => {
     render(
       <MemoryRouter>
-        <CastList seriesCast={list} listName={listName} />
+        <CastList castList={list} listName={listName} />
       </MemoryRouter>
     );
 

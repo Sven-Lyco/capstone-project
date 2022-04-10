@@ -8,6 +8,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
+import CastList from '../components/CastList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
 
 export default function MoviesDetailsPage({
@@ -17,7 +18,7 @@ export default function MoviesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: movieDetails, isLoading } = useMovieDetails({ id });
+  const { movieCast, movieDetails, isLoading } = useMovieDetails({ id });
   const { handleCheckMovie, checkIsMovieWatched } = useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
@@ -87,6 +88,7 @@ export default function MoviesDetailsPage({
                 ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
+            <CastList castList={movieCast} listName="Besetzung" />
           </StyledMain>
         </>
       ) : (
@@ -115,9 +117,7 @@ const StyledBackdropImage = styled.div`
   @media (min-width: 576px) {
     min-height: ${({ backdropPath }) => (backdropPath ? `360px` : `140px`)};
   }
-
   min-height: ${({ backdropPath }) => (backdropPath ? `300px` : `140px`)};
-
   height: 100%;
   background: ${({ backdropPath }) =>
       backdropPath
@@ -127,7 +127,7 @@ const StyledBackdropImage = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: -60px;
-  box-shadow: inset 0px -65px 50px 0px var(--color-black);
+  box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
 const StyledButtonBack = styled.button`
@@ -158,7 +158,7 @@ const StyledTitle = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
-  padding: 20px 0px 5px;
+  padding: 20px 0 5px;
 `;
 
 const StyledHeaderBox = styled.div`
