@@ -1,0 +1,9 @@
+@baseURL = http://localhost:3000/api
+
+### POST/seriesCredits
+POST {{baseURL}}/getSeriesCredits/
+Content-Type: application/json
+
+{
+    "id":"1399"
+}

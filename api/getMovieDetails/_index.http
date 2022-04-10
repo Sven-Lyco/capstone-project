@@ -1,0 +1,9 @@
+@baseURL = http://localhost:3000/api
+
+### POST/movieDetails
+POST {{baseURL}}/getMovieDetails/
+Content-Type: application/json
+
+{
+    "id":"584"
+}
