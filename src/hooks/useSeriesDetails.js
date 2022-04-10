@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useSeriesDetails(obj) {
   const [seriesDetails, setSeriesDetails] = useState([]);
   const [seriesCast, setSeriesCast] = useState([]);
+  const [seriesWatchProviders, setSeriesWatchProviders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -42,7 +43,25 @@ export default function useSeriesDetails(obj) {
       setIsLoading(false);
     }
     loadSeriesCredits();
+
+    async function loadSeriesWatchProviders() {
+      try {
+        const response = await fetch('/api/getSeriesWatchProviders/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(obj),
+        });
+        const data = await response.json();
+        setSeriesWatchProviders(data.results.DE);
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoading(false);
+    }
+    loadSeriesWatchProviders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { seriesCast, seriesDetails, isLoading };
+  return { seriesWatchProviders, seriesCast, seriesDetails, isLoading };
 }
