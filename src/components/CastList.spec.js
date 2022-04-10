@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import CastList from './CastList';
 
-const listName = 'Besetzung';
+const listName = 'Hauptdarsteller';
 
 const list = [
   { id: 1, name: 'Name', character: 'Character' },
@@ -17,7 +17,7 @@ describe('CastList', () => {
       </MemoryRouter>
     );
 
-    const listTitle = screen.getByText('Besetzung');
+    const listTitle = screen.getByText('Hauptdarsteller');
     expect(listTitle).toBeInTheDocument();
 
     const castList = screen.getByRole('list');
