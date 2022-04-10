@@ -23,7 +23,7 @@ body{
     max-width: 768px;
     margin: 0 auto;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     font-size:112.5% ;
     line-height: 1.5;
     color: var(--color-white);
