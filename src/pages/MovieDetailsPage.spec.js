@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 describe('MovieDetailsPage', () => {
   const checkIsOnWatchlist = jest.fn();
-  it('renders the Page one link', () => {
+  it('renders the Page with one link', () => {
     render(
       <MemoryRouter>
         <MovieDetailsPage

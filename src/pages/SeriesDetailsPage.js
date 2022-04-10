@@ -143,7 +143,7 @@ const StyledBackdropImage = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: -60px;
-  box-shadow: inset 0px -65px 50px 0px var(--color-black);
+  box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
 const StyledButtonBack = styled.button`
@@ -174,7 +174,7 @@ const StyledTitle = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
-  padding: 20px 0px 5px;
+  padding: 20px 0 5px;
 `;
 
 const StyledHeaderBox = styled.div`
