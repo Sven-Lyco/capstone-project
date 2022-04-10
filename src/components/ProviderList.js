@@ -4,7 +4,6 @@ import defaultPoster from '../assets/images/provider.png';
 
 export default function ProviderList({ providerList }) {
   const { buy: buyProviders, flatrate: flatrateProviders, link } = providerList;
-  console.log(providerList);
   return (
     <>
       <ListHeader>
