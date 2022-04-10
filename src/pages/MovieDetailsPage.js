@@ -10,6 +10,7 @@ import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
 import CastList from '../components/CastList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
+import ProviderList from '../components/ProviderList';
 
 export default function MoviesDetailsPage({
   onHandleAddMovie,
@@ -18,7 +19,8 @@ export default function MoviesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { movieCast, movieDetails, isLoading } = useMovieDetails({ id });
+  const { movieWatchProviders, movieCast, movieDetails, isLoading } =
+    useMovieDetails({ id });
   const { handleCheckMovie, checkIsMovieWatched } = useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
@@ -81,6 +83,9 @@ export default function MoviesDetailsPage({
               />
             )}
           </StyledHeader>
+          {movieWatchProviders && (
+            <ProviderList providerList={movieWatchProviders} />
+          )}
           <StyledMain>
             <h3>Handlung</h3>
             <p>
@@ -88,7 +93,7 @@ export default function MoviesDetailsPage({
                 ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
-            <CastList castList={movieCast} listName="Besetzung" />
+            <CastList castList={movieCast} listName="Hauptdarsteller" />
           </StyledMain>
         </>
       ) : (
@@ -181,8 +186,13 @@ const StyledHeaderBox = styled.div`
 `;
 
 const StyledMain = styled.main`
-  margin: 20px;
+  margin: 10px 20px;
   padding: 0;
+  border-top: 1px solid var(--color-dark-gray);
+
+  h3 {
+    font-size: x-large;
+  }
 `;
 
 const StyledAddButton = styled.button`
