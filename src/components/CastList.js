@@ -3,13 +3,11 @@ import PosterActor from './PosterActor';
 import defaultPoster from '../assets/images/profile.png';
 
 export default function CastList({ castList, listName }) {
-  const listLength = castList?.length;
-
   return (
     <>
       <ListHeader>{listName}</ListHeader>
       {castList?.length >= 1 ? (
-        <StyledList role="list" listLength={listLength}>
+        <StyledList role="list" listLength={castList?.length}>
           {castList?.map(({ id, name, character, profile_path }) => (
             <li key={id}>
               <ImageBox>
