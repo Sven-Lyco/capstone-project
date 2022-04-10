@@ -21,6 +21,6 @@ const StyledImage = styled.img`
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   display: flex;
-  width: 50px;
+  width: 60px;
   height: auto;
 `;
