@@ -4,6 +4,7 @@ import defaultPoster from '../assets/images/provider.png';
 
 export default function ProviderList({ providerList }) {
   const { buy: buyProviders, flatrate: flatrateProviders, link } = providerList;
+  console.log(providerList);
   return (
     <>
       <ListHeader>
@@ -11,26 +12,27 @@ export default function ProviderList({ providerList }) {
           zu sehen auf:
         </a>
       </ListHeader>
-      {!flatrateProviders && (
-        <StyledList role="list" listLength={providerList?.length}>
-          {buyProviders?.map(({ provider_name, logo_path, id }) => (
-            <li key={id}>
-              <ProviderPoster
-                src={
-                  logo_path
-                    ? `https://image.tmdb.org/t/p/original${logo_path}`
-                    : defaultPoster
-                }
-                alt={provider_name}
-              />
-            </li>
-          ))}
+      {flatrateProviders ? (
+        <StyledList role="list">
+          {flatrateProviders?.map(
+            ({ provider_name, logo_path, provider_id }) => (
+              <li key={provider_id}>
+                <ProviderPoster
+                  src={
+                    logo_path
+                      ? `https://image.tmdb.org/t/p/original${logo_path}`
+                      : defaultPoster
+                  }
+                  alt={provider_name}
+                />
+              </li>
+            )
+          )}
         </StyledList>
-      )}
-      {!buyProviders && (
+      ) : (
         <StyledList role="list" listLength={providerList?.length}>
-          {flatrateProviders?.map(({ provider_name, logo_path, id }) => (
-            <li key={id}>
+          {buyProviders?.map(({ provider_name, logo_path, provider_id }) => (
+            <li key={provider_id}>
               <ProviderPoster
                 src={
                   logo_path
@@ -48,8 +50,8 @@ export default function ProviderList({ providerList }) {
 }
 
 const ListHeader = styled.h2`
-  margin: 10px 20px;
-  font-size: x-large;
+  margin: 10px 0 0 20px;
+  font-size: large;
 
   a {
     color: inherit;
@@ -58,15 +60,15 @@ const ListHeader = styled.h2`
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin: 0;
   display: grid;
-  grid-template-columns: ${({ listLength }) =>
-    listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
+  grid-template-columns: repeat(20, auto);
   grid-template-rows: 1fr;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
+  border-bottom: 1px solid var(--color-dark-gray);
 
   li {
     padding: 0;
