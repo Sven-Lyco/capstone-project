@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useMovieDetails(obj) {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
+  const [movieWatchProviders, setMovieWatchProviders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -42,7 +43,25 @@ export default function useMovieDetails(obj) {
       setIsLoading(false);
     }
     loadMovieCredits();
+
+    async function loadMovieWatchProviders() {
+      try {
+        const response = await fetch('/api/getMovieWatchProviders/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(obj),
+        });
+        const data = await response.json();
+        setMovieWatchProviders(data.results.DE);
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoading(false);
+    }
+    loadMovieWatchProviders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { movieCast, movieDetails, isLoading };
+  return { movieWatchProviders, movieCast, movieDetails, isLoading };
 }
