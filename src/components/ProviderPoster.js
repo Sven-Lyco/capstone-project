@@ -1,19 +1,9 @@
 import styled from 'styled-components';
+import defaultPoster from '../assets/images/provider.png';
 
-export default function Poster({
-  src = require('../assets/images/provider.png'),
-  alt = 'ProviderPoster',
-}) {
+export default function Poster({ src = defaultPoster, alt = '' }) {
   return (
-    <>
-      <StyledImage
-        src={src}
-        alt={alt}
-        width="100"
-        height="100"
-        loading="lazy"
-      />
-    </>
+    <StyledImage src={src} alt={alt} width="100" height="100" loading="lazy" />
   );
 }
 

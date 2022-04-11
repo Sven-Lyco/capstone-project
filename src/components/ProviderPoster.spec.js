@@ -3,16 +3,16 @@ import ProviderPoster from './ProviderPoster';
 
 describe('ProviderPoster', () => {
   it('renders a Poster of a Provider', () => {
-    render(<ProviderPoster alt="ProviderPoster" />);
+    render(<ProviderPoster alt="Netflix" />);
 
     const poster = screen.getByRole('img');
     expect(poster).toBeInTheDocument();
   });
 
   it('has an alt text', () => {
-    render(<ProviderPoster alt="ProviderPoster" />);
+    render(<ProviderPoster alt="Netflix" />);
 
-    const poster = screen.getByAltText('ProviderPoster');
-    expect(poster).toHaveAttribute('alt', 'ProviderPoster');
+    const poster = screen.getByAltText('Netflix');
+    expect(poster).toHaveAttribute('alt', 'Netflix');
   });
 });

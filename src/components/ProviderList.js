@@ -7,7 +7,12 @@ export default function ProviderList({ providerList }) {
   return (
     <>
       <ListHeader>
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="link to The Movie Database"
+        >
           zu sehen auf:
         </a>
       </ListHeader>

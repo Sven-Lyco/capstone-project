@@ -9,13 +9,14 @@ const Template = args => <ProviderList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  listName: 'Listen Name',
+  listName: 'Streaming Provider',
 
-  providerList: [
-    { id: 1, name: 'Title 1' },
-    { id: 2, name: 'Title 2' },
-    { id: 3, name: 'Title 3' },
-    { id: 4, name: 'Title 4' },
-    { id: 5, name: 'Title 5' },
-  ],
+  providerList: {
+    flatrate: [
+      { provider_id: 1, provider_name: 'Netflix' },
+      { provider_id: 2, provider_name: 'Amazon Prime' },
+      { provider_id: 3, provider_name: 'Sky' },
+      { provider_id: 4, provider_name: 'Disney+' },
+    ],
+  },
 };

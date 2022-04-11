@@ -23,6 +23,7 @@ export default function Home({ handleCheckIsAdult }) {
           href="https://www.themoviedb.org/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="The Movie Database"
         >
           <StyledTmdbIcon />
         </a>
