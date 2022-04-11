@@ -13,3 +13,12 @@ Content-Type: application/json
   "title":"",
   "posterPath":"/vQiryp6LioFxQThywxbC6TuoDjy.jpg"
 }
+
+###DELETE /watchlistEntry
+DELETE {{baseUrl}}
+Content-Type: application/json
+
+{
+  "_id": "625476854b20e889f3523021"
+  
+}

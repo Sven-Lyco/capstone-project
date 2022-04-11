@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:3000/api/watchedEpisodes
+
+###GET /watchedEpisodes
+GET {{baseUrl}}
+
+###POST /watchedEpisodes
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "episodeId": 484344
+}

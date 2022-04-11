@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:3000/api/watchedMovies
+
+###GET /watchedMovies
+GET {{baseUrl}}
+
+###POST /watchedMovies
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "movieId": "9615",
+  "title": "The Fast and the Furious: Tokyo Drift"
+}
