@@ -1,0 +1,4 @@
+@baseURL = http://localhost:3000/api
+
+### GET/moviesOnCinema
+GET {{baseURL}}/getMoviesOnCinema

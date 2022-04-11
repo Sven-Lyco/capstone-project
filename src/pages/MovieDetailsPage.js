@@ -9,6 +9,7 @@ import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
 import CastList from '../components/CastList';
+import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
 
 export default function MoviesDetailsPage({
@@ -18,7 +19,8 @@ export default function MoviesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { movieCast, movieDetails, isLoading } = useMovieDetails({ id });
+  const { movieWatchProviders, movieCast, movieDetails, isLoading } =
+    useMovieDetails({ id });
   const { handleCheckMovie, checkIsMovieWatched } = useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
@@ -81,6 +83,9 @@ export default function MoviesDetailsPage({
               />
             )}
           </StyledHeader>
+          {movieWatchProviders && (
+            <ProviderList providerList={movieWatchProviders} />
+          )}
           <StyledMain>
             <h3>Handlung</h3>
             <p>
@@ -88,7 +93,7 @@ export default function MoviesDetailsPage({
                 ? overview
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
-            <CastList castList={movieCast} listName="Besetzung" />
+            <CastList castList={movieCast} listName="Hauptdarsteller" />
           </StyledMain>
         </>
       ) : (
@@ -151,7 +156,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 const StyledHeader = styled.header`
   display: flex;
   max-height: 170px;
-  margin-left: 20px;
+  margin: 0 0 20px 20px;
 `;
 
 const StyledTitle = styled.span`
@@ -181,8 +186,12 @@ const StyledHeaderBox = styled.div`
 `;
 
 const StyledMain = styled.main`
-  margin: 20px;
+  margin: 10px 20px;
   padding: 0;
+
+  h3 {
+    font-size: x-large;
+  }
 `;
 
 const StyledAddButton = styled.button`

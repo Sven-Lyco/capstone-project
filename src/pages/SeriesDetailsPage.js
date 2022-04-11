@@ -11,6 +11,7 @@ import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import SeasonsList from '../components/SeasonsList';
 import CastList from '../components/CastList';
+import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
@@ -23,7 +24,8 @@ export default function SeriesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
-  const { seriesCast, seriesDetails, isLoading } = useSeriesDetails({ id });
+  const { seriesWatchProviders, seriesCast, seriesDetails, isLoading } =
+    useSeriesDetails({ id });
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     name,
@@ -86,15 +88,20 @@ export default function SeriesDetailsPage({
             handleNavigation={handleNavigation}
           />
           {currentPage === PAGES.DETAILS && (
-            <StyledMain>
-              <h3>Handlung</h3>
-              <p>
-                {overview
-                  ? overview
-                  : 'Aktuell ist leider keine Beschreibung verfügbar'}
-              </p>
-              <CastList castList={seriesCast} listName="Besetzung" />
-            </StyledMain>
+            <>
+              {seriesWatchProviders && (
+                <ProviderList providerList={seriesWatchProviders} />
+              )}
+              <StyledMain>
+                <h3>Handlung</h3>
+                <p>
+                  {overview
+                    ? overview
+                    : 'Aktuell ist leider keine Beschreibung verfügbar'}
+                </p>
+                <CastList castList={seriesCast} listName="Hauptdarsteller" />
+              </StyledMain>
+            </>
           )}
           {currentPage === PAGES.SEASONS && (
             <SeasonsList
@@ -167,7 +174,7 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
 const StyledHeader = styled.header`
   display: flex;
   max-height: 170px;
-  margin-left: 20px;
+  margin: 0 0 20px 20px;
 `;
 
 const StyledTitle = styled.span`
@@ -197,15 +204,11 @@ const StyledHeaderBox = styled.div`
 `;
 
 const StyledMain = styled.main`
-  margin: 20px;
+  margin: 10px 20px;
   padding: 0;
 
   h3 {
-    margin: 20px 0;
-  }
-
-  p {
-    margin: 5px 0;
+    font-size: x-large;
   }
 `;
 

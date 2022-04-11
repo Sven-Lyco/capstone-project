@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
 
 export default function Home({ handleCheckIsAdult }) {
   return (
@@ -18,6 +19,14 @@ export default function Home({ handleCheckIsAdult }) {
         <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
           unter 18
         </Button>
+        <a
+          href="https://www.themoviedb.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Movie Database"
+        >
+          <StyledTmdbIcon />
+        </a>
       </StyledSection>
     </Wrapper>
   );
@@ -32,6 +41,8 @@ const Wrapper = styled.div`
 
 const StyledSection = styled.section`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
 
@@ -40,4 +51,10 @@ const StyledSection = styled.section`
     text-align: center;
     line-height: 1.5;
   }
+`;
+
+const StyledTmdbIcon = styled(TmdbIcon)`
+  width: 50px;
+  height: auto;
+  margin-top: 60px;
 `;

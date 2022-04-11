@@ -2,11 +2,11 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import CastList from './CastList';
 
-const listName = 'Besetzung';
+const listName = 'Hauptdarsteller';
 
 const list = [
-  { id: 1, name: 'Name', character: 'Character' },
-  { id: 2, name: 'Name', character: 'Character' },
+  { id: 1, name: 'Oscar Isaac', character: 'Moon Knight' },
+  { id: 2, name: 'Lauren Cohan', character: 'Maggie Greene' },
 ];
 
 describe('CastList', () => {
@@ -17,8 +17,8 @@ describe('CastList', () => {
       </MemoryRouter>
     );
 
-    const listTitle = screen.getByText('Besetzung');
-    expect(listTitle).toBeInTheDocument();
+    const listTitle = screen.getByRole('heading', { level: 3 });
+    expect(listTitle).toHaveTextContent('Hauptdarsteller');
 
     const castList = screen.getByRole('list');
     expect(castList).toBeInTheDocument();
@@ -37,7 +37,10 @@ describe('CastList', () => {
     const posterListImages = screen.getAllByRole('img');
     expect(posterListImages).toHaveLength(2);
 
-    const posterListAltTexts = screen.getAllByAltText('Name');
-    expect(posterListAltTexts).toHaveLength(2);
+    const firstPosterListAltText = screen.getByAltText('Oscar Isaac');
+    expect(firstPosterListAltText).toBeInTheDocument();
+
+    const secondPosterListAltText = screen.getByAltText('Lauren Cohan');
+    expect(secondPosterListAltText).toBeInTheDocument();
   });
 });

@@ -3,16 +3,16 @@ import Poster from './Poster';
 
 describe('Poster', () => {
   it('renders a Poster of a movie or series', () => {
-    render(<Poster alt="Poster" />);
+    render(<Poster alt="Suits" />);
 
     const poster = screen.getByRole('img');
     expect(poster).toBeInTheDocument();
   });
 
   it('has an alt text', () => {
-    render(<Poster alt="Poster" />);
+    render(<Poster alt="Suits" />);
 
-    const poster = screen.getByAltText('Poster');
-    expect(poster).toHaveAttribute('alt', 'Poster');
+    const poster = screen.getByAltText('Suits');
+    expect(poster).toHaveAttribute('alt', 'Suits');
   });
 });

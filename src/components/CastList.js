@@ -36,6 +36,7 @@ export default function CastList({ castList, listName }) {
 
 const ListHeader = styled.h3`
   margin-top: 10px;
+  font-size: x-large;
 `;
 
 const StyledList = styled.ul`

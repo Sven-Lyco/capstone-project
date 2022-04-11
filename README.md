@@ -1,5 +1,8 @@
 # Capstone Project
 
+All data comes from [The Movie Database API](https://www.themoviedb.org/)
+, the data of providers comes from JustWatch in partnership with The Movie Database API
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
