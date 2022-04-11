@@ -18,49 +18,15 @@ export default function useSeriesDetails(obj) {
           body: JSON.stringify(obj),
         });
         const data = await response.json();
-        setSeriesDetails(data);
+        setSeriesDetails(data.seriesDetails);
+        setSeriesCast(data.seriesCredits.cast);
+        setSeriesWatchProviders(data.seriesWatchProviders.results.DE);
       } catch (error) {
         console.error(error);
       }
       setIsLoading(false);
     }
     loadSeriesDetails();
-
-    async function loadSeriesCredits() {
-      try {
-        const response = await fetch('/api/getSeriesCredits/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(obj),
-        });
-        const data = await response.json();
-        setSeriesCast(data.cast);
-      } catch (error) {
-        console.error(error);
-      }
-      setIsLoading(false);
-    }
-    loadSeriesCredits();
-
-    async function loadSeriesWatchProviders() {
-      try {
-        const response = await fetch('/api/getSeriesWatchProviders/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(obj),
-        });
-        const data = await response.json();
-        setSeriesWatchProviders(data.results.DE);
-      } catch (error) {
-        console.error(error);
-      }
-      setIsLoading(false);
-    }
-    loadSeriesWatchProviders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { seriesWatchProviders, seriesCast, seriesDetails, isLoading };

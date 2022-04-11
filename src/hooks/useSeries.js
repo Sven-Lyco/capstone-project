@@ -11,16 +11,10 @@ export default function useSeries() {
     '/api/getTopRatedSeries',
     fetcher
   );
-  const { data: seriesOnTv, error: seriesOnTvError } = useSWR(
-    '/api/getSeriesOnTv',
-    fetcher
-  );
   return {
     popularSeries,
     topRatedSeries,
-    seriesOnTv,
     popularSeriesError,
     topRatedSeriesError,
-    seriesOnTvError,
   };
 }

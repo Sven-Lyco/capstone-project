@@ -14,7 +14,6 @@ export default function Movies({
       <main>
         <PosterList list={popularMovies} listName={'Beliebte Filme'} />
         <PosterList list={moviesOnCinema} listName={'Aktuell im Kino'} />
-        <PosterList list={upcomingMovies} listName={'Demnächst im Kino'} />
       </main>
       <Navigation />
     </Wrapper>
