@@ -10,6 +10,7 @@ const schema = new Schema(
   },
   {
     versionKey: false,
+    collection: 'watchlist',
   }
 );
 
