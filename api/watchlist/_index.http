@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:3000/api
+
+###GET /watchlist
+GET {{baseUrl}}/watchlist
+
+###POST /watchlistEntry
+POST {{baseUrl}}/watchlist
+Content-Type: application/json
+
+{
+  "id": "37680",
+  "name": "Suits",
+  "title":"",
+  "posterPath":"/vQiryp6LioFxQThywxbC6TuoDjy.jpg"
+}
