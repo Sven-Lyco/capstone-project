@@ -1,26 +1,34 @@
-import useSWR from 'swr';
+import { useState, useEffect } from 'react';
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+export default function useMovies() {
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [moviesOnCinema, setMoviesOnCinema] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
 
-export default function useSeries() {
-  const { data: popularMovies, error: popularMoviesError } = useSWR(
-    '/api/getPopularMovies',
-    fetcher
-  );
-  const { data: moviesOnCinema, error: moviesOnCinemaError } = useSWR(
-    '/api/getMoviesOnCinema',
-    fetcher
-  );
-  const { data: upcomingMovies, error: upcomingMoviesError } = useSWR(
-    '/api/getUpcommingMovies',
-    fetcher
-  );
+  useEffect(() => {
+    async function loadMovies() {
+      try {
+        const response = await fetch('/api/getMovies/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(),
+        });
+        const data = await response.json();
+        setPopularMovies(data.popularMovies.results);
+        setMoviesOnCinema(data.moviesOnCinema.results);
+        setUpcomingMovies(data.upcomingMovies.results);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    loadMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return {
     popularMovies,
     moviesOnCinema,
     upcomingMovies,
-    popularMoviesError,
-    moviesOnCinemaError,
-    upcomingMoviesError,
   };
 }
