@@ -1,10 +1,10 @@
-@baseUrl = http://localhost:3000/api
+@baseUrl = http://localhost:3000/api/watchlist
 
 ###GET /watchlist
-GET {{baseUrl}}/watchlist
+GET {{baseUrl}}
 
 ###POST /watchlistEntry
-POST {{baseUrl}}/watchlist
+POST {{baseUrl}}
 Content-Type: application/json
 
 {

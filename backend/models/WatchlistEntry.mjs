@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
-const schema = new mongoose.Schema(
+const schema = new Schema(
   {
     id: { type: String },
     name: { type: String },
@@ -12,4 +13,4 @@ const schema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('WatchlistEntry', schema);
+export default model('WatchlistEntry', schema);
