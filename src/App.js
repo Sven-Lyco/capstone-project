@@ -32,14 +32,18 @@ export default function App() {
   const {
     popularSeries,
     topRatedSeries,
+    seriesOnTv,
     popularSeriesError,
     topRatedSeriesError,
+    seriesOnTvError,
   } = useSeries();
   const {
     popularMovies,
     moviesOnCinema,
+    upcomingMovies,
     popularMoviesError,
     moviesOnCinemaError,
+    upcomingMoviesError,
   } = useMovies();
 
   useEffect(() => {
@@ -52,14 +56,21 @@ export default function App() {
   if (
     topRatedSeriesError &&
     popularSeriesError &&
+    seriesOnTvError &&
     popularMoviesError &&
-    moviesOnCinemaError
+    moviesOnCinemaError &&
+    upcomingMoviesError
   )
     return <FetchError />;
 
   return (
     <>
-      {topRatedSeries && popularSeries && popularMovies && moviesOnCinema ? (
+      {topRatedSeries &&
+      popularSeries &&
+      seriesOnTv &&
+      popularMovies &&
+      moviesOnCinema &&
+      upcomingMovies ? (
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route
@@ -73,6 +84,7 @@ export default function App() {
               <Series
                 popularSeries={popularSeries.results}
                 topRatedSeries={topRatedSeries.results}
+                seriesOnTv={seriesOnTv.results}
               />
             }
           />
@@ -104,6 +116,7 @@ export default function App() {
               <Movies
                 popularMovies={popularMovies.results}
                 moviesOnCinema={moviesOnCinema.results}
+                upcomingMovies={upcomingMovies.results}
               />
             }
           />

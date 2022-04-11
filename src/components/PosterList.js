@@ -37,8 +37,8 @@ const StyledList = styled.ul`
   margin: 0;
   display: grid;
   grid-template-columns: ${({ listLength }) =>
-    listLength ? `repeat(${listLength / 2}, auto)` : `repeat(20, auto)`};
-  grid-template-rows: 2fr;
+    listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
+  grid-template-rows: 1fr;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;

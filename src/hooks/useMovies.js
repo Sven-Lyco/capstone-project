@@ -11,11 +11,16 @@ export default function useSeries() {
     '/api/getMoviesOnCinema',
     fetcher
   );
-
+  const { data: upcomingMovies, error: upcomingMoviesError } = useSWR(
+    '/api/getUpcommingMovies',
+    fetcher
+  );
   return {
     popularMovies,
     moviesOnCinema,
+    upcomingMovies,
     popularMoviesError,
     moviesOnCinemaError,
+    upcomingMoviesError,
   };
 }
