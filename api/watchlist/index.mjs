@@ -1,9 +1,8 @@
 import Watchlist from '../../backend/models/Watchlist.mjs';
 import connectToMongoDB from '../../backend/db/dbConnect.mjs';
 
-await connectToMongoDB();
-
 export default async function handler(req, res) {
+  await connectToMongoDB();
   console.log('connected to MongoDB');
 
   if (req.method === 'GET') {

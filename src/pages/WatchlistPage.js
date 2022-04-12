@@ -15,7 +15,7 @@ export default function WatchlistPage({ watchlist }) {
         </InfoBox>
       ) : (
         <StyledList role="list">
-          {watchlist?.map(({ name, title, posterPath, id }) => (
+          {watchlist.map(({ name, title, posterPath, id }) => (
             <li key={id}>
               <Link to={name ? `/serie/${id}` : `/film/${id}`}>
                 <Poster

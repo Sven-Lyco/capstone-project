@@ -20,10 +20,10 @@ export default function useEpisodes() {
         result => result.episodeId !== episodeId
       );
       mutateWatchedEpisodes(filteredItems, false);
-      const filteredItem = watchedEpisodes?.filter(
+      const filteredItem = watchedEpisodes?.find(
         result => result.episodeId === episodeId
       );
-      const deleteId = filteredItem[0]._id;
+      const deleteId = filteredItem._id;
       await fetch('/api/watchedEpisodes', {
         method: 'DELETE',
         headers: {

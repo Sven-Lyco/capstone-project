@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 const { API_BASE_MOVIES_URL, API_KEY, API_LANGUAGE } = process.env;
 
-export default async function getMoviesOnCinema(req, res) {
+export default async function getMovies(req, res) {
   if (req.method === 'POST') {
     const moviesOnCinemaUrl = `${API_BASE_MOVIES_URL}/now_playing?api_key=${API_KEY}&language=${API_LANGUAGE}&region=DE`;
     const fetchMoviesOnCinemaRes = await fetch(moviesOnCinemaUrl);

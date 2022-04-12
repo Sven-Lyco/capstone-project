@@ -7,7 +7,6 @@ const schema = new Schema(
   },
   {
     versionKey: false,
-    collection: 'watchedEpisodes',
   }
 );
 

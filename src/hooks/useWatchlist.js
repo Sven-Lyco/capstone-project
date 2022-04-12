@@ -12,7 +12,7 @@ export default function useWatchlist() {
   async function handleAddMovie(id, title, posterPath) {
     const watchlistItem = { id, title, posterPath };
     if (watchlist.find(item => item.id === watchlistItem.id)) {
-      mutateWatchlist([...watchlist]);
+      return;
     } else {
       mutateWatchlist([...watchlist, watchlistItem], false);
       await fetch('/api/watchlist', {

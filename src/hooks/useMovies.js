@@ -24,7 +24,6 @@ export default function useMovies() {
       }
     }
     loadMovies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {
     popularMovies,

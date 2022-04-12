@@ -24,7 +24,6 @@ export default function useSeries() {
       }
     }
     loadSeries();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {
     popularSeries,

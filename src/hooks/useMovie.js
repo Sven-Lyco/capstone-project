@@ -20,10 +20,10 @@ export default function useMovie() {
         result => result.movieId !== movieId
       );
       mutateWatchedMovies(filteredItems, false);
-      const filteredItem = watchedMovies?.filter(
+      const filteredItem = watchedMovies?.find(
         result => result.movieId === movieId
       );
-      const deleteId = filteredItem[0]._id;
+      const deleteId = filteredItem._id;
       await fetch('/api/watchedMovies', {
         method: 'DELETE',
         headers: {
