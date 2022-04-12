@@ -4,7 +4,7 @@ const { API_BASE_MOVIES_URL, API_KEY, API_LANGUAGE } = process.env;
 
 export default async function getMovieDetails(req, res) {
   if (req.method === 'POST') {
-    const { id } = req.body;
+    const id = req.body;
     const movieDetailsUrl = `${API_BASE_MOVIES_URL}/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
     const fetchMovieDetailsResponse = await fetch(movieDetailsUrl);
     const movieDetails = await fetchMovieDetailsResponse.json();

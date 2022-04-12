@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
+import PosterList from '../components/PosterList';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
@@ -20,8 +21,13 @@ export default function MoviesDetailsPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { movieWatchProviders, movieCast, movieDetails, isLoading } =
-    useMovieDetails({ id });
+  const {
+    similarMovies,
+    movieWatchProviders,
+    movieCast,
+    movieDetails,
+    isLoading,
+  } = useMovieDetails(id);
   const { watchedMoviesError, handleCheckMovie, checkIsMovieWatched } =
     useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
@@ -96,6 +102,9 @@ export default function MoviesDetailsPage({
                 : 'Aktuell ist leider keine Beschreibung verfügbar'}
             </p>
             <CastList castList={movieCast} listName="Hauptdarsteller" />
+            <PosterListWrapper>
+              <PosterList list={similarMovies} listName="ähnliche Filme" />
+            </PosterListWrapper>
           </StyledMain>
         </>
       ) : (
@@ -116,6 +125,10 @@ export default function MoviesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+`;
+
+const PosterListWrapper = styled.div`
+  margin: -10px 0 0 -20px;
 `;
 
 const StyledBackdropImage = styled.div`

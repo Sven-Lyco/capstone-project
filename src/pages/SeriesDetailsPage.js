@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
+import PosterList from '../components/PosterList';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import InnerNavigation from '../components/InnerNavigation';
@@ -24,8 +25,13 @@ export default function SeriesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
-  const { seriesWatchProviders, seriesCast, seriesDetails, isLoading } =
-    useSeriesDetails({ id });
+  const {
+    similarSeries,
+    seriesWatchProviders,
+    seriesCast,
+    seriesDetails,
+    isLoading,
+  } = useSeriesDetails(id);
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     name,
@@ -100,6 +106,9 @@ export default function SeriesDetailsPage({
                     : 'Aktuell ist leider keine Beschreibung verfügbar'}
                 </p>
                 <CastList castList={seriesCast} listName="Hauptdarsteller" />
+                <PosterListWrapper>
+                  <PosterList list={similarSeries} listName="ähnliche Serien" />
+                </PosterListWrapper>
               </StyledMain>
             </>
           )}
@@ -129,6 +138,10 @@ export default function SeriesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+`;
+
+const PosterListWrapper = styled.div`
+  margin: -10px -20px;
 `;
 
 const StyledBackdropImage = styled.div`

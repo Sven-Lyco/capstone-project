@@ -15,7 +15,7 @@ export default function WatchlistPage({ watchlist }) {
         </InfoBox>
       ) : (
         <StyledList role="list">
-          {watchlist.map(({ name, title, posterPath, id }) => (
+          {watchlist?.map(({ name, title, posterPath, id }) => (
             <li key={id}>
               <Link to={name ? `/serie/${id}` : `/film/${id}`}>
                 <Poster
@@ -58,10 +58,10 @@ const InfoBox = styled.section`
 const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
   width: 100%;
   list-style: none;
-  padding: 0 8px;
+  padding: 0 10px;
   margin: 0;
 `;
