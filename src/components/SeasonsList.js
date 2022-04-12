@@ -10,7 +10,6 @@ export default function SeasonsList({
   seasons,
   seriesId,
   episodeRunTime,
-  isOnWatchlist,
   handleCheckEpisode,
   isEpisodeWatched,
 }) {
@@ -27,7 +26,7 @@ export default function SeasonsList({
     <section>
       <StyledList role="list">
         {seasons
-          .filter(result => result.name !== 'Extras')
+          ?.filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
             <li key={id}>
               <ButtonSeason
@@ -58,7 +57,6 @@ export default function SeasonsList({
           <EpisodeCard
             key={episode.id}
             episode={episode}
-            isOnWatchlist={isOnWatchlist}
             isEpisodeWatched={isEpisodeWatched(episode.id)}
             handleCheckEpisode={handleCheckEpisode}
           />

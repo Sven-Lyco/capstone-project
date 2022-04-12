@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000/api/watchlist
+
+###GET /watchlist
+GET {{baseUrl}}
+
+###POST /watchlistEntry
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "id": "37680",
+  "name": "Suits",
+  "title":"",
+  "posterPath":"/vQiryp6LioFxQThywxbC6TuoDjy.jpg"
+}
+
+###DELETE /watchlistEntry
+DELETE {{baseUrl}}
+Content-Type: application/json
+
+{
+  "_id": "625476854b20e889f3523021"
+}

@@ -1,37 +1,68 @@
-import { useState, useEffect } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export default function useWatchlist() {
-  const [watchlist, setWatchlist] = useState(loadFromLocal('watchlist') ?? []);
+  const {
+    data: watchlist,
+    error: watchlistError,
+    mutate: mutateWatchlist,
+  } = useSWR('/api/watchlist', fetcher);
 
-  useEffect(() => {
-    saveToLocal('watchlist', watchlist);
-  }, [watchlist]);
-
-  function handleAddMovie(id, title, posterPath) {
+  async function handleAddMovie(id, title, posterPath) {
     const watchlistItem = { id, title, posterPath };
     if (watchlist.find(item => item.id === watchlistItem.id)) {
-      setWatchlist([...watchlist]);
+      return;
     } else {
-      setWatchlist([watchlistItem, ...watchlist]);
+      mutateWatchlist([...watchlist, watchlistItem], false);
+      await fetch('/api/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchlistItem),
+      });
+      mutateWatchlist();
     }
   }
 
-  function handleAddSeries(id, name, posterPath) {
+  async function handleAddSeries(id, name, posterPath) {
     const watchlistItem = { id, name, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
-      setWatchlist([...watchlist]);
+    if (watchlist?.find(item => item.id === watchlistItem.id)) {
+      mutateWatchlist([...watchlist]);
     } else {
-      setWatchlist([watchlistItem, ...watchlist]);
+      mutateWatchlist([...watchlist, watchlistItem], false);
+      await fetch('/api/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchlistItem),
+      });
+      mutateWatchlist();
     }
   }
 
-  function handleDeleteItem(id) {
-    setWatchlist(watchlist.filter(item => item.id !== id));
+  async function handleDeleteItem(id) {
+    const filteredItems = watchlist?.filter(result => result.id !== id);
+
+    mutateWatchlist(filteredItems, false);
+
+    const filteredItem = watchlist?.filter(result => result.id === id);
+    const deleteId = filteredItem[0]._id;
+
+    await fetch('/api/watchlist', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ deleteId }),
+    });
+    mutateWatchlist();
   }
 
   function checkIsOnWatchlist(id) {
-    if (watchlist.find(item => item.id === id)) {
+    if (watchlist?.find(item => item.id === id)) {
       return true;
     } else {
       return false;
@@ -40,6 +71,7 @@ export default function useWatchlist() {
 
   return {
     watchlist,
+    watchlistError,
     checkIsOnWatchlist,
     handleDeleteItem,
     handleAddSeries,

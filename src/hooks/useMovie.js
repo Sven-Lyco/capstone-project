@@ -1,37 +1,57 @@
-import { useState, useEffect } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export default function useMovie() {
-  const [watchedMovies, setWatchedMovies] = useState(
-    loadFromLocal('watchedMovies') ?? []
-  );
+  const {
+    data: watchedMovies,
+    error: watchedMoviesError,
+    mutate: mutateWatchedMovies,
+  } = useSWR('/api/watchedMovies', fetcher);
 
-  useEffect(() => {
-    saveToLocal('watchedMovies', watchedMovies);
-  }, [watchedMovies]);
-
-  function handleCheckMovie(movieId, title) {
+  async function handleCheckMovie(movieId, title) {
     const watchedMovie = { movieId, title };
-    const isOnList = watchedMovies.some(
+    const isOnList = watchedMovies?.some(
       movie => movie.movieId === watchedMovie.movieId
     );
 
     if (isOnList) {
-      const indexToRemove = watchedMovies.findIndex(
-        movie => movie.movieId === watchedMovie.movieId
+      const filteredItems = watchedMovies?.filter(
+        result => result.movieId !== movieId
       );
-      setWatchedMovies([
-        ...watchedMovies.slice(0, indexToRemove),
-        ...watchedMovies.slice(indexToRemove + 1),
-      ]);
-    } else {
-      setWatchedMovies([...watchedMovies, watchedMovie]);
+      mutateWatchedMovies(filteredItems, false);
+      const filteredItem = watchedMovies?.find(
+        result => result.movieId === movieId
+      );
+      const deleteId = filteredItem._id;
+      await fetch('/api/watchedMovies', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ deleteId }),
+      });
+      mutateWatchedMovies();
+    }
+    if (!isOnList) {
+      mutateWatchedMovies([...watchedMovies, watchedMovie], false);
+      await fetch('/api/watchedMovies', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchedMovie),
+      });
+      mutateWatchedMovies();
     }
   }
-
   function checkIsMovieWatched(movieId) {
     const watchedMovie = { movieId };
-    return watchedMovies.some(movie => movie.movieId === watchedMovie.movieId);
+    return watchedMovies?.some(movie => movie.movieId === watchedMovie.movieId);
   }
-  return { handleCheckMovie, checkIsMovieWatched };
+  return {
+    watchedMoviesError,
+    handleCheckMovie,
+    checkIsMovieWatched,
+  };
 }

@@ -1,40 +1,58 @@
-import { useState, useEffect } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import useSWR from 'swr';
 
-export default function useWatchlist() {
-  const [watchedEpisodes, setWatchedEpisodes] = useState(
-    loadFromLocal('watchedEpisodes') ?? []
-  );
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
-  useEffect(() => {
-    saveToLocal('watchedEpisodes', watchedEpisodes);
-  }, [watchedEpisodes]);
+export default function useEpisodes() {
+  const {
+    data: watchedEpisodes,
+    error: watchedEpisodesError,
+    mutate: mutateWatchedEpisodes,
+  } = useSWR('/api/watchedEpisodes', fetcher);
 
-  function handleCheckEpisode(episodeId) {
+  async function handleCheckEpisode(episodeId) {
     const watchedEpisode = { episodeId };
-    const isOnList = watchedEpisodes.some(
+    const isOnList = watchedEpisodes?.some(
       episode => episode.episodeId === watchedEpisode.episodeId
     );
 
     if (isOnList) {
-      const indexToRemove = watchedEpisodes.findIndex(
-        episode => episode.episodeId === watchedEpisode.episodeId
+      const filteredItems = watchedEpisodes?.filter(
+        result => result.episodeId !== episodeId
       );
-      setWatchedEpisodes([
-        ...watchedEpisodes.slice(0, indexToRemove),
-        ...watchedEpisodes.slice(indexToRemove + 1),
-      ]);
-    } else {
-      setWatchedEpisodes([...watchedEpisodes, watchedEpisode]);
+      mutateWatchedEpisodes(filteredItems, false);
+      const filteredItem = watchedEpisodes?.find(
+        result => result.episodeId === episodeId
+      );
+      const deleteId = filteredItem._id;
+      await fetch('/api/watchedEpisodes', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ deleteId }),
+      });
+      mutateWatchedEpisodes();
+    }
+
+    if (!isOnList) {
+      mutateWatchedEpisodes([...watchedEpisodes, watchedEpisode], false);
+      await fetch('/api/watchedEpisodes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchedEpisode),
+      });
+      mutateWatchedEpisodes();
     }
   }
 
   function checkIsEpisodeWatched(episodeId) {
     const watchedEpisode = { episodeId };
-    return watchedEpisodes.some(
+    return watchedEpisodes?.some(
       episode => episode.episodeId === watchedEpisode.episodeId
     );
   }
 
-  return { handleCheckEpisode, checkIsEpisodeWatched };
+  return { watchedEpisodesError, handleCheckEpisode, checkIsEpisodeWatched };
 }

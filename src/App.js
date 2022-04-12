@@ -23,28 +23,16 @@ export default function App() {
   const { pathname } = useLocation();
   const {
     watchlist,
+    watchlistError,
     checkIsOnWatchlist,
     handleDeleteItem,
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
-  const { checkIsEpisodeWatched, handleCheckEpisode } = useEpisodes();
-  const {
-    popularSeries,
-    topRatedSeries,
-    seriesOnTv,
-    popularSeriesError,
-    topRatedSeriesError,
-    seriesOnTvError,
-  } = useSeries();
-  const {
-    popularMovies,
-    moviesOnCinema,
-    upcomingMovies,
-    popularMoviesError,
-    moviesOnCinemaError,
-    upcomingMoviesError,
-  } = useMovies();
+  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
+    useEpisodes();
+  const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
+  const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
 
   useEffect(() => {
     window.scrollTo({
@@ -54,12 +42,14 @@ export default function App() {
   }, [pathname]);
 
   if (
-    topRatedSeriesError &&
-    popularSeriesError &&
-    seriesOnTvError &&
-    popularMoviesError &&
-    moviesOnCinemaError &&
-    upcomingMoviesError
+    !popularMovies ||
+    !moviesOnCinema ||
+    !upcomingMovies ||
+    !popularSeries ||
+    !topRatedSeries ||
+    !seriesOnTv ||
+    watchlistError ||
+    watchedEpisodesError
   )
     return <FetchError />;
 
@@ -82,9 +72,9 @@ export default function App() {
             path="/serien"
             element={
               <Series
-                popularSeries={popularSeries.results}
-                topRatedSeries={topRatedSeries.results}
-                seriesOnTv={seriesOnTv.results}
+                popularSeries={popularSeries}
+                topRatedSeries={topRatedSeries}
+                seriesOnTv={seriesOnTv}
               />
             }
           />
@@ -92,6 +82,7 @@ export default function App() {
             path="serie/:id"
             element={
               <SeriesDetailsPage
+                watchlist={watchlist}
                 onHandleAddSeries={handleAddSeries}
                 checkIsOnWatchlist={checkIsOnWatchlist}
                 onHandleDeleteItem={handleDeleteItem}
@@ -114,9 +105,9 @@ export default function App() {
             path="/filme"
             element={
               <Movies
-                popularMovies={popularMovies.results}
-                moviesOnCinema={moviesOnCinema.results}
-                upcomingMovies={upcomingMovies.results}
+                popularMovies={popularMovies}
+                moviesOnCinema={moviesOnCinema}
+                upcomingMovies={upcomingMovies}
               />
             }
           />

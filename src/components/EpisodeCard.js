@@ -3,7 +3,6 @@ import ButtonCheckEpisode from './ButtonCheckEpisode';
 
 export default function EpisodeCard({
   episode,
-  isOnWatchlist,
   handleCheckEpisode,
   isEpisodeWatched,
 }) {
@@ -16,13 +15,11 @@ export default function EpisodeCard({
         <p>Episode: {episode_number}</p>
         <span>{name}</span>
       </section>
-      {isOnWatchlist && (
-        <ButtonCheckEpisode
-          id={id}
-          handleCheckEpisode={handleCheckEpisode}
-          isEpisodeWatched={isEpisodeWatched}
-        />
-      )}
+      <ButtonCheckEpisode
+        id={id}
+        handleCheckEpisode={handleCheckEpisode}
+        isEpisodeWatched={isEpisodeWatched}
+      />
     </ListItem>
   );
 }

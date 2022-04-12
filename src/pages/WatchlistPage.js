@@ -8,7 +8,7 @@ export default function WatchlistPage({ watchlist }) {
   return (
     <Wrapper>
       <Header />
-      {watchlist.length === 0 ? (
+      {watchlist?.length === 0 ? (
         <InfoBox>
           <p>👻</p>
           <p>Deine Watchlist ist aktuell leer.</p>
