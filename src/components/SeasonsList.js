@@ -10,7 +10,6 @@ export default function SeasonsList({
   seasons,
   seriesId,
   episodeRunTime,
-  isOnWatchlist,
   handleCheckEpisode,
   isEpisodeWatched,
 }) {
@@ -58,7 +57,6 @@ export default function SeasonsList({
           <EpisodeCard
             key={episode.id}
             episode={episode}
-            isOnWatchlist={isOnWatchlist}
             isEpisodeWatched={isEpisodeWatched(episode.id)}
             handleCheckEpisode={handleCheckEpisode}
           />

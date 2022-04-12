@@ -78,14 +78,12 @@ export default function MoviesDetailsPage({
               </p>
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
-            {isOnWatchlist && (
-              <ButtonCheckMovie
-                id={id}
-                title={title}
-                handleCheckMovie={handleCheckMovie}
-                isMovieWatched={checkIsMovieWatched(id)}
-              />
-            )}
+            <ButtonCheckMovie
+              id={id}
+              title={title}
+              handleCheckMovie={handleCheckMovie}
+              isMovieWatched={checkIsMovieWatched(id)}
+            />
           </StyledHeader>
           {movieWatchProviders && (
             <ProviderList providerList={movieWatchProviders} />

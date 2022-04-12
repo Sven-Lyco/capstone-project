@@ -15,7 +15,6 @@ import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
-  watchlist,
   onHandleAddSeries,
   checkIsOnWatchlist,
   onHandleDeleteItem,
@@ -108,7 +107,6 @@ export default function SeriesDetailsPage({
             <SeasonsList
               seriesId={id}
               seasons={seasons}
-              isOnWatchlist={isOnWatchlist}
               handleCheckEpisode={handleCheckEpisode}
               isEpisodeWatched={isEpisodeWatched}
               episodeRunTime={episode_run_time[0]}
