@@ -4,6 +4,7 @@ export default function useMovieDetails(obj) {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
   const [movieWatchProviders, setMovieWatchProviders] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function useMovieDetails(obj) {
         setMovieDetails(data.movieDetails);
         setMovieCast(data.movieCredits.cast);
         setMovieWatchProviders(data.movieWatchProviders.results.DE);
+        setSimilarMovies(data.similarMovies.results);
       } catch (error) {
         console.error(error);
       }
@@ -29,5 +31,11 @@ export default function useMovieDetails(obj) {
     loadMovieDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { movieWatchProviders, movieCast, movieDetails, isLoading };
+  return {
+    similarMovies,
+    movieWatchProviders,
+    movieCast,
+    movieDetails,
+    isLoading,
+  };
 }
