@@ -1,34 +1,34 @@
-import { useState, useEffect } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export default function useWatchlist() {
-  const [watchlist, setWatchlist] = useState(loadFromLocal('watchlist') ?? []);
+  const { data: watchlist, error: watchlistError } = useSWR(
+    '../../api/watchlist',
+    fetcher
+  );
 
-  useEffect(() => {
-    saveToLocal('watchlist', watchlist);
-  }, [watchlist]);
+  // function handleAddMovie(id, title, posterPath) {
+  //   const watchlistItem = { id, title, posterPath };
+  //   if (watchlist.find(item => item.id === watchlistItem.id)) {
+  //     setWatchlist([...watchlist]);
+  //   } else {
+  //     setWatchlist([watchlistItem, ...watchlist]);
+  //   }
+  // }
 
-  function handleAddMovie(id, title, posterPath) {
-    const watchlistItem = { id, title, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
-      setWatchlist([...watchlist]);
-    } else {
-      setWatchlist([watchlistItem, ...watchlist]);
-    }
-  }
+  // function handleAddSeries(id, name, posterPath) {
+  //   const watchlistItem = { id, name, posterPath };
+  //   if (watchlist.find(item => item.id === watchlistItem.id)) {
+  //     setWatchlist([...watchlist]);
+  //   } else {
+  //     setWatchlist([watchlistItem, ...watchlist]);
+  //   }
+  // }
 
-  function handleAddSeries(id, name, posterPath) {
-    const watchlistItem = { id, name, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
-      setWatchlist([...watchlist]);
-    } else {
-      setWatchlist([watchlistItem, ...watchlist]);
-    }
-  }
-
-  function handleDeleteItem(id) {
-    setWatchlist(watchlist.filter(item => item.id !== id));
-  }
+  // function handleDeleteItem(id) {
+  //   setWatchlist(watchlist.filter(item => item.id !== id));
+  // }
 
   function checkIsOnWatchlist(id) {
     if (watchlist.find(item => item.id === id)) {
@@ -40,9 +40,10 @@ export default function useWatchlist() {
 
   return {
     watchlist,
+    watchlistError,
     checkIsOnWatchlist,
-    handleDeleteItem,
-    handleAddSeries,
-    handleAddMovie,
+    // handleDeleteItem,
+    // handleAddSeries,
+    // handleAddMovie,
   };
 }

@@ -23,6 +23,7 @@ export default function App() {
   const { pathname } = useLocation();
   const {
     watchlist,
+    watchlistError,
     checkIsOnWatchlist,
     handleDeleteItem,
     handleAddSeries,
@@ -45,7 +46,8 @@ export default function App() {
     !upcomingMovies &&
     !popularSeries &&
     !topRatedSeries &&
-    !seriesOnTv
+    !seriesOnTv &&
+    watchlistError
   )
     return <FetchError />;
 

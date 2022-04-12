@@ -8,14 +8,14 @@ export default function WatchlistPage({ watchlist }) {
   return (
     <Wrapper>
       <Header />
-      {watchlist.length === 0 ? (
+      {watchlist?.length === 0 ? (
         <InfoBox>
           <p>👻</p>
           <p>Deine Watchlist ist aktuell leer.</p>
         </InfoBox>
       ) : (
         <StyledList role="list">
-          {watchlist.map(({ name, title, posterPath, id }) => (
+          {watchlist?.map(({ name, title, posterPath, id }) => (
             <li key={id}>
               <Link to={name ? `/serie/${id}` : `/film/${id}`}>
                 <Poster

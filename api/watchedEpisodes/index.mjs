@@ -15,5 +15,11 @@ export default async function handler(req, res) {
     return res.status(200).json(newWatchedEpisode);
   }
 
+  if (req.method === 'DELETE') {
+    const { id } = req.body;
+    const result = await WatchedEpisode.findByIdAndDelete(id);
+    return res.status(200).json(result);
+  }
+
   res.status(501).json(`Not implemented`);
 }
