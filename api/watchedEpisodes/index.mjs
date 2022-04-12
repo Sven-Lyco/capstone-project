@@ -16,8 +16,8 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'DELETE') {
-    const { id } = req.body;
-    const result = await WatchedEpisode.findByIdAndDelete(id);
+    const { deleteId } = req.body;
+    const result = await WatchedEpisode.findByIdAndDelete(deleteId);
     return res.status(200).json(result);
   }
 

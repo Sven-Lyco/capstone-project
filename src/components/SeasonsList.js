@@ -27,7 +27,7 @@ export default function SeasonsList({
     <section>
       <StyledList role="list">
         {seasons
-          .filter(result => result.name !== 'Extras')
+          ?.filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
             <li key={id}>
               <ButtonSeason

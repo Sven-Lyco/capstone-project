@@ -72,7 +72,7 @@ export default function MoviesDetailsPage({
               <StyledTitle>{title}</StyledTitle>
               <p>
                 {releaseDate
-                  ? releaseDate.substr(0, 4)
+                  ? releaseDate?.substr(0, 4)
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>

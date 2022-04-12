@@ -7,7 +7,7 @@ export default function useWatchlist() {
     data: watchlist,
     error: watchlistError,
     mutate: mutateWatchlist,
-  } = useSWR('../../api/watchlist', fetcher);
+  } = useSWR('/api/watchlist', fetcher);
 
   async function handleAddMovie(id, title, posterPath) {
     const watchlistItem = { id, title, posterPath };

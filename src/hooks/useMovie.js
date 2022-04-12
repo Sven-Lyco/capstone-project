@@ -7,7 +7,7 @@ export default function useMovie() {
     data: watchedMovies,
     error: watchedMoviesError,
     mutate: mutateWatchedMovies,
-  } = useSWR('../../api/watchedMovies', fetcher);
+  } = useSWR('/api/watchedMovies', fetcher);
 
   async function handleCheckMovie(movieId, title) {
     const watchedMovie = { movieId, title };

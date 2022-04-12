@@ -29,7 +29,8 @@ export default function App() {
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
-  const { checkIsEpisodeWatched, handleCheckEpisode } = useEpisodes();
+  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
+    useEpisodes();
   const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
   const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
 
@@ -41,13 +42,14 @@ export default function App() {
   }, [pathname]);
 
   if (
-    !popularMovies &&
-    !moviesOnCinema &&
-    !upcomingMovies &&
-    !popularSeries &&
-    !topRatedSeries &&
-    !seriesOnTv &&
-    watchlistError
+    !popularMovies ||
+    !moviesOnCinema ||
+    !upcomingMovies ||
+    !popularSeries ||
+    !topRatedSeries ||
+    !seriesOnTv ||
+    watchlistError ||
+    watchedEpisodesError
   )
     return <FetchError />;
 

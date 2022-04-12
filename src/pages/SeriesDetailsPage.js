@@ -78,7 +78,7 @@ export default function SeriesDetailsPage({
                 {numberOfSeasons === 1 ? ' Staffel - ' : ' Staffeln - '}
 
                 {firstAirDate
-                  ? firstAirDate.substr(0, 4)
+                  ? firstAirDate?.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
               <p>Bewertung: {rating} / 10</p>

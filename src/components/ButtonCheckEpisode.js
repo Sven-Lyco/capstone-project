@@ -31,8 +31,8 @@ const StyledButton = styled.button`
   background-color: transparent;
   color: ${({ isEpisodeWatched }) =>
     isEpisodeWatched ? 'var(--color-green)' : 'var(--color-black)'};
-  font-size: large;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
 `;
 
