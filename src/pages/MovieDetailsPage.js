@@ -11,6 +11,7 @@ import useMovie from '../hooks/useMovie';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
+import FetchError from '../components/FetchError';
 
 export default function MoviesDetailsPage({
   onHandleAddMovie,
@@ -21,7 +22,8 @@ export default function MoviesDetailsPage({
   const navigate = useNavigate();
   const { movieWatchProviders, movieCast, movieDetails, isLoading } =
     useMovieDetails({ id });
-  const { handleCheckMovie, checkIsMovieWatched } = useMovie();
+  const { watchedMoviesError, handleCheckMovie, checkIsMovieWatched } =
+    useMovie();
   const isOnWatchlist = checkIsOnWatchlist(id);
   const {
     title,
@@ -32,6 +34,8 @@ export default function MoviesDetailsPage({
     backdrop_path: backdropPath,
     vote_average: rating,
   } = movieDetails;
+
+  if (watchedMoviesError) return <FetchError />;
 
   return (
     <Wrapper>
