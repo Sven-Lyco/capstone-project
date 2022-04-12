@@ -15,6 +15,7 @@ import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
 
 export default function SeriesDetailsPage({
+  watchlist,
   onHandleAddSeries,
   checkIsOnWatchlist,
   onHandleDeleteItem,

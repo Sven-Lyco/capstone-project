@@ -80,6 +80,7 @@ export default function App() {
             path="serie/:id"
             element={
               <SeriesDetailsPage
+                watchlist={watchlist}
                 onHandleAddSeries={handleAddSeries}
                 checkIsOnWatchlist={checkIsOnWatchlist}
                 onHandleDeleteItem={handleDeleteItem}

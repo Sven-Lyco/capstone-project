@@ -9,8 +9,6 @@ export default function useWatchlist() {
     mutate: mutateWatchlist,
   } = useSWR('../../api/watchlist', fetcher);
 
-  console.log(watchlist);
-
   async function handleAddMovie(id, title, posterPath) {
     const watchlistItem = { id, title, posterPath };
     if (watchlist.find(item => item.id === watchlistItem.id)) {
@@ -30,7 +28,7 @@ export default function useWatchlist() {
 
   async function handleAddSeries(id, name, posterPath) {
     const watchlistItem = { id, name, posterPath };
-    if (watchlist.find(item => item.id === watchlistItem.id)) {
+    if (watchlist?.find(item => item.id === watchlistItem.id)) {
       mutateWatchlist([...watchlist]);
     } else {
       mutateWatchlist([...watchlist, watchlistItem], false);
@@ -45,12 +43,26 @@ export default function useWatchlist() {
     }
   }
 
-  // function handleDeleteItem(id) {
-  //   setWatchlist(watchlist.filter(item => item.id !== id));
-  // }
+  async function handleDeleteItem(id) {
+    const filteredItems = watchlist?.filter(result => result.id !== id);
+
+    mutateWatchlist(filteredItems, false);
+
+    const filteredItem = watchlist?.filter(result => result.id === id);
+    const deleteId = filteredItem[0]._id;
+
+    await fetch('/api/watchlist', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ deleteId }),
+    });
+    mutateWatchlist();
+  }
 
   function checkIsOnWatchlist(id) {
-    if (watchlist.find(item => item.id === id)) {
+    if (watchlist?.find(item => item.id === id)) {
       return true;
     } else {
       return false;
@@ -61,7 +73,7 @@ export default function useWatchlist() {
     watchlist,
     watchlistError,
     checkIsOnWatchlist,
-    //handleDeleteItem,
+    handleDeleteItem,
     handleAddSeries,
     handleAddMovie,
   };
