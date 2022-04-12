@@ -31,6 +31,7 @@ const StyledButton = styled.button`
   color: ${({ isMovieWatched }) =>
     isMovieWatched ? 'var(--color-green)' : 'var(--color-light-gray)'};
   border: none;
+  border-radius: 50%;
   cursor: pointer;
 `;
 
