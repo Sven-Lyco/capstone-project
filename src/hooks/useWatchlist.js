@@ -28,14 +28,22 @@ export default function useWatchlist() {
     }
   }
 
-  // function handleAddSeries(id, name, posterPath) {
-  //   const watchlistItem = { id, name, posterPath };
-  //   if (watchlist.find(item => item.id === watchlistItem.id)) {
-  //     setWatchlist([...watchlist]);
-  //   } else {
-  //     setWatchlist([watchlistItem, ...watchlist]);
-  //   }
-  // }
+  async function handleAddSeries(id, name, posterPath) {
+    const watchlistItem = { id, name, posterPath };
+    if (watchlist.find(item => item.id === watchlistItem.id)) {
+      mutateWatchlist([...watchlist]);
+    } else {
+      mutateWatchlist([...watchlist, watchlistItem], false);
+      await fetch('/api/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(watchlistItem),
+      });
+      mutateWatchlist();
+    }
+  }
 
   // function handleDeleteItem(id) {
   //   setWatchlist(watchlist.filter(item => item.id !== id));
@@ -54,7 +62,7 @@ export default function useWatchlist() {
     watchlistError,
     checkIsOnWatchlist,
     //handleDeleteItem,
-    //handleAddSeries,
+    handleAddSeries,
     handleAddMovie,
   };
 }
