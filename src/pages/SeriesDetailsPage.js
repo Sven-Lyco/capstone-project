@@ -14,6 +14,7 @@ import SeasonsList from '../components/SeasonsList';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
+import VideoFrame from '../components/VideoFrame';
 
 export default function SeriesDetailsPage({
   onHandleAddSeries,
@@ -26,6 +27,7 @@ export default function SeriesDetailsPage({
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
   const {
+    seriesTrailerUrl,
     similarSeries,
     seriesWatchProviders,
     seriesCast,
@@ -66,7 +68,12 @@ export default function SeriesDetailsPage({
       )}
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={backdropPath} />
+          {seriesTrailerUrl?.length !== 0 && (
+            <VideoFrame videoUrl={seriesTrailerUrl} />
+          )}
+          {seriesTrailerUrl?.length === 0 && (
+            <StyledBackdropImage backdropPath={backdropPath} />
+          )}
           <StyledHeader>
             <Poster
               src={
@@ -230,7 +237,7 @@ const StyledAddButton = styled.button`
   align-items: center;
   align-self: flex-start;
   position: absolute;
-  top: 12px;
+  top: 48px;
   right: 12px;
   padding: 0;
   background-color: transparent;
@@ -251,7 +258,7 @@ const StyledDeleteButton = styled.button`
   align-items: center;
   align-self: flex-start;
   position: absolute;
-  top: 12px;
+  top: 48px;
   right: 12px;
   padding: 0;
   background-color: transparent;

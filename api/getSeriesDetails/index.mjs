@@ -22,7 +22,13 @@ export default async function getSeriesDetails(req, res) {
     const similarSeriesUrl = `${API_BASE_SERIES_URL}/${id}/similar?api_key=${API_KEY}&language=${API_LANGUAGE}&page=1`;
     const fetchSimilarSeriesResponse = await fetch(similarSeriesUrl);
     const similarSeries = await fetchSimilarSeriesResponse.json();
+
+    const seriesTrailerUrl = `${API_BASE_SERIES_URL}/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}&include_image_language=de`;
+    const fetchSeriesTrailerUrlResponse = await fetch(seriesTrailerUrl);
+    const seriesTrailer = await fetchSeriesTrailerUrlResponse.json();
+
     res.status(200).json({
+      seriesTrailer,
       similarSeries,
       seriesWatchProviders,
       seriesDetails,
