@@ -23,7 +23,7 @@ export default function MoviesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const {
-    videoUrl,
+    movieTrailerUrl,
     similarMovies,
     movieWatchProviders,
     movieCast,
@@ -66,9 +66,10 @@ export default function MoviesDetailsPage({
       )}
       {!isLoading ? (
         <>
-          {console.log(videoUrl?.length)}
-          {videoUrl?.length !== 0 && <VideoFrame videoUrl={videoUrl} />}
-          {videoUrl?.length === 0 && (
+          {movieTrailerUrl?.length !== 0 && (
+            <VideoFrame videoUrl={movieTrailerUrl} />
+          )}
+          {movieTrailerUrl?.length === 0 && (
             <StyledBackdropImage backdropPath={backdropPath} />
           )}
           <StyledHeader>
@@ -221,7 +222,7 @@ const StyledAddButton = styled.button`
   align-items: center;
   align-self: flex-start;
   position: absolute;
-  top: 12px;
+  top: 48px;
   right: 12px;
   padding: 0;
   background-color: transparent;
@@ -242,7 +243,7 @@ const StyledDeleteButton = styled.button`
   align-items: center;
   align-self: flex-start;
   position: absolute;
-  top: 12px;
+  top: 48px;
   right: 12px;
   padding: 0;
   background-color: transparent;

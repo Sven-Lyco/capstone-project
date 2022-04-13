@@ -8,7 +8,7 @@ export default function useMovieDetails(id) {
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const videoUrl = movieTrailer
+  const movieTrailerUrl = movieTrailer
     ?.filter(
       video =>
         video.site === 'YouTube' &&
@@ -42,7 +42,7 @@ export default function useMovieDetails(id) {
     loadMovieDetails();
   }, [id]);
   return {
-    videoUrl,
+    movieTrailerUrl,
     similarMovies,
     movieWatchProviders,
     movieCast,
