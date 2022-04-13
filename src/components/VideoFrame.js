@@ -16,7 +16,7 @@ export default function VideoFrame({ videoList }) {
         video.type === 'Trailer' &&
         video.size >= 720
     )
-    .map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
+    ?.map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
 
   return (
     <VideoWrapper>
