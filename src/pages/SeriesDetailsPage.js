@@ -14,6 +14,8 @@ import SeasonsList from '../components/SeasonsList';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
+import VideoFrame from '../components/VideoFrame';
+import ReloadButton from '../components/ReloadButton';
 
 export default function SeriesDetailsPage({
   onHandleAddSeries,
@@ -26,6 +28,7 @@ export default function SeriesDetailsPage({
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(PAGES.DETAILS);
   const {
+    seriesTrailerUrl,
     similarSeries,
     seriesWatchProviders,
     seriesCast,
@@ -51,22 +54,14 @@ export default function SeriesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {!isOnWatchlist ? (
-        <StyledAddButton
-          onClick={() => onHandleAddSeries(id, name, posterPath)}
-        >
-          <StyledPlusIcon />
-          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-        </StyledAddButton>
-      ) : (
-        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-          <StyledDeleteIcon />
-          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-        </StyledDeleteButton>
-      )}
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={backdropPath} />
+          {seriesTrailerUrl?.length !== 0 && (
+            <VideoFrame videoUrl={seriesTrailerUrl} />
+          )}
+          {seriesTrailerUrl?.length === 0 && (
+            <StyledBackdropImage backdropPath={backdropPath} />
+          )}
           <StyledHeader>
             <Poster
               src={
@@ -88,6 +83,22 @@ export default function SeriesDetailsPage({
               </p>
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
+            <ButtonWrapper>
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddSeries(id, name, posterPath)}
+                >
+                  <StyledPlusIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledDeleteIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                </StyledDeleteButton>
+              )}
+              <ReloadButton onClick={() => window.location.reload(false)} />
+            </ButtonWrapper>
           </StyledHeader>
           <InnerNavigation
             currentPage={currentPage}
@@ -224,14 +235,19 @@ const StyledMain = styled.main`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 12px;
+`;
+
 const StyledAddButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-orange);
@@ -250,9 +266,6 @@ const StyledDeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-red);

@@ -5,7 +5,17 @@ export default function useMovieDetails(id) {
   const [movieCast, setMovieCast] = useState([]);
   const [movieWatchProviders, setMovieWatchProviders] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [movieTrailer, setMovieTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const movieTrailerUrl = movieTrailer
+    ?.filter(
+      video =>
+        video.site === 'YouTube' &&
+        (video.type === 'Trailer' || video.type === 'Teaser') &&
+        video.size >= 720
+    )
+    .map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +33,7 @@ export default function useMovieDetails(id) {
         setMovieCast(data.movieCredits.cast);
         setMovieWatchProviders(data.movieWatchProviders.results.DE);
         setSimilarMovies(data.similarMovies.results);
+        setMovieTrailer(data.movieTrailer.results);
       } catch (error) {
         console.error(error);
       }
@@ -31,6 +42,7 @@ export default function useMovieDetails(id) {
     loadMovieDetails();
   }, [id]);
   return {
+    movieTrailerUrl,
     similarMovies,
     movieWatchProviders,
     movieCast,
