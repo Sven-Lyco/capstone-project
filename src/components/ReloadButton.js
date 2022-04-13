@@ -14,12 +14,15 @@ export default function ReloadButton({ onClick }) {
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0;
   height: 40px;
   width: 40px;
   border: none;
   color: inherit;
-  display: flex;
-  border-radius: 50%;
   background-color: rgba(18, 18, 18, 0.6);
 `;
 

@@ -238,6 +238,7 @@ const StyledMain = styled.main`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
   margin-right: 12px;
 `;
