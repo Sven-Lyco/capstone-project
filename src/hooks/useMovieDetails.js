@@ -8,6 +8,15 @@ export default function useMovieDetails(id) {
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const videoUrl = movieTrailer
+    ?.filter(
+      video =>
+        video.site === 'YouTube' &&
+        (video.type === 'Trailer' || video.type === 'Teaser') &&
+        video.size >= 720
+    )
+    ?.map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
+
   useEffect(() => {
     setIsLoading(true);
     async function loadMovieDetails() {
@@ -33,7 +42,7 @@ export default function useMovieDetails(id) {
     loadMovieDetails();
   }, [id]);
   return {
-    movieTrailer,
+    videoUrl,
     similarMovies,
     movieWatchProviders,
     movieCast,

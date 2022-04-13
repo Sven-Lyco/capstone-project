@@ -2,21 +2,14 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player/youtube';
 
-export default function VideoFrame({ videoList }) {
+export default function VideoFrame({ videoUrl }) {
   const [playing, setPlaying] = useState(false);
 
   function handleReady() {
     setPlaying(true);
   }
 
-  const videoUrl = videoList
-    ?.filter(
-      video =>
-        video.site === 'YouTube' &&
-        video.type === 'Trailer' &&
-        video.size >= 720
-    )
-    ?.map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
+  console.log(videoUrl);
 
   return (
     <VideoWrapper>
