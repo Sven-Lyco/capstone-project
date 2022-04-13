@@ -7,8 +7,6 @@ export default function useIsAdult() {
   const [isAdult, setIsAdult] = useState(loadFromLocal('isAdult') ?? false);
   useEffect(() => {
     saveToLocal('isAdult', isAdult);
-    isAdult ? navigate('./serien') : navigate('./');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdult]);
 
   function handleCheckIsAdult(age) {
