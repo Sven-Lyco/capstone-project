@@ -13,6 +13,7 @@ import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
 import FetchError from '../components/FetchError';
+import VideoFrame from '../components/VideoFrame';
 
 export default function MoviesDetailsPage({
   onHandleAddMovie,
@@ -64,7 +65,8 @@ export default function MoviesDetailsPage({
       )}
       {!isLoading ? (
         <>
-          <StyledBackdropImage backdropPath={backdropPath} />
+          <VideoFrame />
+          {/* <StyledBackdropImage backdropPath={backdropPath} /> */}
           <StyledHeader>
             <Poster
               src={
