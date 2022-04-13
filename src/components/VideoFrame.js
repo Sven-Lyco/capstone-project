@@ -9,17 +9,17 @@ export default function VideoFrame({ videoUrl }) {
     setPlaying(true);
   }
 
-  console.log(videoUrl);
-
   return (
     <VideoWrapper>
-      <ReactPlayer
-        url={videoUrl}
-        muted={true}
-        onReady={handleReady}
-        controls={true}
-        playing={playing}
-      />
+      {videoUrl && (
+        <ReactPlayer
+          url={videoUrl}
+          muted={true}
+          onReady={handleReady}
+          controls={true}
+          playing={playing}
+        />
+      )}
     </VideoWrapper>
   );
 }
