@@ -22,8 +22,7 @@ export default function VideoFrame({ videoList }) {
     <VideoWrapper>
       <ReactPlayer
         url={videoUrl}
-        volume={0.2}
-        //muted={true}
+        muted={true}
         onReady={handleReady}
         controls={true}
         playing={playing}
