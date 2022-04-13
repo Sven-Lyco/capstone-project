@@ -21,9 +21,17 @@ export default async function getMovieDetails(req, res) {
     const fetchSimilarMoviesResponse = await fetch(similarMoviesUrl);
     const similarMovies = await fetchSimilarMoviesResponse.json();
 
-    res
-      .status(200)
-      .json({ movieDetails, movieCredits, movieWatchProviders, similarMovies });
+    const movieTrailerUrl = `${API_BASE_MOVIES_URL}/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}&include_image_language=de`;
+    const fetchMovieTrailerUrlResponse = await fetch(movieTrailerUrl);
+    const movieTrailer = await fetchMovieTrailerUrlResponse.json();
+
+    res.status(200).json({
+      movieDetails,
+      movieCredits,
+      movieWatchProviders,
+      similarMovies,
+      movieTrailer,
+    });
     return;
   }
 }

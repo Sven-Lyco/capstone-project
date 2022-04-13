@@ -5,6 +5,7 @@ export default function useMovieDetails(id) {
   const [movieCast, setMovieCast] = useState([]);
   const [movieWatchProviders, setMovieWatchProviders] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [movieTrailer, setMovieTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function useMovieDetails(id) {
         setMovieCast(data.movieCredits.cast);
         setMovieWatchProviders(data.movieWatchProviders.results.DE);
         setSimilarMovies(data.similarMovies.results);
+        setMovieTrailer(data.movieTrailer.results);
       } catch (error) {
         console.error(error);
       }
@@ -31,6 +33,7 @@ export default function useMovieDetails(id) {
     loadMovieDetails();
   }, [id]);
   return {
+    movieTrailer,
     similarMovies,
     movieWatchProviders,
     movieCast,

@@ -23,6 +23,7 @@ export default function MoviesDetailsPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const {
+    movieTrailer,
     similarMovies,
     movieWatchProviders,
     movieCast,
@@ -65,8 +66,8 @@ export default function MoviesDetailsPage({
       )}
       {!isLoading ? (
         <>
-          <VideoFrame />
-          {/* <StyledBackdropImage backdropPath={backdropPath} /> */}
+          {movieTrailer && <VideoFrame videoList={movieTrailer} />}
+          {!movieTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
           <StyledHeader>
             <Poster
               src={
