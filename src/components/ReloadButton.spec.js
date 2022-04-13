@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 describe('Button', () => {
   it('renders a button', () => {
-    render(<ReloadButton>Reload</ReloadButton>);
+    render(<ReloadButton />);
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
@@ -12,9 +12,9 @@ describe('Button', () => {
 
   it('has onClick function', () => {
     const handleOnClick = jest.fn();
-    render(<ReloadButton onClick={handleOnClick}>Reload</ReloadButton>);
+    render(<ReloadButton onClick={handleOnClick} />);
 
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('button', { name: 'Seite neu laden' });
     userEvent.click(button);
     expect(handleOnClick).toHaveBeenCalled();
   });

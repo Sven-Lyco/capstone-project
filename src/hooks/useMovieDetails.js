@@ -15,7 +15,7 @@ export default function useMovieDetails(id) {
         (video.type === 'Trailer' || video.type === 'Teaser') &&
         video.size >= 720
     )
-    ?.map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
+    .map(video => `https://www.youtube.com/watch?v=${video.key}wowK7ADGRsQ`);
 
   useEffect(() => {
     setIsLoading(true);

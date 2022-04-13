@@ -4,12 +4,10 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function ReloadButton({ onClick }) {
   return (
-    <>
-      <StyledButton onClick={onClick}>
-        <StyledReloadIcon />
-        <ScreenReaderOnly>Seite neu laden</ScreenReaderOnly>
-      </StyledButton>
-    </>
+    <StyledButton onClick={onClick}>
+      <StyledReloadIcon />
+      <ScreenReaderOnly>Seite neu laden</ScreenReaderOnly>
+    </StyledButton>
   );
 }
 
