@@ -53,19 +53,6 @@ export default function SeriesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {!isOnWatchlist ? (
-        <StyledAddButton
-          onClick={() => onHandleAddSeries(id, name, posterPath)}
-        >
-          <StyledPlusIcon />
-          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-        </StyledAddButton>
-      ) : (
-        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-          <StyledDeleteIcon />
-          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-        </StyledDeleteButton>
-      )}
       {!isLoading ? (
         <>
           {seriesTrailerUrl?.length !== 0 && (
@@ -95,6 +82,21 @@ export default function SeriesDetailsPage({
               </p>
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
+            <ButtonWrapper>
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddSeries(id, name, posterPath)}
+                >
+                  <StyledPlusIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledDeleteIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                </StyledDeleteButton>
+              )}
+            </ButtonWrapper>
           </StyledHeader>
           <InnerNavigation
             currentPage={currentPage}
@@ -231,14 +233,15 @@ const StyledMain = styled.main`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  margin-right: 12px;
+`;
+
 const StyledAddButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 48px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-orange);
@@ -257,9 +260,6 @@ const StyledDeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 48px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-red);

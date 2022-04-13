@@ -51,19 +51,6 @@ export default function MoviesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {!isOnWatchlist ? (
-        <StyledAddButton
-          onClick={() => onHandleAddMovie(id, title, posterPath)}
-        >
-          <StyledPlusIcon />
-          <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-        </StyledAddButton>
-      ) : (
-        <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-          <StyledDeleteIcon />
-          <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-        </StyledDeleteButton>
-      )}
       {!isLoading ? (
         <>
           {movieTrailerUrl?.length !== 0 && (
@@ -91,12 +78,27 @@ export default function MoviesDetailsPage({
               </p>
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
-            <ButtonCheckMovie
-              id={id}
-              title={title}
-              handleCheckMovie={handleCheckMovie}
-              isMovieWatched={checkIsMovieWatched(id)}
-            />
+            <ButtonWrapper>
+              <ButtonCheckMovie
+                id={id}
+                title={title}
+                handleCheckMovie={handleCheckMovie}
+                isMovieWatched={checkIsMovieWatched(id)}
+              />
+              {!isOnWatchlist ? (
+                <StyledAddButton
+                  onClick={() => onHandleAddMovie(id, title, posterPath)}
+                >
+                  <StyledPlusIcon />
+                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                </StyledAddButton>
+              ) : (
+                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
+                  <StyledDeleteIcon />
+                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                </StyledDeleteButton>
+              )}
+            </ButtonWrapper>
           </StyledHeader>
           {movieWatchProviders && (
             <ProviderList providerList={movieWatchProviders} />
@@ -216,14 +218,17 @@ const StyledMain = styled.main`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
+
 const StyledAddButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 48px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-orange);
@@ -242,9 +247,6 @@ const StyledDeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  position: absolute;
-  top: 48px;
-  right: 12px;
   padding: 0;
   background-color: transparent;
   color: var(--color-red);
