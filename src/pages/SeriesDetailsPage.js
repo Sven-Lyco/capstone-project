@@ -15,6 +15,7 @@ import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
 import VideoFrame from '../components/VideoFrame';
+import ReloadButton from '../components/ReloadButton';
 
 export default function SeriesDetailsPage({
   onHandleAddSeries,
@@ -96,6 +97,7 @@ export default function SeriesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
+              <ReloadButton onClick={() => window.location.reload(false)} />
             </ButtonWrapper>
           </StyledHeader>
           <InnerNavigation
@@ -234,6 +236,9 @@ const StyledMain = styled.main`
 `;
 
 const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   margin-right: 12px;
 `;
 

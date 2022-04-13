@@ -14,6 +14,7 @@ import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
 import FetchError from '../components/FetchError';
 import VideoFrame from '../components/VideoFrame';
+import ReloadButton from '../components/ReloadButton';
 
 export default function MoviesDetailsPage({
   onHandleAddMovie,
@@ -98,6 +99,7 @@ export default function MoviesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
+              <ReloadButton onClick={() => window.location.reload(false)} />
             </ButtonWrapper>
           </StyledHeader>
           {movieWatchProviders && (
