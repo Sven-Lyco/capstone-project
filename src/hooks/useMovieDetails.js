@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default function useMovieDetails(obj) {
+export default function useMovieDetails(id) {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
   const [movieWatchProviders, setMovieWatchProviders] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -15,19 +16,25 @@ export default function useMovieDetails(obj) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(obj),
+          body: JSON.stringify(id),
         });
         const data = await response.json();
         setMovieDetails(data.movieDetails);
         setMovieCast(data.movieCredits.cast);
         setMovieWatchProviders(data.movieWatchProviders.results.DE);
+        setSimilarMovies(data.similarMovies.results);
       } catch (error) {
         console.error(error);
       }
       setIsLoading(false);
     }
     loadMovieDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return { movieWatchProviders, movieCast, movieDetails, isLoading };
+  }, [id]);
+  return {
+    similarMovies,
+    movieWatchProviders,
+    movieCast,
+    movieDetails,
+    isLoading,
+  };
 }

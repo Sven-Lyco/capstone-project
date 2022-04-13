@@ -4,7 +4,7 @@ const { API_BASE_MOVIES_URL, API_KEY, API_LANGUAGE } = process.env;
 
 export default async function getMovieDetails(req, res) {
   if (req.method === 'POST') {
-    const { id } = req.body;
+    const id = req.body;
     const movieDetailsUrl = `${API_BASE_MOVIES_URL}/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
     const fetchMovieDetailsResponse = await fetch(movieDetailsUrl);
     const movieDetails = await fetchMovieDetailsResponse.json();
@@ -17,7 +17,13 @@ export default async function getMovieDetails(req, res) {
     const fetchWatchProvidersResponse = await fetch(movieWatchProviderUrl);
     const movieWatchProviders = await fetchWatchProvidersResponse.json();
 
-    res.status(200).json({ movieDetails, movieCredits, movieWatchProviders });
+    const similarMoviesUrl = `${API_BASE_MOVIES_URL}/${id}/similar?api_key=${API_KEY}&language=${API_LANGUAGE}&page=1`;
+    const fetchSimilarMoviesResponse = await fetch(similarMoviesUrl);
+    const similarMovies = await fetchSimilarMoviesResponse.json();
+
+    res
+      .status(200)
+      .json({ movieDetails, movieCredits, movieWatchProviders, similarMovies });
     return;
   }
 }
