@@ -20,7 +20,7 @@ const StyledButton = styled.button`
   height: 40px;
   width: 40px;
   border: none;
-  color: inherit;
+  color: var(--color-blue);
   background-color: rgba(18, 18, 18, 0.6);
 `;
 
