@@ -28,10 +28,10 @@ export default function SearchPage() {
           }
         />
       </SearchWrapper>
-      {results.length !== 0 ? (
+      {results?.length !== 0 ? (
         <StyledList>
           {results
-            .filter(result => result.media_type !== 'person')
+            ?.filter(result => result.media_type !== 'person')
             .map(
               ({
                 id,

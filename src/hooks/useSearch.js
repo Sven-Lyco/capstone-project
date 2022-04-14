@@ -27,6 +27,5 @@ export default function useSearch() {
     }
     setQuery(currentQuery);
   }
-
   return { results, handleSearch };
 }
