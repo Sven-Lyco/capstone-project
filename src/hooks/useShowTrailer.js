@@ -1,35 +1,18 @@
 import { useEffect, useState } from 'react';
 
-export default function useShowTrailer({
-  seriesTrailerUrl,
-  movieTrailerUrl,
-  isChecked,
-}) {
+export default function useShowTrailer({ trailerUrl, isChecked }) {
   const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
-    if (movieTrailerUrl?.length !== 0) {
+    if (trailerUrl?.length !== 0) {
       setShowTrailer(true);
     }
-    if (movieTrailerUrl?.length === 0) {
+    if (trailerUrl?.length === 0) {
       setShowTrailer(false);
     }
-    if (seriesTrailerUrl?.length !== 0) {
-      setShowTrailer(true);
-    }
-    if (seriesTrailerUrl?.length === 0) {
+    if (isChecked === true && trailerUrl?.length === 0) {
       setShowTrailer(false);
     }
-    if (isChecked === true && movieTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === true && seriesTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === false) {
-      setShowTrailer(false);
-    }
-  }, [isChecked, movieTrailerUrl?.length, seriesTrailerUrl?.length]);
-
+  }, [isChecked, trailerUrl]);
   return { showTrailer };
 }

@@ -49,7 +49,10 @@ export default function SeriesDetailsPage({
     episode_run_time,
     vote_average: rating,
   } = seriesDetails;
-  const { showTrailer } = useShowTrailer({ isChecked, seriesTrailerUrl });
+  const { showTrailer } = useShowTrailer({
+    isChecked,
+    trailerUrl: seriesTrailerUrl,
+  });
 
   return (
     <Wrapper>

@@ -45,7 +45,10 @@ export default function MoviesDetailsPage({
     backdrop_path: backdropPath,
     vote_average: rating,
   } = movieDetails;
-  const { showTrailer } = useShowTrailer({ isChecked, movieTrailerUrl });
+  const { showTrailer } = useShowTrailer({
+    isChecked,
+    trailerUrl: movieTrailerUrl,
+  });
 
   if (watchedMoviesError) return <FetchError />;
 
