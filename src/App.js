@@ -15,12 +15,14 @@ import useMovies from './hooks/useMovies';
 import useWatchlist from './hooks/useWatchlist';
 import useEpisodes from './hooks/useEpisodes';
 import useIsAdult from './hooks/useIsAdult';
+import useToggle from './hooks/useToggle';
 import LoadingSpinner from './components/LoadingSpinner';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 
 export default function App() {
   const { handleCheckIsAdult } = useIsAdult();
+  const { isChecked, handleToggleSwitch } = useToggle();
   const { pathname } = useLocation();
   const {
     watchlist,
@@ -83,6 +85,7 @@ export default function App() {
             path="serie/:id"
             element={
               <SeriesDetailsPage
+                isChecked={isChecked}
                 watchlist={watchlist}
                 onHandleAddSeries={handleAddSeries}
                 checkIsOnWatchlist={checkIsOnWatchlist}
@@ -96,6 +99,7 @@ export default function App() {
             path="film/:id"
             element={
               <MovieDetailsPage
+                isChecked={isChecked}
                 onHandleAddMovie={handleAddMovie}
                 checkIsOnWatchlist={checkIsOnWatchlist}
                 onHandleDeleteItem={handleDeleteItem}
@@ -117,7 +121,15 @@ export default function App() {
             path="watchlist"
             element={<WatchlistPage watchlist={watchlist} />}
           />
-          <Route path="info" element={<InfoPage />} />
+          <Route
+            path="info"
+            element={
+              <InfoPage
+                isChecked={isChecked}
+                handleToggleSwitch={handleToggleSwitch}
+              />
+            }
+          />
         </Routes>
       ) : (
         <>

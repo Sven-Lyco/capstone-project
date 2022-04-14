@@ -1,17 +1,10 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import ToggleSwitch from '../components/ToggleSwitch';
 import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
 import Navigation from '../components/Navigation';
 
-export default function InfoPage() {
-  const [isChecked, setIsChecked] = useState(false);
-
-  function handleChangeCheckBox(event) {
-    setIsChecked(event.target.checked);
-  }
-
+export default function InfoPage({ isChecked, handleToggleSwitch }) {
   return (
     <Wrapper>
       <Header />
@@ -27,33 +20,30 @@ export default function InfoPage() {
           oder wo du bei einer Serie stehengeblieben bist.
         </p>
         <p>
-          Auf den einzelnen Detailseiten, bekommst du folgende Informationen:
+          Auf den einzelnen Detailseiten, bekommst du Informationen über den
+          Film oder eine Serie.
         </p>
-        <ul>
-          <li>Das Erscheinungsjahr</li>
-          <li>Die Bewertung</li>
-          <li>Die Handlung</li>
-          <li>Die Hauptdarsteller</li>
-          <li>ähnliche Filme oder Serien</li>
-        </ul>
-        <p>
-          Du kannst auf dieser Seite für dich selbst einstellen, ob du lieber
-          die Trailer sehen möchtest oder ob das Hintergrundbild angezeigt
-          werden soll. Wichtig, wenn kein Trailer für einen Film oder eine Serie
-          vorhanden ist, wird dir automatisch das Hintergrundbild angezeigt.
-          Falls du die Trailer aktiviert hast und dir eine Information angezeigt
-          wird, dass das Video nicht verfügbar ist, lade bitte die Seite über
-          den Reload-Buttton neu.
-        </p>
-        <SettingsWrapper>
-          <p>Trailer anzeigen:</p>
-          <ToggleSwitch
-            onChange={event => {
-              handleChangeCheckBox(event);
-            }}
-            checked={isChecked}
-          />
-        </SettingsWrapper>
+        <p>Happy Watching! 🍿 📺</p>
+        <InfoBox>
+          <span>
+            Du kannst auf dieser Seite für dich selbst einstellen, ob du lieber
+            die Trailer sehen möchtest oder ob das Hintergrundbild angezeigt
+            werden soll. Wichtig, wenn kein Trailer für einen Film oder eine
+            Serie vorhanden ist, wird dir automatisch das Hintergrundbild
+            angezeigt. Falls du die Trailer aktiviert hast und dir eine
+            Information angezeigt wird, dass das Video nicht verfügbar ist, lade
+            bitte die Seite über den Reload-Buttton neu.
+          </span>
+          <SettingsWrapper>
+            <p>Trailer anzeigen:</p>
+            <ToggleSwitch
+              onChange={event => {
+                handleToggleSwitch(event);
+              }}
+              checked={isChecked}
+            />
+          </SettingsWrapper>
+        </InfoBox>
         <p>
           Alle angezeigten Inhalte dieser App werden von The Movie Database
           bereitgestellt.
@@ -61,7 +51,8 @@ export default function InfoPage() {
         <p>
           Die einzelnen Listen von Streaminganbietern, auf den Detailseiten von
           Serien und Filmen, werden über The MovieDatabase in Kooperation mit
-          JustWatch bereitgestellt.
+          JustWatch bereitgestellt. Auf den Detailseiten, kannst du "zu sehen
+          auf" anklicken, um weitere Informationen bekommen.
         </p>
         <a
           href="https://www.themoviedb.org/"
@@ -96,11 +87,28 @@ const StyledSection = styled.section`
   flex-direction: column;
 
   p {
-    margin: 10px 0 0 0;
+    margin-top: 10px;
     padding: 0 15px;
     text-align: center;
     line-height: 1.5;
   }
+
+  span {
+    margin-top: 10px;
+    padding: 0 15px;
+    text-align: center;
+    line-height: 1.5;
+    font-size: medium;
+    font-style: italic;
+  }
+`;
+
+const InfoBox = styled.div`
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const SettingsWrapper = styled.div`
@@ -108,13 +116,10 @@ const SettingsWrapper = styled.div`
   justify-content: center;
   width: 100vw;
   margin: 15px 0;
-  border-bottom: 2px solid var(--border-color);
-  border-top: 2px solid var(--border-color);
-  padding: 5px 0 10px 0;
+  padding-top: 5px;
 `;
 
 const StyledTmdbIcon = styled(TmdbIcon)`
   width: 50px;
   height: auto;
-  margin-top: 60px;
 `;

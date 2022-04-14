@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
@@ -17,6 +18,7 @@ import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
 
 export default function MoviesDetailsPage({
+  isChecked,
   onHandleAddMovie,
   checkIsOnWatchlist,
   onHandleDeleteItem,
@@ -43,8 +45,26 @@ export default function MoviesDetailsPage({
     backdrop_path: backdropPath,
     vote_average: rating,
   } = movieDetails;
+  const [showTrailer, setShowTrailer] = useState(false);
+
+  useEffect(() => {
+    if (movieTrailerUrl?.length !== 0) {
+      setShowTrailer(true);
+    }
+    if (movieTrailerUrl?.length === 0) {
+      setShowTrailer(false);
+    }
+    if (isChecked === true) {
+      setShowTrailer(true);
+    }
+    if (isChecked === false) {
+      setShowTrailer(false);
+    }
+  }, [isChecked, movieTrailerUrl?.length]);
 
   if (watchedMoviesError) return <FetchError />;
+
+  console.log(isChecked);
 
   return (
     <Wrapper>
@@ -52,14 +72,10 @@ export default function MoviesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {!isLoading ? (
+      {!isLoading && (
         <>
-          {movieTrailerUrl?.length !== 0 && (
-            <VideoFrame videoUrl={movieTrailerUrl} />
-          )}
-          {movieTrailerUrl?.length === 0 && (
-            <StyledBackdropImage backdropPath={backdropPath} />
-          )}
+          {showTrailer && <VideoFrame videoUrl={movieTrailerUrl} />}
+          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
           <StyledHeader>
             <Poster
               src={
@@ -120,11 +136,8 @@ export default function MoviesDetailsPage({
             </PosterListWrapper>
           </StyledMain>
         </>
-      ) : (
-        <>
-          <LoadingSpinner />
-        </>
       )}
+      {isLoading && <LoadingSpinner />}
     </Wrapper>
   );
 
