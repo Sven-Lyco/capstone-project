@@ -25,7 +25,7 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
         </p>
         <p>Happy Watching! 🍿 📺</p>
         <InfoBox>
-          <span>
+          <SettingsInfo>
             Du kannst auf dieser Seite für dich selbst einstellen, ob du lieber
             die Trailer sehen möchtest oder ob das Hintergrundbild angezeigt
             werden soll. Wichtig, wenn kein Trailer für einen Film oder eine
@@ -33,7 +33,7 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
             angezeigt. Falls du die Trailer aktiviert hast und dir eine
             Information angezeigt wird, dass das Video nicht verfügbar ist, lade
             bitte die Seite über den Reload-Button neu.
-          </span>
+          </SettingsInfo>
           <SettingsWrapper>
             <p>Trailer anzeigen:</p>
             <ToggleSwitch
@@ -92,15 +92,6 @@ const StyledSection = styled.section`
     text-align: center;
     line-height: 1.5;
   }
-
-  span {
-    margin-top: 10px;
-    padding: 0 15px;
-    text-align: center;
-    line-height: 1.5;
-    font-size: medium;
-    font-style: italic;
-  }
 `;
 
 const InfoBox = styled.div`
@@ -117,6 +108,15 @@ const SettingsWrapper = styled.div`
   width: 100vw;
   margin: 15px 0;
   padding-top: 5px;
+`;
+
+const SettingsInfo = styled.p`
+  margin-top: 10px;
+  padding: 0 15px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: medium;
+  font-style: italic;
 `;
 
 const StyledTmdbIcon = styled(TmdbIcon)`
