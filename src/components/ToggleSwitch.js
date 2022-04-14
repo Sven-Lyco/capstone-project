@@ -1,28 +1,24 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 
-export default function ToggleSwitch() {
-  const [isChecked, setIsChecked] = useState(false);
-
-  function handleChangeCheckBox(event) {
-    setIsChecked(event.target.checked);
-  }
-  console.log(isChecked);
+export default function ToggleSwitch({ onChange, checked }) {
   return (
-    <>
-      <CheckBoxLabel htmlFor="checkbox" />
+    <CheckBoxWrapper>
       <CheckBox
         id="checkbox"
         type="checkbox"
-        checked={isChecked}
-        onChange={event => {
-          handleChangeCheckBox(event);
-        }}
+        checked={checked}
+        onChange={onChange}
       />
-    </>
+      <CheckBoxLabel htmlFor="checkbox" />
+    </CheckBoxWrapper>
   );
 }
 
+const CheckBoxWrapper = styled.div`
+  position: relative;
+  height: 30px;
+  margin-top: 12px;
+`;
 const CheckBoxLabel = styled.label`
   position: absolute;
   top: 0;
