@@ -26,12 +26,13 @@ export default function SearchPage() {
             (event.key === 'Enter' || event.key === 'Escape') &&
             event.target.blur()
           }
+          autoComplete="off"
         />
       </SearchWrapper>
-      {results.length !== 0 ? (
+      {results?.length !== 0 ? (
         <StyledList>
           {results
-            .filter(result => result.media_type !== 'person')
+            ?.filter(result => result.media_type !== 'person')
             .map(
               ({
                 id,

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 describe('Navigation', () => {
-  it('renders a Navigation with three links', () => {
+  it('renders a Navigation with five links', () => {
     render(
       <MemoryRouter>
         <Navigation />
@@ -14,6 +14,6 @@ describe('Navigation', () => {
     const navigationLinks = screen.getAllByRole('link');
 
     expect(navigation).toBeInTheDocument();
-    expect(navigationLinks).toHaveLength(4);
+    expect(navigationLinks).toHaveLength(5);
   });
 });

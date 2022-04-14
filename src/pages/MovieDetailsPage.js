@@ -9,6 +9,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
+import useShowTrailer from '../hooks/useShowTrailer';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
@@ -17,6 +18,7 @@ import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
 
 export default function MoviesDetailsPage({
+  isChecked,
   onHandleAddMovie,
   checkIsOnWatchlist,
   onHandleDeleteItem,
@@ -43,6 +45,10 @@ export default function MoviesDetailsPage({
     backdrop_path: backdropPath,
     vote_average: rating,
   } = movieDetails;
+  const { showTrailer } = useShowTrailer({
+    isChecked,
+    trailerUrl: movieTrailerUrl,
+  });
 
   if (watchedMoviesError) return <FetchError />;
 
@@ -52,14 +58,10 @@ export default function MoviesDetailsPage({
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
       </StyledButtonBack>
-      {!isLoading ? (
+      {!isLoading && (
         <>
-          {movieTrailerUrl?.length !== 0 && (
-            <VideoFrame videoUrl={movieTrailerUrl} />
-          )}
-          {movieTrailerUrl?.length === 0 && (
-            <StyledBackdropImage backdropPath={backdropPath} />
-          )}
+          {showTrailer && <VideoFrame videoUrl={movieTrailerUrl} />}
+          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
           <StyledHeader>
             <Poster
               src={
@@ -99,7 +101,9 @@ export default function MoviesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
-              <ReloadButton onClick={() => window.location.reload(false)} />
+              {showTrailer && (
+                <ReloadButton onClick={() => window.location.reload(false)} />
+              )}
             </ButtonWrapper>
           </StyledHeader>
           {movieWatchProviders && (
@@ -118,11 +122,8 @@ export default function MoviesDetailsPage({
             </PosterListWrapper>
           </StyledMain>
         </>
-      ) : (
-        <>
-          <LoadingSpinner />
-        </>
       )}
+      {isLoading && <LoadingSpinner />}
     </Wrapper>
   );
 
