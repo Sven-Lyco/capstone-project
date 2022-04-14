@@ -26,6 +26,7 @@ export default function SearchPage() {
             (event.key === 'Enter' || event.key === 'Escape') &&
             event.target.blur()
           }
+          autoComplete="off"
         />
       </SearchWrapper>
       {results?.length !== 0 ? (
