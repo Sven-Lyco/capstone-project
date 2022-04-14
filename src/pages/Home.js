@@ -19,14 +19,6 @@ export default function Home({ handleCheckIsAdult }) {
         <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
           unter 18
         </Button>
-        <a
-          href="https://www.themoviedb.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="The Movie Database"
-        >
-          <StyledTmdbIcon />
-        </a>
       </StyledSection>
     </Wrapper>
   );
