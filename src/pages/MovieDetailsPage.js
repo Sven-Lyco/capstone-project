@@ -54,8 +54,8 @@ export default function MoviesDetailsPage({
     if (movieTrailerUrl?.length === 0) {
       setShowTrailer(false);
     }
-    if (isChecked === true) {
-      setShowTrailer(true);
+    if (isChecked === true && movieTrailerUrl?.length === 0) {
+      setShowTrailer(false);
     }
     if (isChecked === false) {
       setShowTrailer(false);
@@ -63,8 +63,6 @@ export default function MoviesDetailsPage({
   }, [isChecked, movieTrailerUrl?.length]);
 
   if (watchedMoviesError) return <FetchError />;
-
-  console.log(isChecked);
 
   return (
     <Wrapper>
@@ -115,7 +113,7 @@ export default function MoviesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
-              {movieTrailerUrl?.length !== 0 && (
+              {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
@@ -18,6 +18,7 @@ import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
 
 export default function SeriesDetailsPage({
+  isChecked,
   onHandleAddSeries,
   checkIsOnWatchlist,
   onHandleDeleteItem,
@@ -47,6 +48,22 @@ export default function SeriesDetailsPage({
     episode_run_time,
     vote_average: rating,
   } = seriesDetails;
+  const [showTrailer, setShowTrailer] = useState(false);
+
+  useEffect(() => {
+    if (seriesTrailerUrl?.length !== 0) {
+      setShowTrailer(true);
+    }
+    if (seriesTrailerUrl?.length === 0) {
+      setShowTrailer(false);
+    }
+    if (isChecked === true && seriesTrailerUrl?.length === 0) {
+      setShowTrailer(false);
+    }
+    if (isChecked === false) {
+      setShowTrailer(false);
+    }
+  }, [isChecked, seriesTrailerUrl?.length]);
 
   return (
     <Wrapper>
@@ -56,12 +73,8 @@ export default function SeriesDetailsPage({
       </StyledButtonBack>
       {!isLoading ? (
         <>
-          {seriesTrailerUrl?.length !== 0 && (
-            <VideoFrame videoUrl={seriesTrailerUrl} />
-          )}
-          {seriesTrailerUrl?.length === 0 && (
-            <StyledBackdropImage backdropPath={backdropPath} />
-          )}
+          {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
+          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
           <StyledHeader>
             <Poster
               src={
@@ -97,7 +110,7 @@ export default function SeriesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
-              {seriesTrailerUrl?.length !== 0 && (
+              {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>
