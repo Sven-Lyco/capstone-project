@@ -99,7 +99,9 @@ export default function MoviesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
-              <ReloadButton onClick={() => window.location.reload(false)} />
+              {movieTrailerUrl?.length !== 0 && (
+                <ReloadButton onClick={() => window.location.reload(false)} />
+              )}
             </ButtonWrapper>
           </StyledHeader>
           {movieWatchProviders && (

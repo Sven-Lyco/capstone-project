@@ -97,7 +97,9 @@ export default function SeriesDetailsPage({
                   <ScreenReaderOnly>entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
-              <ReloadButton onClick={() => window.location.reload(false)} />
+              {seriesTrailerUrl?.length !== 0 && (
+                <ReloadButton onClick={() => window.location.reload(false)} />
+              )}
             </ButtonWrapper>
           </StyledHeader>
           <InnerNavigation
