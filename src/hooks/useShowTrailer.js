@@ -13,6 +13,10 @@ export default function useShowTrailer({ trailerUrl, isChecked }) {
     if (isChecked === true && trailerUrl?.length === 0) {
       setShowTrailer(false);
     }
+    if (isChecked === false) {
+      setShowTrailer(false);
+    }
   }, [isChecked, trailerUrl]);
+  console.log(showTrailer);
   return { showTrailer };
 }
