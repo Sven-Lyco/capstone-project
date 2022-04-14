@@ -9,6 +9,7 @@ import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
 import NotFound from './pages/NotFound';
 import WatchlistPage from './pages/WatchlistPage';
+import InfoPage from './pages/InfoPage';
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
 import useWatchlist from './hooks/useWatchlist';
@@ -116,6 +117,7 @@ export default function App() {
             path="watchlist"
             element={<WatchlistPage watchlist={watchlist} />}
           />
+          <Route path="info" element={<InfoPage />} />
         </Routes>
       ) : (
         <>
