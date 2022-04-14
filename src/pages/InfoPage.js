@@ -1,0 +1,120 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+import Header from '../components/Header';
+import ToggleSwitch from '../components/ToggleSwitch';
+import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
+import Navigation from '../components/Navigation';
+
+export default function InfoPage() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleChangeCheckBox(event) {
+    setIsChecked(event.target.checked);
+  }
+
+  return (
+    <Wrapper>
+      <Header />
+      <StyledSection>
+        <h2>Herzlich Willkommen bei Watcha!</h2>
+        <p>
+          Mit Hilfe von Watcha kannst du neue Filme und Serien entdecken und
+          diese auf deine Watchlist setzen.
+        </p>
+        <p>
+          Einzelne Filme und Episoden einer Serie kannst du als gesehen
+          markieren, sodass du immer weißt welchen Film du schon gesehen hast
+          oder wo du bei einer Serie stehengeblieben bist.
+        </p>
+        <p>
+          Auf den einzelnen Detailseiten, bekommst du folgende Informationen:
+        </p>
+        <ul>
+          <li>Das Erscheinungsjahr</li>
+          <li>Die Bewertung</li>
+          <li>Die Handlung</li>
+          <li>Die Hauptdarsteller</li>
+          <li>ähnliche Filme oder Serien</li>
+        </ul>
+        <p>
+          Du kannst auf dieser Seite für dich selbst einstellen, ob du lieber
+          die Trailer sehen möchtest oder ob das Hintergrundbild angezeigt
+          werden soll. Wichtig, wenn kein Trailer für einen Film oder eine Serie
+          vorhanden ist, wird dir automatisch das Hintergrundbild angezeigt.
+          Falls du die Trailer aktiviert hast und dir eine Information angezeigt
+          wird, dass das Video nicht verfügbar ist, lade bitte die Seite über
+          den Reload-Buttton neu.
+        </p>
+        <SettingsWrapper>
+          <p>Trailer anzeigen:</p>
+          <ToggleSwitch
+            onChange={event => {
+              handleChangeCheckBox(event);
+            }}
+            checked={isChecked}
+          />
+        </SettingsWrapper>
+        <p>
+          Alle angezeigten Inhalte dieser App werden von The Movie Database
+          bereitgestellt.
+        </p>
+        <p>
+          Die einzelnen Listen von Streaminganbietern, auf den Detailseiten von
+          Serien und Filmen, werden über The MovieDatabase in Kooperation mit
+          JustWatch bereitgestellt.
+        </p>
+        <a
+          href="https://www.themoviedb.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Movie Database"
+        >
+          <StyledTmdbIcon />
+        </a>
+      </StyledSection>
+      <Navigation />
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
+  margin: 70px 0 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+  }
+`;
+
+const StyledSection = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  p {
+    margin: 10px 0 0 0;
+    padding: 0 15px;
+    text-align: center;
+    line-height: 1.5;
+  }
+`;
+
+const SettingsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 15px 0;
+  border-bottom: 2px solid var(--border-color);
+  border-top: 2px solid var(--border-color);
+  padding: 5px 0 10px 0;
+`;
+
+const StyledTmdbIcon = styled(TmdbIcon)`
+  width: 50px;
+  height: auto;
+  margin-top: 60px;
+`;
