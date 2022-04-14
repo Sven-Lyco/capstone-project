@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Button from '../components/Button';
-import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
 
 export default function Home({ handleCheckIsAdult }) {
   return (
