@@ -12,7 +12,7 @@ export default function useIsAdult() {
   function handleCheckIsAdult(age) {
     if (age > 17) {
       setIsAdult(true);
-      navigate('./serien');
+      navigate('./info');
     } else {
       setIsAdult(false);
       navigate('./child');
