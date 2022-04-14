@@ -11,7 +11,7 @@ export default function NotFound() {
       <p>🎉🥳</p>
       <p>Herzlichen Glückwunsch!</p>
       <p>Du hast eine Seite gefunden, die es nicht gibt!</p>
-      <Button buttonType="neueFische" onClick={() => navigate(-1)}>
+      <Button buttonType="neueFische" onClick={() => navigate('/')}>
         <GoHome />
         <GoChevronLeft />
         <span>zurück</span>
