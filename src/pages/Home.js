@@ -44,9 +44,3 @@ const StyledSection = styled.section`
     line-height: 1.5;
   }
 `;
-
-const StyledTmdbIcon = styled(TmdbIcon)`
-  width: 50px;
-  height: auto;
-  margin-top: 60px;
-`;
