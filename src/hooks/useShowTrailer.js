@@ -17,6 +17,5 @@ export default function useShowTrailer({ trailerUrl, isChecked }) {
       setShowTrailer(false);
     }
   }, [isChecked, trailerUrl]);
-  console.log(showTrailer);
   return { showTrailer };
 }
