@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
@@ -10,6 +10,7 @@ import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg'
 import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
+import useShowTrailer from '../hooks/useShowTrailer';
 import SeasonsList from '../components/SeasonsList';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
@@ -48,22 +49,7 @@ export default function SeriesDetailsPage({
     episode_run_time,
     vote_average: rating,
   } = seriesDetails;
-  const [showTrailer, setShowTrailer] = useState(false);
-
-  useEffect(() => {
-    if (seriesTrailerUrl?.length !== 0) {
-      setShowTrailer(true);
-    }
-    if (seriesTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === true && seriesTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === false) {
-      setShowTrailer(false);
-    }
-  }, [isChecked, seriesTrailerUrl?.length]);
+  const { showTrailer } = useShowTrailer({ isChecked, seriesTrailerUrl });
 
   return (
     <Wrapper>

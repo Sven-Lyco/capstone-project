@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Poster from '../components/Poster';
@@ -10,6 +9,7 @@ import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
+import useShowTrailer from '../hooks/useShowTrailer';
 import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
 import ButtonCheckMovie from '../components/ButtonCheckMovie';
@@ -45,22 +45,7 @@ export default function MoviesDetailsPage({
     backdrop_path: backdropPath,
     vote_average: rating,
   } = movieDetails;
-  const [showTrailer, setShowTrailer] = useState(false);
-
-  useEffect(() => {
-    if (movieTrailerUrl?.length !== 0) {
-      setShowTrailer(true);
-    }
-    if (movieTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === true && movieTrailerUrl?.length === 0) {
-      setShowTrailer(false);
-    }
-    if (isChecked === false) {
-      setShowTrailer(false);
-    }
-  }, [isChecked, movieTrailerUrl?.length]);
+  const { showTrailer } = useShowTrailer({ isChecked, movieTrailerUrl });
 
   if (watchedMoviesError) return <FetchError />;
 
