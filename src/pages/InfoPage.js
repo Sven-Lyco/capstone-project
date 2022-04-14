@@ -11,17 +11,17 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
       <StyledSection>
         <h2>Herzlich Willkommen bei Watcha!</h2>
         <p>
-          Mit Hilfe von Watcha kannst du neue Filme und Serien entdecken und
+          Mithilfe von Watcha kannst du neue Filme und Serien entdecken und
           diese auf deine Watchlist setzen.
         </p>
         <p>
           Einzelne Filme und Episoden einer Serie kannst du als gesehen
-          markieren, sodass du immer weißt welchen Film du schon gesehen hast
+          markieren, sodass du immer weißt, welchen Film du schon gesehen hast
           oder wo du bei einer Serie stehengeblieben bist.
         </p>
         <p>
-          Auf den einzelnen Detailseiten, bekommst du Informationen über den
-          Film oder eine Serie.
+          Auf den einzelnen Detailseiten bekommst du Informationen über den Film
+          oder eine Serie.
         </p>
         <p>Happy Watching! 🍿 📺</p>
         <InfoBox>
@@ -32,7 +32,7 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
             Serie vorhanden ist, wird dir automatisch das Hintergrundbild
             angezeigt. Falls du die Trailer aktiviert hast und dir eine
             Information angezeigt wird, dass das Video nicht verfügbar ist, lade
-            bitte die Seite über den Reload-Buttton neu.
+            bitte die Seite über den Reload-Button neu.
           </span>
           <SettingsWrapper>
             <p>Trailer anzeigen:</p>
