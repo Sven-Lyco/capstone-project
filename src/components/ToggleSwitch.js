@@ -26,8 +26,8 @@ const CheckBoxLabel = styled.label`
   width: 42px;
   height: 26px;
   border-radius: 15px;
-  border: 1px solid #00f573;
-  background: #1d273c;
+  border: 1px solid var(--color-green);
+  background: var(--color-dark-gray);
   cursor: pointer;
   &::after {
     content: '';
@@ -36,7 +36,7 @@ const CheckBoxLabel = styled.label`
     width: 18px;
     height: 18px;
     margin: 3px;
-    background: #00f573;
+    background: var(--color-green);
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
@@ -48,7 +48,7 @@ const CheckBox = styled.input`
   width: 42px;
   height: 26px;
   &:checked + ${CheckBoxLabel} {
-    background: #00f573;
+    background: var(--color-green);
     &::after {
       content: '';
       display: block;
@@ -57,7 +57,7 @@ const CheckBox = styled.input`
       height: 18px;
       margin-left: 21px;
       transition: 0.2s;
-      background: #1d273c;
+      background: var(--color-dark-gray);
     }
   }
 `;
