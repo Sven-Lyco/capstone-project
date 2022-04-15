@@ -93,12 +93,12 @@ export default function MoviesDetailsPage({
                   onClick={() => onHandleAddMovie(id, title, posterPath)}
                 >
                   <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
+                  <ScreenReaderOnly>zur Watchlist hinzufügen</ScreenReaderOnly>
                 </StyledAddButton>
               ) : (
                 <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
                   <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
+                  <ScreenReaderOnly>von Watchlist entfernen</ScreenReaderOnly>
                 </StyledDeleteButton>
               )}
               {showTrailer && (
