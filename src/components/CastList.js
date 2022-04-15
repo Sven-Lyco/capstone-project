@@ -27,7 +27,7 @@ export default function CastList({ castList, listName }) {
         </StyledList>
       ) : (
         <>
-          <p>Es ist leider keine Besetzung verfügbar</p>
+          <p>Es sind leider keine Hauptdarsteller verfügbar</p>
         </>
       )}
     </>
