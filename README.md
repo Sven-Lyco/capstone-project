@@ -25,7 +25,7 @@ Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel
   - [Jest](https://jestjs.io/)
   - [React Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
   - [React Player](https://github.com/CookPete/react-player)
-- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript#tutorials)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript#tutorials)
 - [styled components](https://styled-components.com/)
 - [Storybook](https://storybook.js.org/)
 - [TMDB API](https://www.themoviedb.org/)
