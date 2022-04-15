@@ -1,75 +1,54 @@
-# Capstone Project
+# Watcha
 
-All data comes from [The Movie Database API](https://www.themoviedb.org/)
-, the data of providers comes from JustWatch in partnership with The Movie Database API
+> ## Capstone project - Web Development Bootcamp at [neuefische GmbH](https://www.neuefische.de)
 
-## Getting Started with Create React App
+## `Description`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Watcha](/public/images/header.png)
 
-## Available Scripts
+### An app for everyone who likes to watch movies and series
 
-In the project directory, you can run:
+Watcha helps you to discover new movies and series and add them to your watchlist. You can mark individual films and episodes of a series as watched, so that you always know which film you have already seen or where you stopped in a series. On the individual detail pages you get information about the film or series. Furthermore, you can decide whether you want to have the background image or the trailer displayed on the detail pages. Happy Watching! 🍿 📺
 
-### `npm start`
+## `Demo`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Important:** This demo is optimized for mobile screen!
+![App screens](/public/images/screens.png)
 
-### `npm test`
+## `Tech Stack`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://reactjs.org/)
+  - [React Router](https://reactrouter.com/)
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+  - [Jest](https://jestjs.io/)
+  - [React Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+  - [React Player](https://github.com/CookPete/react-player)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [styled components](https://styled-components.com/)
+- [Storybook](https://storybook.js.org/)
+- [TMDB API](https://www.themoviedb.org/)
+- [Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions)
+- [Vercel / REST API](https://vercel.com/docs/rest-api)
+- [Node.js](https://nodejs.org/en/)
+- [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [MongoDB Atlas](https://www.mongodb.com/de-de/cloud/atlas/register)
+- [mongoose](https://mongoosejs.com/)
 
-### `npm run build`
+## `Project Setup`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Clone this repository
+- Use `.env.example` to create your own `.env` inside the root folder
+  - Add your `API_KEY` from [TMDB](https://www.themoviedb.org/)
+  - Add your `MONGODB_URI`
+- Install all dependencies via `$ npm install`
+- Run app in development mode via `$ npm start`
+- Open http://localhost:3000/ to view it in the browser
+- Run tests via `$ npm test`
+- Run Storybook via `$ npm run storybook`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Side Note
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> All data comes from [The Movie Database API](https://www.themoviedb.org/)
+> , the data of providers comes from JustWatch in partnership with The Movie Database API
