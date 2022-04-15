@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function ToggleSwitch({ onChange, checked }) {
   return (
@@ -9,7 +10,9 @@ export default function ToggleSwitch({ onChange, checked }) {
         checked={checked}
         onChange={onChange}
       />
-      <CheckBoxLabel htmlFor="checkbox" />
+      <CheckBoxLabel htmlFor="checkbox">
+        <ScreenReaderOnly>CheckBox</ScreenReaderOnly>
+      </CheckBoxLabel>
     </CheckBoxWrapper>
   );
 }
