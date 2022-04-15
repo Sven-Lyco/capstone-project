@@ -19,16 +19,20 @@ Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel
 ## `Tech Stack`
 
 - React
-- React Hooks
-- React Router
-- React Testing Library / Jest
-- JavaScript
-- Storybook
+  - React Router
+  - React-Testing-Library
+  - React Custom Hooks
+  - React Player
 - styled-components
-- Google Books API
-- localStorage
-- npm
-- Vercel
+- Storybook
+- REST API
+- TMDB API
+- Serverless Functions
+- Vercel API
+- node.js
+- local storage
+- MongoDB Atlas
+- mongoose
 
 ## `Project Setup`
 
