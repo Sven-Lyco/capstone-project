@@ -1,6 +1,6 @@
 # Watcha
 
-> Capstone project - Web Development Bootcamp at [neuefische GmbH](https://www.neuefische.de)
+> ## Capstone project - Web Development Bootcamp at [neuefische GmbH](https://www.neuefische.de)
 
 ## `Description`
 
@@ -13,26 +13,28 @@ Watcha helps you to discover new movies and series and add them to your watchlis
 ## `Demo`
 
 Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel.app/)
-**Important:** This demo is optimized for mobile screen.
+
+**Important:** This demo is optimized for mobile screen!
 ![App screens](/public/images/screens.png)
 
 ## `Tech Stack`
 
-- React
-  - React Router
-  - React-Testing-Library
-  - React Custom Hooks
-  - React Player
-- styled-components
-- Storybook
-- REST API
-- TMDB API
-- Serverless Functions
-- Vercel API
-- node.js
-- local storage
-- MongoDB Atlas
-- mongoose
+- [React](https://reactjs.org/)
+  - [React Router](https://reactrouter.com/)
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+  - [Jest](https://jestjs.io/)
+  - [React Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+  - [React Player](https://github.com/CookPete/react-player)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript#tutorials)
+- [styled components](https://styled-components.com/)
+- [Storybook](https://storybook.js.org/)
+- [TMDB API](https://www.themoviedb.org/)
+- [Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions)
+- [Vercel / REST API](https://vercel.com/docs/rest-api)
+- [Node.js](https://nodejs.org/en/)
+- [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [MongoDB Atlas](https://www.mongodb.com/de-de/cloud/atlas/register)
+- [mongoose](https://mongoosejs.com/)
 
 ## `Project Setup`
 
