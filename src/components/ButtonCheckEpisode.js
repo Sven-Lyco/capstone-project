@@ -17,7 +17,7 @@ export default function ButtonCheckEpisode({
       <ScreenReaderOnly>
         {isEpisodeWatched ? 'gesehen' : 'ungesehen'}
       </ScreenReaderOnly>
-      <StyledIcon />
+      <CheckIcon />
     </StyledButton>
   );
 }
@@ -28,14 +28,9 @@ const StyledButton = styled.button`
   align-items: center;
   padding: 0;
   margin: 0 7px 0 auto;
+  border: none;
   background-color: transparent;
   color: ${({ isEpisodeWatched }) =>
     isEpisodeWatched ? 'var(--color-green)' : 'var(--color-black)'};
-  border: none;
-  border-radius: 50%;
   cursor: pointer;
-`;
-
-const StyledIcon = styled(CheckIcon)`
-  border-radius: 50%;
 `;
