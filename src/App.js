@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import ChildPage from './pages/ChildPage';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
@@ -68,7 +68,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/"
-            element={<Home handleCheckIsAdult={handleCheckIsAdult} />}
+            element={<HomePage handleCheckIsAdult={handleCheckIsAdult} />}
           />
           <Route path="/child" element={<ChildPage />} />
           <Route
