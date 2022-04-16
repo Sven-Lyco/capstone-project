@@ -10,24 +10,24 @@ const Template = args => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'click me',
+  children: 'Click me',
   buttonType: 'normal',
 };
 
 export const NeueFische = Template.bind({});
 NeueFische.args = {
-  children: 'click me',
+  children: 'Click me',
   buttonType: 'neueFische',
 };
 
 export const GreenButton = Template.bind({});
 GreenButton.args = {
-  children: 'click me',
+  children: 'Click me',
   buttonType: 'green',
 };
 
 export const RedButton = Template.bind({});
 RedButton.args = {
-  children: 'click me',
+  children: 'Click me',
   buttonType: 'red',
 };

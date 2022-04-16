@@ -17,13 +17,13 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
   align-self: center;
   height: 50px;
   margin: 15px;
   padding: 15px;
   border-radius: 10px;
   border: none;
+  font-size: 1em;
   cursor: pointer;
 
   ${({ buttonType }) =>
