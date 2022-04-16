@@ -20,8 +20,8 @@ describe('Header', () => {
         <Header />
       </MemoryRouter>
     );
-    const links = screen.getAllByRole('link');
-    expect(links.length).toBeGreaterThan(0);
+    const link = screen.getByRole('link');
+    expect(link).toBeInTheDocument();
   });
 
   it('has a title', () => {
