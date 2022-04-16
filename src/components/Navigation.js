@@ -36,14 +36,14 @@ export default function Navigation() {
 const StyledNavigation = styled.nav`
   width: 100%;
   max-width: 768px;
-  padding: 10px 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 10px 0 20px;
   border-top: 1px solid var(--border-color);
+  background-color: var(--color-black);
   position: fixed;
   bottom: 0;
-  background-color: var(--color-black);
 `;
 
 const StyledLink = styled(NavLink)`
