@@ -1,7 +1,7 @@
 import Navigation from './Navigation';
 
 export default {
-  title: 'components/Navigation',
+  title: 'components/Navigation/Navigation',
   component: Navigation,
 };
 

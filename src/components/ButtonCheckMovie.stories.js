@@ -1,7 +1,7 @@
 import ButtonCheckMovie from './ButtonCheckMovie';
 
 export default {
-  title: 'buttons/ButtonCheckMovie',
+  title: 'components/Buttons/ButtonCheckMovie',
   component: ButtonCheckMovie,
 };
 

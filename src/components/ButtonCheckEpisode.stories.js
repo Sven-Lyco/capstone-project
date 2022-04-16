@@ -1,7 +1,7 @@
 import ButtonCheckEpisode from './ButtonCheckEpisode';
 
 export default {
-  title: 'buttons/ButtonCheckEpisode',
+  title: 'components/Buttons/ButtonCheckEpisode',
   component: ButtonCheckEpisode,
 };
 

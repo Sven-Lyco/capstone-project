@@ -1,7 +1,7 @@
 import ReloadButton from './ReloadButton';
 
 export default {
-  title: 'buttons/ReloadButton',
+  title: 'components/Buttons/ReloadButton',
   component: ReloadButton,
   argTypes: { onClick: 'onClick' },
 };

@@ -1,7 +1,7 @@
 import CastList from './CastList';
 
 export default {
-  title: 'components/CastList',
+  title: 'components/Lists/CastList',
   component: CastList,
 };
 
@@ -9,9 +9,9 @@ const Template = args => <CastList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  listName: 'Listen Name',
+  listName: 'Main actors',
 
-  seriesCast: [
+  castList: [
     { id: 1, name: 'Title 1', character: 'Character 1' },
     { id: 2, name: 'Title 2', character: 'Character 2' },
     { id: 3, name: 'Title 3', character: 'Character 3' },

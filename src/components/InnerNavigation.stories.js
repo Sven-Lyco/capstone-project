@@ -1,11 +1,12 @@
+import { Active } from './ButtonCheckEpisode.stories';
 import InnerNavigation from './InnerNavigation';
 
 export default {
-  title: 'components/InnerNavigation',
+  title: 'components/Navigation/InnerNavigation',
   component: InnerNavigation,
 };
 
 const Template = args => <InnerNavigation {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { showDetails: true, showSeasons: false };
+Active.args = {};

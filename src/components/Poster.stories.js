@@ -1,7 +1,7 @@
 import Poster from './Poster';
 
 export default {
-  title: 'components/Poster',
+  title: 'components/Poster/Poster',
   component: Poster,
 };
 
@@ -9,6 +9,6 @@ const Template = args => <Poster {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  src: require('../assets/images/poster.png'),
   alt: 'Poster',
+  src: require('../assets/images/poster.png'),
 };

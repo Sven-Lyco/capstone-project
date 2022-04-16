@@ -2,7 +2,7 @@ import React from 'react';
 import EpisodeCard from './EpisodeCard';
 
 export default {
-  title: 'components/EpisodeCard',
+  title: 'components/Cards/EpisodeCard',
   component: EpisodeCard,
 };
 
