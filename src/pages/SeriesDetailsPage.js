@@ -1,22 +1,22 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
-import Poster from '../components/Poster';
-import PosterList from '../components/PosterList';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
-import InnerNavigation from '../components/InnerNavigation';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import PAGES from '../assets/pages';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
-import SeasonsList from '../components/SeasonsList';
-import CastList from '../components/CastList';
-import ProviderList from '../components/ProviderList';
-import PAGES from '../assets/pages';
-import VideoFrame from '../components/VideoFrame';
-import ReloadButton from '../components/ReloadButton';
-import DeleteButton from '../components/DeleteButton';
 import AddSeriesButton from '../components/AddSeriesButton';
+import CastList from '../components/CastList';
+import DeleteButton from '../components/DeleteButton';
+import InnerNavigation from '../components/InnerNavigation';
+import LoadingSpinner from '../components/LoadingSpinner';
+import Poster from '../components/Poster';
+import PosterList from '../components/PosterList';
+import ProviderList from '../components/ProviderList';
+import ReloadButton from '../components/ReloadButton';
+import SeasonsList from '../components/SeasonsList';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import VideoFrame from '../components/VideoFrame';
 
 export default function SeriesDetailsPage({
   isChecked,

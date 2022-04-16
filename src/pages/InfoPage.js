@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
-import ToggleSwitch from '../components/ToggleSwitch';
 import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
+import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 export default function InfoPage({ isChecked, handleToggleSwitch }) {
   return (

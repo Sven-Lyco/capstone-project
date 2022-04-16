@@ -1,21 +1,21 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
+import useMovie from '../hooks/useMovie';
+import useMovieDetails from '../hooks/useMovieDetails';
+import useShowTrailer from '../hooks/useShowTrailer';
+import AddMovieButton from '../components/AddMovieButton';
+import ButtonCheckMovie from '../components/ButtonCheckMovie';
+import CastList from '../components/CastList';
+import DeleteButton from '../components/DeleteButton';
+import FetchError from '../components/FetchError';
+import LoadingSpinner from '../components/LoadingSpinner';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import useMovieDetails from '../hooks/useMovieDetails';
-import useMovie from '../hooks/useMovie';
-import useShowTrailer from '../hooks/useShowTrailer';
-import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
-import ButtonCheckMovie from '../components/ButtonCheckMovie';
-import FetchError from '../components/FetchError';
-import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
-import AddMovieButton from '../components/AddMovieButton';
-import DeleteButton from '../components/DeleteButton';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import VideoFrame from '../components/VideoFrame';
 
 export default function MoviesDetailsPage({
   isChecked,

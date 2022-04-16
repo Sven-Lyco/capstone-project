@@ -2,8 +2,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import ChildPage from './pages/ChildPage';
-import Series from './pages/Series';
-import Movies from './pages/Movies';
+import SeriesPage from './pages/SeriesPage';
+import MoviesPage from './pages/MoviesPage';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
@@ -74,7 +74,7 @@ export default function App() {
           <Route
             path="/serien"
             element={
-              <Series
+              <SeriesPage
                 popularSeries={popularSeries}
                 topRatedSeries={topRatedSeries}
                 seriesOnTv={seriesOnTv}
@@ -109,7 +109,7 @@ export default function App() {
           <Route
             path="/filme"
             element={
-              <Movies
+              <MoviesPage
                 popularMovies={popularMovies}
                 moviesOnCinema={moviesOnCinema}
                 upcomingMovies={upcomingMovies}
