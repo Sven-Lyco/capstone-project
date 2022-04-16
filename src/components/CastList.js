@@ -5,7 +5,7 @@ import defaultPoster from '../assets/images/profile.png';
 export default function CastList({ castList, listName }) {
   return (
     <>
-      <ListHeader>{listName}</ListHeader>
+      <ListHeader>{listName ? listName : ''}</ListHeader>
       {castList?.length >= 1 ? (
         <StyledList role="list" listLength={castList?.length}>
           {castList?.map(({ id, name, character, profile_path }) => (
@@ -41,12 +41,12 @@ const ListHeader = styled.h3`
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 0 20px;
-  margin: 0 -20px;
   display: grid;
   grid-template-columns: ${({ listLength }) =>
     listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
   grid-template-rows: 1fr;
+  padding: 0 20px;
+  margin: 0 -20px;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -62,16 +62,16 @@ const ImageBox = styled.div`
 `;
 
 const ActorName = styled.p`
-  font-size: medium;
-  color: var(--color-white);
   margin: 0;
   padding: 0;
+  font-size: medium;
+  color: var(--color-white);
 `;
 
 const CharacterName = styled.p`
+  margin: 0;
+  padding: 0;
   font-size: small;
   font-style: italic;
   color: var(--color-light-gray);
-  margin: 0;
-  padding: 0;
 `;
