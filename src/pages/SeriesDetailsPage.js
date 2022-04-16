@@ -7,8 +7,6 @@ import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import InnerNavigation from '../components/InnerNavigation';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
-import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
 import SeasonsList from '../components/SeasonsList';
@@ -17,6 +15,8 @@ import ProviderList from '../components/ProviderList';
 import PAGES from '../assets/pages';
 import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
+import DeleteButton from '../components/DeleteButton';
+import AddSeriesButton from '../components/AddSeriesButton';
 
 export default function SeriesDetailsPage({
   isChecked,
@@ -86,18 +86,16 @@ export default function SeriesDetailsPage({
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
             <ButtonWrapper>
-              {!isOnWatchlist ? (
-                <StyledAddButton
-                  onClick={() => onHandleAddSeries(id, name, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>zur Watchlist hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>von Watchlist entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
+              {!isOnWatchlist && (
+                <AddSeriesButton
+                  id={id}
+                  name={name}
+                  posterPath={posterPath}
+                  onHandleAddSeries={onHandleAddSeries}
+                />
+              )}
+              {isOnWatchlist && (
+                <DeleteButton id={id} onHandleDeleteItem={onHandleDeleteItem} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
@@ -245,40 +243,4 @@ const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin-right: 12px;
-`;
-
-const StyledAddButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-orange);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledPlusIcon = styled(PlusIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
-`;
-
-const StyledDeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-red);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledDeleteIcon = styled(DeleteIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
 `;

@@ -5,8 +5,6 @@ import PosterList from '../components/PosterList';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
-import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useMovie from '../hooks/useMovie';
 import useShowTrailer from '../hooks/useShowTrailer';
@@ -16,6 +14,8 @@ import ButtonCheckMovie from '../components/ButtonCheckMovie';
 import FetchError from '../components/FetchError';
 import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
+import AddMovieButton from '../components/AddMovieButton';
+import DeleteButton from '../components/DeleteButton';
 
 export default function MoviesDetailsPage({
   isChecked,
@@ -88,18 +88,16 @@ export default function MoviesDetailsPage({
                 handleCheckMovie={handleCheckMovie}
                 isMovieWatched={checkIsMovieWatched(id)}
               />
-              {!isOnWatchlist ? (
-                <StyledAddButton
-                  onClick={() => onHandleAddMovie(id, title, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>zur Watchlist hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>von Watchlist entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
+              {!isOnWatchlist && (
+                <AddMovieButton
+                  id={id}
+                  title={title}
+                  posterPath={posterPath}
+                  onHandleAddMovie={onHandleAddMovie}
+                />
+              )}
+              {isOnWatchlist && (
+                <DeleteButton id={id} onHandleDeleteItem={onHandleDeleteItem} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
@@ -135,8 +133,8 @@ export default function MoviesDetailsPage({
 }
 
 const Wrapper = styled.div`
-  position: relative;
   width: 100%;
+  position: relative;
 `;
 
 const PosterListWrapper = styled.div`
@@ -171,8 +169,8 @@ const StyledButtonBack = styled.button`
   left: 12px;
   background-color: transparent;
   border: none;
-  cursor: pointer;
   color: var(--color-white);
+  cursor: pointer;
 `;
 
 const StyledArrowBackIcon = styled(ArrowBackIcon)`
@@ -194,6 +192,7 @@ const StyledTitle = styled.span`
 `;
 
 const StyledHeaderBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -201,14 +200,13 @@ const StyledHeaderBox = styled.div`
   gap: 10px;
   padding: 0;
   margin: 0 10px;
-  width: 100%;
 
   p {
+    margin: 0;
+    padding: 0;
     font-size: large;
     font-style: italic;
     font-weight: 400;
-    margin: 0;
-    padding: 0;
   }
 `;
 
@@ -226,40 +224,4 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-`;
-
-const StyledAddButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-orange);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledDeleteIcon = styled(DeleteIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
-`;
-
-const StyledDeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-red);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledPlusIcon = styled(PlusIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
 `;

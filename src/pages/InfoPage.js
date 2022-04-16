@@ -69,10 +69,10 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 90px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 70px 0 90px;
 
   h2 {
     text-align: center;
@@ -95,17 +95,17 @@ const StyledSection = styled.section`
 `;
 
 const InfoBox = styled.div`
-  border-top: 2px solid var(--border-color);
-  border-bottom: 2px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
 `;
 
 const SettingsWrapper = styled.div`
+  width: 100vw;
   display: flex;
   justify-content: center;
-  width: 100vw;
   margin: 15px 0;
   padding-top: 5px;
 `;

@@ -19,10 +19,10 @@ export default function ChildPage() {
 }
 
 const Wrapper = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
 
 const StyledSection = styled.section`
