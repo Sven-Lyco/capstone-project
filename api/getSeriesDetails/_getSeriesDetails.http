@@ -5,5 +5,5 @@ POST {{baseURL}}/getSeriesDetails/
 Content-Type: application/json
 
 {
-    "id":"1399"
+    "id":"37680"
 }

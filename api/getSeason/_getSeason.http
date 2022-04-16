@@ -5,6 +5,5 @@ POST {{baseURL}}/getSeason/
 Content-Type: application/json
 
 {
-    "seriesId":"1399",
-    "currentSeasonNumber":"1"
+    "fetchURL":"37680/season/1"
 }
