@@ -72,9 +72,9 @@ export default function SeasonsList({
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 0 0 0 20px;
-  margin: 0;
   display: flex;
+  padding-left: 20px;
+  margin: 0;
   gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;

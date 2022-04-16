@@ -64,12 +64,12 @@ const ListHeader = styled.h2`
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 20px 20px;
-  margin: 0;
   display: grid;
   grid-template-columns: repeat(20, auto);
   grid-template-rows: 1fr;
   gap: 20px;
+  padding: 20px 20px;
+  margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
   border-bottom: 1px solid var(--color-dark-gray);

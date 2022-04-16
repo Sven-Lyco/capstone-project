@@ -8,7 +8,7 @@ export default function PosterList({ list, listName }) {
     <>
       <ListHeader>{listName}</ListHeader>
       <StyledList role="list" listLength={list?.length}>
-        {list.map(({ name, title, poster_path, id }) => (
+        {list?.map(({ name, title, poster_path, id }) => (
           <li key={id}>
             <Link to={name ? `/serie/${id}` : `/film/${id}`}>
               <Poster
@@ -33,12 +33,12 @@ const ListHeader = styled.h2`
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 20px;
-  margin: 0;
   display: grid;
   grid-template-columns: ${({ listLength }) =>
     listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
   grid-template-rows: 1fr;
+  padding: 20px;
+  margin: 0;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;

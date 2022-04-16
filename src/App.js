@@ -7,8 +7,8 @@ import Movies from './pages/Movies';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import SearchPage from './pages/SearchPage';
-import NotFound from './pages/NotFound';
 import WatchlistPage from './pages/WatchlistPage';
+import NotFoundPage from './pages/NotFoundPage';
 import InfoPage from './pages/InfoPage';
 import useSeries from './hooks/useSeries';
 import useMovies from './hooks/useMovies';
@@ -21,9 +21,13 @@ import FetchError from './components/FetchError';
 import Header from './components/Header';
 
 export default function App() {
+  const { pathname } = useLocation();
   const { handleCheckIsAdult } = useIsAdult();
   const { isChecked, handleToggleSwitch } = useToggle();
-  const { pathname } = useLocation();
+  const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
+  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
+    useEpisodes();
+  const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
   const {
     watchlist,
     watchlistError,
@@ -32,10 +36,6 @@ export default function App() {
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
-  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
-    useEpisodes();
-  const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
-  const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
 
   useEffect(() => {
     window.scrollTo({
@@ -45,12 +45,12 @@ export default function App() {
   }, [pathname]);
 
   if (
+    !topRatedSeries ||
+    !popularSeries ||
+    !seriesOnTv ||
     !popularMovies ||
     !moviesOnCinema ||
     !upcomingMovies ||
-    !popularSeries ||
-    !topRatedSeries ||
-    !seriesOnTv ||
     watchlistError ||
     watchedEpisodesError
   )
@@ -65,7 +65,7 @@ export default function App() {
       moviesOnCinema &&
       upcomingMovies ? (
         <Routes>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/"
             element={<Home handleCheckIsAdult={handleCheckIsAdult} />}

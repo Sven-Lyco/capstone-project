@@ -12,13 +12,13 @@ export default function ReloadButton({ onClick }) {
 }
 
 const StyledButton = styled.button`
+  height: 40px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
   padding: 0;
-  height: 40px;
-  width: 40px;
   border: none;
   color: var(--color-blue);
   background-color: rgba(18, 18, 18, 0.6);
