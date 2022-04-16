@@ -1,12 +1,12 @@
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import NotFound from './NotFound';
+import NotFoundPage from './NotFoundPage';
 
 describe('NotFoundPage', () => {
   it('renders the Page with heading and one button', () => {
     render(
       <MemoryRouter>
-        <NotFound />
+        <NotFoundPage />
       </MemoryRouter>
     );
 
