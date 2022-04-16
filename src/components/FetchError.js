@@ -6,8 +6,7 @@ export default function FetchError() {
   return (
     <Wrapper>
       <h1>ERROR</h1>
-      <p>Irgendetwas funktioniert nicht,</p>
-      <p>wie es sollte</p>
+      <p>Irgendetwas funktioniert nicht, wie es sollte</p>
       <Button buttonType="normal" onClick={() => window.location.reload(false)}>
         <GoSync />
         <span>Seite neu laden</span>
