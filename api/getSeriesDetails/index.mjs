@@ -28,11 +28,11 @@ export default async function getSeriesDetails(req, res) {
     const seriesTrailer = await fetchSeriesTrailerUrlResponse.json();
 
     res.status(200).json({
-      seriesTrailer,
-      similarSeries,
-      seriesWatchProviders,
       seriesDetails,
+      seriesWatchProviders,
       seriesCredits,
+      similarSeries,
+      seriesTrailer,
     });
     return;
   }
