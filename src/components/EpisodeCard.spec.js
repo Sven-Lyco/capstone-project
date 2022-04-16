@@ -4,7 +4,7 @@ import EpisodeCard from './EpisodeCard';
 describe('EpisodeCard', () => {
   const episode = {
     id: 123,
-    name: 'Title',
+    name: 'Title of Episode',
     episode_number: 1,
   };
 
@@ -21,7 +21,7 @@ describe('EpisodeCard', () => {
     const element = screen.getByRole('listitem');
     expect(element).toBeInTheDocument();
 
-    const text = screen.getByText('Title');
+    const text = screen.getByText('Title of Episode');
     expect(text).toBeInTheDocument();
   });
 });
