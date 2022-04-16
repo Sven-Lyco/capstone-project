@@ -14,6 +14,9 @@ export default function Button({
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1em;
   align-self: center;
   height: 50px;
