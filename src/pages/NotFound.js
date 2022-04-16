@@ -44,10 +44,10 @@ const AnimatedGradientText = styled.h1`
   animation: ${gradient} 5s ease-in-out infinite;
   background: linear-gradient(
     to right,
-    #f2f2f2,
-    #aebcbf,
-    #454545,
     #121212,
+    #454545,
+    #aebcbf,
+    #f2f2f2,
     #2bd999,
     #3d90d9,
     #f25c78,
