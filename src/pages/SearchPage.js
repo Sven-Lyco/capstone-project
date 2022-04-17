@@ -19,7 +19,7 @@ export default function SearchPage() {
         <input
           id="search"
           name="search"
-          placeholder="Star Wars, Suits,..."
+          placeholder="z.B.: Star Wars, Suits,..."
           type="text"
           onChange={event => handleSearch(event)}
           onKeyDown={event =>
