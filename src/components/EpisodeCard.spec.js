@@ -5,7 +5,6 @@ describe('EpisodeCard', () => {
   const episode = {
     id: 123,
     name: 'Title of Episode',
-    episode_number: 1,
   };
 
   it('renders a listitem with correct text', () => {

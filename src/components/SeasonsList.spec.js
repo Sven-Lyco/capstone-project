@@ -4,18 +4,12 @@ import SeasonsList from './SeasonsList';
 const seasons = [
   {
     id: 1,
-    air_date: '2010-10-31',
-    episode_count: 6,
     name: 'Staffel 1',
-    poster_path: '/6jXMDYnHzrTfm1GAmCd5b2SbNmk.jpg',
     season_number: 1,
   },
   {
     id: 2,
-    air_date: '2011-10-16',
-    episode_count: 13,
     name: 'Staffel 2',
-    poster_path: '/vwxoOPzt0ouWvSAzOFqPEYtNR4t.jpg',
     season_number: 2,
   },
 ];
