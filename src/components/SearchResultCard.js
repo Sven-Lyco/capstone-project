@@ -11,6 +11,8 @@ export default function SearchResultCard({
   firstAirDate,
   mediaType,
 }) {
+  const date = releaseDate ? releaseDate : firstAirDate;
+
   return (
     <>
       <StyledLink to={name ? `/serie/${id}` : `/film/${id}`}>
@@ -25,20 +27,8 @@ export default function SearchResultCard({
 
         <TextBox>
           <span>{name ? `${name}` : `${title}`}</span>
-          <span>
-            {releaseDate
-              ? `${
-                  releaseDate
-                    ? releaseDate.substr(0, 4)
-                    : 'kein Release Datum vorhanden'
-                }`
-              : `${
-                  firstAirDate
-                    ? firstAirDate.substr(0, 4)
-                    : 'kein Release Datum vorhanden'
-                }`}{' '}
-            - {mediaType === 'movie' ? 'Film' : 'Serie'}
-          </span>
+          <p>{date ? date?.substr(0, 4) : 'kein Release Datum vorhanden'}</p>
+          <p>{mediaType === 'movie' ? 'Film' : 'Serie'}</p>
         </TextBox>
       </StyledLink>
     </>
@@ -50,8 +40,17 @@ const TextBox = styled.div`
   flex-direction: column;
   row-gap: 10px;
   padding: 10px;
+
+  span {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
   p {
+    font-size: medium;
     font-style: italic;
+    margin: 0;
+    padding: 0;
   }
 `;
 

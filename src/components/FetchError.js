@@ -4,18 +4,18 @@ import Button from './Button';
 
 export default function FetchError() {
   return (
-    <Wrapper>
+    <Section>
       <h1>ERROR</h1>
       <p>Irgendetwas funktioniert nicht wie es sollte</p>
       <Button buttonType="normal" onClick={() => window.location.reload(false)}>
         <GoSync />
         <span>Seite neu laden</span>
       </Button>
-    </Wrapper>
+    </Section>
   );
 }
 
-const Wrapper = styled.section`
+const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

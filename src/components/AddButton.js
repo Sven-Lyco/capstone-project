@@ -4,14 +4,14 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function AddButton({ onClick, ...buttonProps }) {
   return (
-    <StyledButton {...buttonProps} onClick={onClick}>
+    <Button {...buttonProps} onClick={onClick}>
       <StyledPlusIcon />
       <ScreenReaderOnly>zur Watchlist hinzufügen</ScreenReaderOnly>
-    </StyledButton>
+    </Button>
   );
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,6 @@ const StyledButton = styled.button`
   color: var(--color-orange);
   font-size: large;
   border: none;
-  cursor: pointer;
 `;
 
 const StyledPlusIcon = styled(PlusIcon)`

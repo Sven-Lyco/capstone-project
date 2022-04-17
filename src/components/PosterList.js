@@ -6,8 +6,8 @@ import defaultPoster from '../assets/images/poster.png';
 export default function PosterList({ list, listName }) {
   return (
     <>
-      <ListHeader>{listName}</ListHeader>
-      <StyledList role="list" listLength={list?.length}>
+      <ListHeader>{listName ? listName : ''}</ListHeader>
+      <List role="list" listLength={list?.length}>
         {list?.map(({ name, title, poster_path, id }) => (
           <li key={id}>
             <Link to={name ? `/serie/${id}` : `/film/${id}`}>
@@ -22,7 +22,7 @@ export default function PosterList({ list, listName }) {
             </Link>
           </li>
         ))}
-      </StyledList>
+      </List>
     </>
   );
 }
@@ -31,7 +31,7 @@ const ListHeader = styled.h2`
   margin: 10px 0 0 20px;
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: ${({ listLength }) =>

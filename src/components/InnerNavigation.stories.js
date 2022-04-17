@@ -1,4 +1,3 @@
-import { Active } from './ButtonCheckEpisode.stories';
 import InnerNavigation from './InnerNavigation';
 
 export default {
@@ -9,4 +8,4 @@ export default {
 const Template = args => <InnerNavigation {...args} />;
 
 export const Default = Template.bind({});
-Active.args = {};
+Default.args = {};

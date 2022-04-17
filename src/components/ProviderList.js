@@ -4,6 +4,7 @@ import defaultPoster from '../assets/images/provider.png';
 
 export default function ProviderList({ providerList }) {
   const { buy: buyProviders, flatrate: flatrateProviders, link } = providerList;
+
   return (
     <>
       <ListHeader>
@@ -17,7 +18,7 @@ export default function ProviderList({ providerList }) {
         </a>
       </ListHeader>
       {flatrateProviders ? (
-        <StyledList role="list">
+        <List role="list">
           {flatrateProviders?.map(
             ({ provider_name, logo_path, provider_id }) => (
               <li key={provider_id}>
@@ -32,9 +33,9 @@ export default function ProviderList({ providerList }) {
               </li>
             )
           )}
-        </StyledList>
+        </List>
       ) : (
-        <StyledList role="list" listLength={providerList?.length}>
+        <List role="list">
           {buyProviders?.map(({ provider_name, logo_path, provider_id }) => (
             <li key={provider_id}>
               <ProviderPoster
@@ -47,7 +48,7 @@ export default function ProviderList({ providerList }) {
               />
             </li>
           ))}
-        </StyledList>
+        </List>
       )}
     </>
   );
@@ -62,7 +63,7 @@ const ListHeader = styled.h2`
   }
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(20, auto);

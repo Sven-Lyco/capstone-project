@@ -4,14 +4,14 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function ReloadButton({ onClick }) {
   return (
-    <StyledButton onClick={onClick}>
+    <Button onClick={onClick}>
       <StyledReloadIcon />
       <ScreenReaderOnly>Seite neu laden</ScreenReaderOnly>
-    </StyledButton>
+    </Button>
   );
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
   height: 40px;
   width: 40px;
   display: flex;

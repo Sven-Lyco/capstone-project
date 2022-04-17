@@ -24,7 +24,7 @@ export default function SeasonsList({
 
   return (
     <section>
-      <StyledList role="list">
+      <List role="list">
         {seasons
           ?.filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
@@ -36,7 +36,7 @@ export default function SeasonsList({
               />
             </li>
           ))}
-      </StyledList>
+      </List>
       <InfoWrapper>
         <Poster
           src={
@@ -52,7 +52,7 @@ export default function SeasonsList({
           <p>{episodeRunTime}min. pro Episode</p>
         </TextBox>
       </InfoWrapper>
-      <StyledEpisodeList role="list">
+      <EpisodeList role="list">
         {seasonEpisodes?.map(episode => (
           <EpisodeCard
             key={episode.id}
@@ -61,7 +61,7 @@ export default function SeasonsList({
             handleCheckEpisode={handleCheckEpisode}
           />
         ))}
-      </StyledEpisodeList>
+      </EpisodeList>
     </section>
   );
 
@@ -70,7 +70,7 @@ export default function SeasonsList({
   }
 }
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
   display: flex;
   padding-left: 20px;
@@ -104,7 +104,7 @@ const TextBox = styled.div`
   }
 `;
 
-const StyledEpisodeList = styled.ul`
+const EpisodeList = styled.ul`
   list-style: none;
   padding: 0;
 `;

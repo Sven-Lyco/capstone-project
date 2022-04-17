@@ -4,14 +4,14 @@ import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
 export default function ButtonCheck({ onClick, isActive, ...buttonProps }) {
   return (
-    <StyledButton {...buttonProps} onClick={onClick} isActive={isActive}>
+    <Button {...buttonProps} onClick={onClick} isActive={isActive}>
       <StyledIcon />
       <ScreenReaderOnly>{isActive ? 'gesehen' : 'ungesehen'}</ScreenReaderOnly>
-    </StyledButton>
+    </Button>
   );
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
   display: flex;
   padding: 0;
   margin-right: 12px;

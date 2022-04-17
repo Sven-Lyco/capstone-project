@@ -7,12 +7,12 @@ export default function ButtonSeason({
   ...buttonProps
 }) {
   return (
-    <StyledButton {...buttonProps} onClick={onClick} isActive={isActive}>
+    <Button {...buttonProps} onClick={onClick} isActive={isActive}>
       {name}
-    </StyledButton>
+    </Button>
   );
 }
-const StyledButton = styled.button`
+const Button = styled.button`
   white-space: nowrap;
   padding: 5px;
   border: 2px solid var(--color-light-gray);

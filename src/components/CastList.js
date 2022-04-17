@@ -7,24 +7,22 @@ export default function CastList({ castList, listName }) {
     <>
       <ListHeader>{listName ? listName : ''}</ListHeader>
       {castList?.length >= 1 ? (
-        <StyledList role="list" listLength={castList?.length}>
+        <List role="list" listLength={castList?.length}>
           {castList?.map(({ id, name, character, profile_path }) => (
             <li key={id}>
-              <ImageBox>
-                <PosterActor
-                  src={
-                    profile_path
-                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
-                      : defaultPoster
-                  }
-                  alt={name}
-                />
-                <ActorName>{name}</ActorName>
-                <CharacterName>{character}</CharacterName>
-              </ImageBox>
+              <PosterActor
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                    : defaultPoster
+                }
+                alt={name}
+              />
+              <ActorName>{name}</ActorName>
+              <CharacterName>{character}</CharacterName>
             </li>
           ))}
-        </StyledList>
+        </List>
       ) : (
         <>
           <p>Es sind leider keine Hauptdarsteller verfügbar</p>
@@ -39,7 +37,7 @@ const ListHeader = styled.h3`
   font-size: x-large;
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: ${({ listLength }) =>
@@ -55,10 +53,6 @@ const StyledList = styled.ul`
     padding: 0;
     margin: 0;
   }
-`;
-
-const ImageBox = styled.div`
-  position: relative;
 `;
 
 const ActorName = styled.p`

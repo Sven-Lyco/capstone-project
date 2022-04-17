@@ -4,14 +4,14 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function DeleteButton({ onClick, ...buttonProps }) {
   return (
-    <StyledButton {...buttonProps} onClick={onClick}>
+    <Button {...buttonProps} onClick={onClick}>
       <StyledDeleteIcon />
       <ScreenReaderOnly>von Watchlist entfernen</ScreenReaderOnly>
-    </StyledButton>
+    </Button>
   );
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
