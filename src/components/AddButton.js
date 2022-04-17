@@ -2,23 +2,15 @@ import styled from 'styled-components';
 import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function AddSeriesButton({
-  onHandleAddSeries,
-  id,
-  name,
-  posterPath,
-  ...buttonProps
-}) {
+export default function AddButton({ onClick, ...buttonProps }) {
   return (
-    <StyledButton
-      {...buttonProps}
-      onClick={() => onHandleAddSeries(id, name, posterPath)}
-    >
+    <StyledButton {...buttonProps} onClick={onClick}>
       <StyledPlusIcon />
       <ScreenReaderOnly>zur Watchlist hinzufügen</ScreenReaderOnly>
     </StyledButton>
   );
 }
+
 const StyledButton = styled.button`
   display: flex;
   justify-content: center;

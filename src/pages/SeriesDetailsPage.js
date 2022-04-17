@@ -5,7 +5,7 @@ import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg'
 import PAGES from '../assets/pages';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
-import AddSeriesButton from '../components/AddSeriesButton';
+import AddButton from '../components/AddButton';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
 import InnerNavigation from '../components/InnerNavigation';
@@ -87,15 +87,12 @@ export default function SeriesDetailsPage({
             </StyledHeaderBox>
             <ButtonWrapper>
               {!isOnWatchlist && (
-                <AddSeriesButton
-                  id={id}
-                  name={name}
-                  posterPath={posterPath}
-                  onHandleAddSeries={onHandleAddSeries}
+                <AddButton
+                  onClick={() => onHandleAddSeries(id, name, posterPath)}
                 />
               )}
               {isOnWatchlist && (
-                <DeleteButton id={id} onHandleDeleteItem={onHandleDeleteItem} />
+                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />

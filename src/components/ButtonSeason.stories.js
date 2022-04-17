@@ -3,6 +3,7 @@ import ButtonSeason from './ButtonSeason';
 export default {
   title: 'components/Buttons/ButtonSeason',
   component: ButtonSeason,
+  argTypes: { onClick: 'onClick' },
 };
 
 const Template = args => <ButtonSeason {...args} />;

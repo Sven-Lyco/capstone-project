@@ -4,18 +4,19 @@ import userEvent from '@testing-library/user-event';
 
 describe('DeleteButton', () => {
   it('renders a button', () => {
-    render(<DeleteButton onHandleDeleteItem={() => jest.fn()} />);
+    const onClick = jest.fn();
+    render(<DeleteButton onClick={onClick} />);
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
   it('has onClick function', () => {
-    const onHandleDeleteItem = jest.fn();
-    render(<DeleteButton onHandleDeleteItem={onHandleDeleteItem} />);
+    const onClick = jest.fn();
+    render(<DeleteButton onClick={onClick} />);
 
     const button = screen.getByRole('button');
     userEvent.click(button);
-    expect(onHandleDeleteItem).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 });

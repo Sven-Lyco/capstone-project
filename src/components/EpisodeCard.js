@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ButtonCheckEpisode from './ButtonCheckEpisode';
+import ButtonCheck from './ButtonCheck';
 
 export default function EpisodeCard({
   episode,
@@ -15,11 +15,12 @@ export default function EpisodeCard({
         <p>Episode: {episode_number}</p>
         <span>{name}</span>
       </section>
-      <ButtonCheckEpisode
-        id={id}
-        handleCheckEpisode={handleCheckEpisode}
-        isEpisodeWatched={isEpisodeWatched}
-      />
+      <ButtonWrapper>
+        <ButtonCheck
+          onClick={() => handleCheckEpisode(id)}
+          isActive={isEpisodeWatched}
+        />
+      </ButtonWrapper>
     </ListItem>
   );
 }
@@ -58,4 +59,12 @@ const ImageBox = styled.div`
     center 0 no-repeat;
   background-size: cover;
   background-position: center;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0 7px 0 auto;
 `;

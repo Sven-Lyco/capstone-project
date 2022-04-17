@@ -1,21 +1,22 @@
-import AddMovieButton from './AddMovieButton';
+import AddButton from './AddButton';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('AddMovieButton', () => {
+describe('AddButton', () => {
   it('renders a button', () => {
-    render(<AddMovieButton onHandleAddMovie={() => jest.fn()} />);
+    const onClick = jest.fn();
+    render(<AddButton onClick={onClick} />);
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
   it('has onClick function', () => {
-    const onHandleAddMovie = jest.fn();
-    render(<AddMovieButton onHandleAddMovie={onHandleAddMovie} />);
+    const onClick = jest.fn();
+    render(<AddButton onClick={onClick} />);
 
     const button = screen.getByRole('button');
     userEvent.click(button);
-    expect(onHandleAddMovie).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 });

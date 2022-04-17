@@ -2,23 +2,11 @@ import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
 
-export default function ButtonCheckMovie({
-  id,
-  title,
-  handleCheckMovie,
-  isMovieWatched,
-  ...buttonProps
-}) {
+export default function ButtonCheck({ onClick, isActive, ...buttonProps }) {
   return (
-    <StyledButton
-      {...buttonProps}
-      onClick={() => handleCheckMovie(id, title)}
-      isMovieWatched={isMovieWatched}
-    >
+    <StyledButton {...buttonProps} onClick={onClick} isActive={isActive}>
       <StyledIcon />
-      <ScreenReaderOnly>
-        {isMovieWatched ? 'gesehen' : 'ungesehen'}
-      </ScreenReaderOnly>
+      <ScreenReaderOnly>{isActive ? 'gesehen' : 'ungesehen'}</ScreenReaderOnly>
     </StyledButton>
   );
 }
@@ -28,8 +16,8 @@ const StyledButton = styled.button`
   padding: 0;
   margin-right: 12px;
   background-color: transparent;
-  color: ${({ isMovieWatched }) =>
-    isMovieWatched ? 'var(--color-green)' : 'var(--color-light-gray)'};
+  color: ${({ isActive }) =>
+    isActive ? 'var(--color-green)' : 'var(--color-light-gray)'};
   border: none;
   cursor: pointer;
 `;

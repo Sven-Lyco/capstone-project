@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function DeleteButton({
-  onHandleDeleteItem,
-  id,
-  ...buttonProps
-}) {
+export default function DeleteButton({ onClick, ...buttonProps }) {
   return (
-    <StyledButton {...buttonProps} onClick={() => onHandleDeleteItem(id)}>
+    <StyledButton {...buttonProps} onClick={onClick}>
       <StyledDeleteIcon />
       <ScreenReaderOnly>von Watchlist entfernen</ScreenReaderOnly>
     </StyledButton>

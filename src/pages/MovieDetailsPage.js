@@ -4,8 +4,8 @@ import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg'
 import useMovie from '../hooks/useMovie';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
-import AddMovieButton from '../components/AddMovieButton';
-import ButtonCheckMovie from '../components/ButtonCheckMovie';
+import AddButton from '../components/AddButton';
+import ButtonCheck from '../components/ButtonCheck';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
 import FetchError from '../components/FetchError';
@@ -82,22 +82,17 @@ export default function MoviesDetailsPage({
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
             <ButtonWrapper>
-              <ButtonCheckMovie
-                id={id}
-                title={title}
-                handleCheckMovie={handleCheckMovie}
-                isMovieWatched={checkIsMovieWatched(id)}
+              <ButtonCheck
+                onClick={() => handleCheckMovie(id, title)}
+                isActive={checkIsMovieWatched(id)}
               />
               {!isOnWatchlist && (
-                <AddMovieButton
-                  id={id}
-                  title={title}
-                  posterPath={posterPath}
-                  onHandleAddMovie={onHandleAddMovie}
+                <AddButton
+                  onClick={() => onHandleAddMovie(id, title, posterPath)}
                 />
               )}
               {isOnWatchlist && (
-                <DeleteButton id={id} onHandleDeleteItem={onHandleDeleteItem} />
+                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
