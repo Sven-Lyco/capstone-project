@@ -18,8 +18,8 @@ export default function SeasonsList({
   const currentSeason = seasons?.find(
     ({ season_number: seasonNumber }) => seasonNumber === currentSeasonNumber
   );
-  const fetchURL = `${seriesId}/season/${currentSeasonNumber}`;
-  const { seasonDetails } = useSeasonDetails(fetchURL);
+  const fetchUrl = `${seriesId}/season/${currentSeasonNumber}`;
+  const { seasonDetails } = useSeasonDetails(fetchUrl);
   const { poster_path: posterPath, name } = currentSeason;
   const seasonEpisodes = seasonDetails.episodes;
 
