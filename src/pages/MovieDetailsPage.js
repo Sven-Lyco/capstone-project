@@ -1,9 +1,8 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import useMovie from '../hooks/useMovie';
-import useMovieDetails from '../hooks/useMovieDetails';
-import useShowTrailer from '../hooks/useShowTrailer';
+
 import AddButton from '../components/AddButton';
 import ButtonCheck from '../components/ButtonCheck';
 import CastList from '../components/CastList';
@@ -16,6 +15,10 @@ import ProviderList from '../components/ProviderList';
 import ReloadButton from '../components/ReloadButton';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import VideoFrame from '../components/VideoFrame';
+
+import useMovie from '../hooks/useMovie';
+import useMovieDetails from '../hooks/useMovieDetails';
+import useShowTrailer from '../hooks/useShowTrailer';
 
 export default function MoviesDetailsPage({
   isChecked,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as CheckIcon } from '../assets/icons/check_icon.svg';
+import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function ButtonCheck({ onClick, isActive, ...buttonProps }) {
   return (

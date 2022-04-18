@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ProviderPoster from './ProviderPoster';
 import defaultPoster from '../assets/images/provider.png';
+import ProviderPoster from './ProviderPoster';
 
 export default function ProviderList({ providerList }) {
   const { buy: buyProviders, flatrate: flatrateProviders, link } = providerList;

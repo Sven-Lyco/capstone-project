@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Poster from './Poster';
+import styled from 'styled-components';
 import defaultPoster from '../assets/images/poster.png';
+import Poster from './Poster';
 
 export default function PosterList({ list, listName }) {
   return (

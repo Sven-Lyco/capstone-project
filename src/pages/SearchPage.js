@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
-import useSearch from '../hooks/useSearch';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import SearchResultCard from '../components/SearchResultCard';
+import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
   const { results, handleSearch } = useSearch();

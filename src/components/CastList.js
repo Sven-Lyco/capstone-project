@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import PosterActor from './PosterActor';
 import defaultPoster from '../assets/images/profile.png';
+import PosterActor from './PosterActor';
 
 export default function CastList({ castList, listName }) {
   return (

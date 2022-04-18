@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
-import PosterList from '../components/PosterList';
 import Navigation from '../components/Navigation';
+import PosterList from '../components/PosterList';
 
 export default function MoviesPage({
   popularMovies,

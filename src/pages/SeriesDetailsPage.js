@@ -1,10 +1,10 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 import PAGES from '../assets/pages';
-import useSeriesDetails from '../hooks/useSeriesDetails';
-import useShowTrailer from '../hooks/useShowTrailer';
+
 import AddButton from '../components/AddButton';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
@@ -14,9 +14,12 @@ import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
 import ReloadButton from '../components/ReloadButton';
-import SeasonsList from '../components/SeasonsList';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import SeasonsList from '../components/SeasonsList';
 import VideoFrame from '../components/VideoFrame';
+
+import useSeriesDetails from '../hooks/useSeriesDetails';
+import useShowTrailer from '../hooks/useShowTrailer';
 
 export default function SeriesDetailsPage({
   isChecked,

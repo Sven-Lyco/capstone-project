@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as WatchaHeader } from '../assets/images/header/watcha_header.svg';
+import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function Header() {
   return (

@@ -1,24 +1,27 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import HomePage from './pages/HomePage';
+
 import ChildPage from './pages/ChildPage';
-import SeriesPage from './pages/SeriesPage';
-import MoviesPage from './pages/MoviesPage';
-import SeriesDetailsPage from './pages/SeriesDetailsPage';
-import MovieDetailsPage from './pages/MovieDetailsPage';
-import SearchPage from './pages/SearchPage';
-import WatchlistPage from './pages/WatchlistPage';
-import NotFoundPage from './pages/NotFoundPage';
+import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
-import useSeries from './hooks/useSeries';
-import useMovies from './hooks/useMovies';
-import useWatchlist from './hooks/useWatchlist';
-import useEpisodes from './hooks/useEpisodes';
-import useIsAdult from './hooks/useIsAdult';
-import useToggle from './hooks/useToggle';
-import LoadingSpinner from './components/LoadingSpinner';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import MoviesPage from './pages/MoviesPage';
+import NotFoundPage from './pages/NotFoundPage';
+import SearchPage from './pages/SearchPage';
+import SeriesDetailsPage from './pages/SeriesDetailsPage';
+import SeriesPage from './pages/SeriesPage';
+import WatchlistPage from './pages/WatchlistPage';
+
 import FetchError from './components/FetchError';
 import Header from './components/Header';
+import LoadingSpinner from './components/LoadingSpinner';
+
+import useEpisodes from './hooks/useEpisodes';
+import useIsAdult from './hooks/useIsAdult';
+import useMovies from './hooks/useMovies';
+import useSeries from './hooks/useSeries';
+import useToggle from './hooks/useToggle';
+import useWatchlist from './hooks/useWatchlist';
 
 export default function App() {
   const { pathname } = useLocation();
