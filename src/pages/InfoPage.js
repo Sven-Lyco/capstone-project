@@ -80,6 +80,7 @@ const Wrapper = styled.div`
 `;
 
 const Main = styled.main`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,6 +96,7 @@ const Main = styled.main`
 `;
 
 const InfoBox = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
