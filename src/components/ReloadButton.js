@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { GoSync } from 'react-icons/go';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function ReloadButton({ onClick }) {
+export default function ReloadButton({ onClick, ...buttonProps }) {
   return (
-    <Button onClick={onClick}>
+    <Button {...buttonProps} onClick={onClick}>
       <StyledReloadIcon />
       <ScreenReaderOnly>Seite neu laden</ScreenReaderOnly>
     </Button>

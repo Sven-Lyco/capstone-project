@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 
-export default function ButtonBack({ onClick }) {
+export default function ButtonBack({ onClick, ...buttonProps }) {
   return (
-    <Button onClick={onClick}>
+    <Button {...buttonProps} onClick={onClick}>
       <StyledArrowBackIcon />
       <ScreenReaderOnly>Zurück</ScreenReaderOnly>
     </Button>
