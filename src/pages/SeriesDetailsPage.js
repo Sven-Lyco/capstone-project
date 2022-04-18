@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
 import PAGES from '../assets/pages';
 
 import AddButton from '../components/AddButton';
+import ButtonBack from '../components/ButtonBack';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
 import InnerNavigation from '../components/InnerNavigation';
@@ -14,7 +14,6 @@ import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
 import ReloadButton from '../components/ReloadButton';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import SeasonsList from '../components/SeasonsList';
 import VideoFrame from '../components/VideoFrame';
 
@@ -59,10 +58,7 @@ export default function SeriesDetailsPage({
 
   return (
     <Wrapper>
-      <ButtonBack onClick={() => navigate(-1)}>
-        <StyledArrowBackIcon />
-        <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </ButtonBack>
+      <ButtonBack onClick={() => navigate(-1)} />
       {!isLoading ? (
         <>
           {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
@@ -176,24 +172,6 @@ const BackdropImage = styled.div`
   background-position: center;
   margin-bottom: -60px;
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
-`;
-
-const ButtonBack = styled.button`
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-white);
-`;
-
-const StyledArrowBackIcon = styled(ArrowBackIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
-  border-radius: var(--border-radius);
 `;
 
 const Header = styled.header`

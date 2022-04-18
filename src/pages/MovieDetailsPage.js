@@ -1,9 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-
 import AddButton from '../components/AddButton';
+import ButtonBack from '../components/ButtonBack';
 import ButtonCheck from '../components/ButtonCheck';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
@@ -13,7 +12,6 @@ import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
 import ReloadButton from '../components/ReloadButton';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import VideoFrame from '../components/VideoFrame';
 
 import useMovie from '../hooks/useMovie';
@@ -57,10 +55,7 @@ export default function MoviesDetailsPage({
 
   return (
     <Wrapper>
-      <ButtonBack onClick={() => navigate(-1)}>
-        <StyledArrowBackIcon />
-        <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </ButtonBack>
+      <ButtonBack onClick={() => navigate(-1)} />
       {!isLoading && (
         <>
           {showTrailer && <VideoFrame videoUrl={movieTrailerUrl} />}
@@ -156,24 +151,6 @@ const BackdropImage = styled.div`
   background-position: center;
   margin-bottom: -60px;
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
-`;
-
-const ButtonBack = styled.button`
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: none;
-  color: var(--color-white);
-  cursor: pointer;
-`;
-
-const StyledArrowBackIcon = styled(ArrowBackIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
-  border-radius: var(--border-radius);
 `;
 
 const Header = styled.header`
