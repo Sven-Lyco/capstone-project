@@ -22,5 +22,5 @@ export default function SeriesPage({
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 68px;
+  margin: 70px 0 80px;
 `;

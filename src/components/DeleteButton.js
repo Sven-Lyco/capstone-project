@@ -21,7 +21,6 @@ const Button = styled.button`
   color: var(--color-red);
   font-size: large;
   border: none;
-  cursor: pointer;
 `;
 
 const StyledDeleteIcon = styled(DeleteIcon)`

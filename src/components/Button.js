@@ -24,7 +24,6 @@ const StyledButton = styled.button`
   border-radius: 10px;
   border: none;
   font-size: 1em;
-  cursor: pointer;
 
   ${({ buttonType }) =>
     buttonType === 'normal' &&

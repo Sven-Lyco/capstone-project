@@ -19,7 +19,6 @@ const Button = styled.button`
   color: ${({ isActive }) =>
     isActive ? 'var(--color-green)' : 'var(--color-light-gray)'};
   border: none;
-  cursor: pointer;
 `;
 
 const StyledIcon = styled(CheckIcon)`

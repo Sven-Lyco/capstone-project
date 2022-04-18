@@ -70,7 +70,7 @@ export default function SearchPage() {
 }
 
 const Wrapper = styled.div`
-  margin: 60px 0 68px;
+  margin: 60px 0 85px;
 `;
 
 const SearchWrapper = styled.div`
@@ -78,7 +78,7 @@ const SearchWrapper = styled.div`
   border-bottom: 1px solid var(--border-color);
   padding: 15px;
   position: sticky;
-  top: 59px;
+  top: 58px;
   input {
     padding: 10px 8px;
     width: 100%;

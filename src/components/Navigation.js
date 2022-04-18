@@ -39,7 +39,7 @@ const StyledNavigation = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 0 20px;
+  padding: 10px 0 21px;
   border-top: 1px solid var(--border-color);
   background-color: var(--color-black);
   position: fixed;
