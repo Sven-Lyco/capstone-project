@@ -16,7 +16,7 @@ export default function useSearch() {
         .then(res => res.json())
         .then(data => setResults(data.results))
         .catch(error => {
-          console.error('Error:', error);
+          console.error(error);
         });
   }, [query]);
 
