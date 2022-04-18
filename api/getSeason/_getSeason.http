@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3000/api
 
-### POST/season
+### POST/getSeason
 POST {{baseURL}}/getSeason
 Content-Type: application/json
 
