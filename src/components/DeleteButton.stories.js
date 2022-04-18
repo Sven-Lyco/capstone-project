@@ -9,6 +9,4 @@ export default {
 const Template = args => <DeleteButton {...args} />;
 
 export const Default = Template.bind({});
-Default.parameters = {
-  backgrounds: { default: 'light' },
-};
+Default.parameters = {};

@@ -9,8 +9,10 @@ const Template = args => <VideoFrame {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  url: [
+  showTrailer: true,
+  videoUrl: [
+    'https://www.youtube.com/watch?v=N3ss_-luLhE',
     'https://www.youtube.com/watch?v=bV59rGlNc6Y',
-    'https://www.youtube.com/watch?v=Y_pWnwY5Vek',
+    'https://www.youtube.com/watch?v=wowK7ADGRsQ',
   ],
 };

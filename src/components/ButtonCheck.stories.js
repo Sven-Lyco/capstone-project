@@ -9,13 +9,7 @@ export default {
 const Template = args => <ButtonCheck {...args} />;
 
 export const Active = Template.bind({});
-Active.args = { isActive: true, id: 123 };
-Active.parameters = {
-  backgrounds: { default: 'light' },
-};
+Active.args = { isActive: true };
 
 export const Inactive = Template.bind({});
-Inactive.args = { isActive: false, id: 123 };
-Inactive.parameters = {
-  backgrounds: { default: 'light' },
-};
+Inactive.args = { isActive: false };

@@ -57,7 +57,7 @@ export default function App() {
     watchlistError ||
     watchedEpisodesError
   )
-    return <FetchError />;
+    return <FetchError onClick={() => window.location.reload(false)} />;
 
   return (
     <>
