@@ -57,15 +57,15 @@ export default function MoviesDetailsPage({
 
   return (
     <Wrapper>
-      <StyledButtonBack onClick={() => navigate(-1)}>
+      <ButtonBack onClick={() => navigate(-1)}>
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </StyledButtonBack>
+      </ButtonBack>
       {!isLoading && (
         <>
           {showTrailer && <VideoFrame videoUrl={movieTrailerUrl} />}
-          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
-          <StyledHeader>
+          {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
+          <Header>
             <Poster
               src={
                 posterPath
@@ -75,7 +75,7 @@ export default function MoviesDetailsPage({
               alt={`${title}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{title}</StyledTitle>
+              <Title>{title}</Title>
               <p>
                 {releaseDate
                   ? releaseDate?.substr(0, 4)
@@ -101,11 +101,11 @@ export default function MoviesDetailsPage({
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>
-          </StyledHeader>
+          </Header>
           {movieWatchProviders && (
             <ProviderList providerList={movieWatchProviders} />
           )}
-          <StyledMain>
+          <Main>
             <h3>Handlung</h3>
             <p>
               {overview
@@ -116,7 +116,7 @@ export default function MoviesDetailsPage({
             <PosterListWrapper>
               <PosterList list={similarMovies} listName="ähnliche Filme" />
             </PosterListWrapper>
-          </StyledMain>
+          </Main>
         </>
       )}
       {isLoading && <LoadingSpinner />}
@@ -139,7 +139,7 @@ const PosterListWrapper = styled.div`
   margin: -10px 0 0 -20px;
 `;
 
-const StyledBackdropImage = styled.div`
+const BackdropImage = styled.div`
   z-index: -1;
   position: relative;
   @media (min-width: 576px) {
@@ -158,7 +158,7 @@ const StyledBackdropImage = styled.div`
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
-const StyledButtonBack = styled.button`
+const ButtonBack = styled.button`
   display: flex;
   align-items: center;
   align-self: flex-start;
@@ -176,13 +176,13 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
   border-radius: var(--border-radius);
 `;
 
-const StyledHeader = styled.header`
+const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
 `;
 
-const StyledTitle = styled.span`
+const Title = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
@@ -208,7 +208,7 @@ const StyledHeaderBox = styled.div`
   }
 `;
 
-const StyledMain = styled.main`
+const Main = styled.main`
   margin: 10px 20px;
   padding: 0;
 

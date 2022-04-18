@@ -14,7 +14,7 @@ export default function WatchlistPage({ watchlist }) {
           <p>Deine Watchlist ist aktuell leer.</p>
         </InfoBox>
       ) : (
-        <StyledList role="list">
+        <List role="list">
           {watchlist?.map(({ name, title, posterPath, id }) => (
             <li key={id}>
               <Link to={name ? `/serie/${id}` : `/film/${id}`}>
@@ -29,7 +29,7 @@ export default function WatchlistPage({ watchlist }) {
               </Link>
             </li>
           ))}
-        </StyledList>
+        </List>
       )}
 
       <Navigation />
@@ -55,7 +55,7 @@ const InfoBox = styled.section`
   }
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;

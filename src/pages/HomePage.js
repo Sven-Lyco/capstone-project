@@ -6,7 +6,7 @@ export default function HomePage({ handleCheckIsAdult }) {
   return (
     <Wrapper>
       <Header />
-      <StyledSection>
+      <Section>
         <p>Diese Seite enthält Inhalte für Erwachsene!</p>
         <p>
           Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
@@ -18,7 +18,7 @@ export default function HomePage({ handleCheckIsAdult }) {
         <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
           unter 18
         </Button>
-      </StyledSection>
+      </Section>
     </Wrapper>
   );
 }
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const StyledSection = styled.section`
+const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;

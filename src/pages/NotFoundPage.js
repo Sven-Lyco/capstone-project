@@ -6,7 +6,7 @@ import Button from '../components/Button';
 export default function NotFound() {
   const navigate = useNavigate();
   return (
-    <StyledMain>
+    <Main>
       <AnimatedGradientText>ERROR 404</AnimatedGradientText>
       <p>🎉🥳</p>
       <p>Herzlichen Glückwunsch!</p>
@@ -16,11 +16,11 @@ export default function NotFound() {
         <GoChevronLeft />
         <span>zurück</span>
       </Button>
-    </StyledMain>
+    </Main>
   );
 }
 
-const StyledMain = styled.main`
+const Main = styled.main`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

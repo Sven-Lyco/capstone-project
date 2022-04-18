@@ -8,7 +8,7 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
   return (
     <Wrapper>
       <Header />
-      <StyledSection>
+      <Main>
         <h2>Herzlich Willkommen bei Watcha!</h2>
         <p>
           Mithilfe von Watcha kannst du neue Filme und Serien entdecken und
@@ -62,7 +62,7 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
         >
           <StyledTmdbIcon />
         </a>
-      </StyledSection>
+      </Main>
       <Navigation />
     </Wrapper>
   );
@@ -79,7 +79,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledSection = styled.section`
+const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +94,7 @@ const StyledSection = styled.section`
   }
 `;
 
-const InfoBox = styled.div`
+const InfoBox = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -107,7 +107,7 @@ const StyledListItem = styled.li`
   text-decoration: none;
 `;
 
-const InfoBox = styled.div`
+const InfoBox = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;

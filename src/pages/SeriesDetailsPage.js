@@ -59,15 +59,15 @@ export default function SeriesDetailsPage({
 
   return (
     <Wrapper>
-      <StyledButtonBack onClick={() => navigate(-1)}>
+      <ButtonBack onClick={() => navigate(-1)}>
         <StyledArrowBackIcon />
         <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </StyledButtonBack>
+      </ButtonBack>
       {!isLoading ? (
         <>
           {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
-          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
-          <StyledHeader>
+          {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
+          <Header>
             <Poster
               src={
                 posterPath
@@ -76,8 +76,8 @@ export default function SeriesDetailsPage({
               }
               alt={`${name}`}
             />
-            <StyledHeaderBox>
-              <StyledTitle>{name}</StyledTitle>
+            <HeaderBox>
+              <Title>{name}</Title>
               <p>
                 {numberOfSeasons}
                 {numberOfSeasons === 1 ? ' Staffel - ' : ' Staffeln - '}
@@ -87,7 +87,7 @@ export default function SeriesDetailsPage({
                   : 'kein Release Datum vorhanden'}
               </p>
               <p>Bewertung: {rating} / 10</p>
-            </StyledHeaderBox>
+            </HeaderBox>
             <ButtonWrapper>
               {!isOnWatchlist && (
                 <AddButton
@@ -101,7 +101,7 @@ export default function SeriesDetailsPage({
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>
-          </StyledHeader>
+          </Header>
           <InnerNavigation
             currentPage={currentPage}
             handleNavigation={handleNavigation}
@@ -111,7 +111,7 @@ export default function SeriesDetailsPage({
               {seriesWatchProviders && (
                 <ProviderList providerList={seriesWatchProviders} />
               )}
-              <StyledMain>
+              <Main>
                 <h3>Handlung</h3>
                 <p>
                   {overview
@@ -122,7 +122,7 @@ export default function SeriesDetailsPage({
                 <PosterListWrapper>
                   <PosterList list={similarSeries} listName="ähnliche Serien" />
                 </PosterListWrapper>
-              </StyledMain>
+              </Main>
             </>
           )}
           {currentPage === PAGES.SEASONS && (
@@ -157,7 +157,7 @@ const PosterListWrapper = styled.div`
   margin: -10px -20px;
 `;
 
-const StyledBackdropImage = styled.div`
+const BackdropImage = styled.div`
   z-index: -1;
   position: relative;
   @media (min-width: 576px) {
@@ -178,7 +178,7 @@ const StyledBackdropImage = styled.div`
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
-const StyledButtonBack = styled.button`
+const ButtonBack = styled.button`
   display: flex;
   align-items: center;
   align-self: flex-start;
@@ -196,20 +196,20 @@ const StyledArrowBackIcon = styled(ArrowBackIcon)`
   border-radius: var(--border-radius);
 `;
 
-const StyledHeader = styled.header`
+const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
 `;
 
-const StyledTitle = styled.span`
+const Title = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
   padding: 20px 0 5px;
 `;
 
-const StyledHeaderBox = styled.div`
+const HeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -228,7 +228,7 @@ const StyledHeaderBox = styled.div`
   }
 `;
 
-const StyledMain = styled.main`
+const Main = styled.main`
   margin: 10px 20px;
   padding: 0;
 
