@@ -11,6 +11,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
+import RatingCircle from '../components/RatingCircle';
 import ReloadButton from '../components/ReloadButton';
 import VideoFrame from '../components/VideoFrame';
 
@@ -77,7 +78,7 @@ export default function MoviesDetailsPage({
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>
-              <p>Bewertung: {rating} / 10</p>
+              <RatingCircle rating={rating} />
             </StyledHeaderBox>
             <ButtonWrapper>
               <ButtonCheck
@@ -157,6 +158,7 @@ const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
+  position: relative;
 `;
 
 const Title = styled.span`
