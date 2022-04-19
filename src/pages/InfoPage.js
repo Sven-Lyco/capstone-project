@@ -105,7 +105,7 @@ const InfoBox = styled.section`
 `;
 
 const SettingsWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   margin: 15px 0;
