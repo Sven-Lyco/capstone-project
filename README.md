@@ -23,6 +23,7 @@ Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel
   - [React Router](https://reactrouter.com/)
   - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
   - [Jest](https://jestjs.io/)
+  - [husky](https://typicode.github.io/husky/#/)
   - [React Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
   - [React Player](https://github.com/CookPete/react-player)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
