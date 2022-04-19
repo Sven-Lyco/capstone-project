@@ -7,7 +7,7 @@ describe('AddButton', () => {
     const onClick = jest.fn();
     render(<AddButton onClick={onClick} />);
 
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('button', { name: /hinzufügen/i });
     expect(button).toBeInTheDocument();
   });
 

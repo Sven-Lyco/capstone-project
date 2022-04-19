@@ -6,9 +6,9 @@ import Poster from './Poster';
 export default function PosterList({ list, listName }) {
   return (
     <>
-      <ListHeader>{listName ? listName : ''}</ListHeader>
-      <List role="list" listLength={list?.length}>
-        {list?.map(({ name, title, poster_path, id }) => (
+      {listName && <ListHeader>{listName}</ListHeader>}
+      <List role="list" listLength={list.length}>
+        {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
             <Link to={name ? `/serie/${id}` : `/film/${id}`}>
               <Poster

@@ -27,7 +27,7 @@ export default function SearchResultCard({
 
         <TextBox>
           <span>{name ? `${name}` : `${title}`}</span>
-          <p>{date ? date?.substr(0, 4) : 'kein Release Datum vorhanden'}</p>
+          <p>{date ? date.substr(0, 4) : 'kein Release Datum vorhanden'}</p>
           <p>{mediaType === 'movie' ? 'Film' : 'Serie'}</p>
         </TextBox>
       </StyledLink>

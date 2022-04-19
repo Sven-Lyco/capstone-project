@@ -7,7 +7,7 @@ describe('DeleteButton', () => {
     const onClick = jest.fn();
     render(<DeleteButton onClick={onClick} />);
 
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('button', { name: /entfernen/i });
     expect(button).toBeInTheDocument();
   });
 

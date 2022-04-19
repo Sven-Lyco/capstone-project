@@ -15,7 +15,7 @@ export default function SeasonsList({
   isEpisodeWatched,
 }) {
   const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
-  const currentSeason = seasons?.find(
+  const currentSeason = seasons.find(
     ({ season_number: seasonNumber }) => seasonNumber === currentSeasonNumber
   );
   const fetchUrl = `${seriesId}/season/${currentSeasonNumber}`;
@@ -27,7 +27,7 @@ export default function SeasonsList({
     <section>
       <List role="list">
         {seasons
-          ?.filter(result => result.name !== 'Extras')
+          .filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
             <li key={id}>
               <ButtonSeason
@@ -49,8 +49,8 @@ export default function SeasonsList({
         />
         <TextBox>
           <span>Staffel {currentSeasonNumber}</span>
-          <p>{seasonEpisodes?.length} Episoden</p>
-          <p>{episodeRunTime}min. pro Episode</p>
+          {seasonEpisodes && <p>{seasonEpisodes.length} Episoden</p>}
+          {episodeRunTime && <p>{episodeRunTime} min. pro Episode</p>}
         </TextBox>
       </InfoWrapper>
       <EpisodeList role="list">

@@ -4,13 +4,13 @@ export default function useShowTrailer({ trailerUrl, isChecked }) {
   const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
-    if (trailerUrl?.length !== 0) {
+    if (trailerUrl.length !== 0) {
       setShowTrailer(true);
     }
-    if (trailerUrl?.length === 0) {
+    if (trailerUrl.length === 0) {
       setShowTrailer(false);
     }
-    if (isChecked === true && trailerUrl?.length === 0) {
+    if (isChecked === true && trailerUrl.length === 0) {
       setShowTrailer(false);
     }
     if (isChecked === false) {

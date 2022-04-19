@@ -19,7 +19,7 @@ export default function ProviderList({ providerList }) {
       </ListHeader>
       {flatrateProviders ? (
         <List role="list">
-          {flatrateProviders?.map(
+          {flatrateProviders.map(
             ({ provider_name, logo_path, provider_id }) => (
               <li key={provider_id}>
                 <ProviderPoster

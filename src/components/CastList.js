@@ -5,10 +5,10 @@ import PosterActor from './PosterActor';
 export default function CastList({ castList, listName }) {
   return (
     <>
-      <ListHeader>{listName ? listName : ''}</ListHeader>
+      {listName && <ListHeader>{listName}</ListHeader>}
       {castList?.length >= 1 ? (
-        <List role="list" listLength={castList?.length}>
-          {castList?.map(({ id, name, character, profile_path }) => (
+        <List role="list" listLength={castList.length}>
+          {castList.map(({ id, name, character, profile_path }) => (
             <li key={id}>
               <PosterActor
                 src={
