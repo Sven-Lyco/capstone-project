@@ -6,7 +6,9 @@ export default function ButtonCheck({ onClick, isActive, ...buttonProps }) {
   return (
     <Button {...buttonProps} onClick={onClick} isActive={isActive}>
       <StyledIcon />
-      <ScreenReaderOnly>{isActive ? 'gesehen' : 'ungesehen'}</ScreenReaderOnly>
+      <ScreenReaderOnly>
+        {isActive ? 'bereits gesehen' : 'noch nicht gesehen'}
+      </ScreenReaderOnly>
     </Button>
   );
 }

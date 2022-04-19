@@ -24,7 +24,7 @@ describe('ButtonCheck', () => {
     const onClick = jest.fn();
     render(<ButtonCheck onClick={onClick} isActive={false} />);
 
-    const button = screen.getByRole('button', { name: /ungesehen/i });
+    const button = screen.getByRole('button', { name: /noch nicht gesehen/i });
     expect(button).toBeInTheDocument();
   });
 
@@ -32,7 +32,7 @@ describe('ButtonCheck', () => {
     const onClick = jest.fn();
     render(<ButtonCheck onClick={onClick} isActive={true} />);
 
-    const button = screen.getByRole('button', { name: /gesehen/i });
+    const button = screen.getByRole('button', { name: /bereits gesehen/i });
     expect(button).toBeInTheDocument();
   });
 });
