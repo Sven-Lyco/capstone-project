@@ -13,6 +13,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
+import RatingCircle from '../components/RatingCircle';
 import ReloadButton from '../components/ReloadButton';
 import SeasonsList from '../components/SeasonsList';
 import VideoFrame from '../components/VideoFrame';
@@ -82,7 +83,7 @@ export default function SeriesDetailsPage({
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
-              <p>Bewertung: {rating} / 10</p>
+              <RatingCircle rating={rating} />
             </HeaderBox>
             <ButtonWrapper>
               {!isOnWatchlist && (
@@ -178,6 +179,7 @@ const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
+  position: relative;
 `;
 
 const Title = styled.span`
