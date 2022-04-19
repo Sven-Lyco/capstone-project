@@ -1,0 +1,9 @@
+@baseURL = http://localhost:3000/api
+
+### POST/getSeason
+POST {{baseURL}}/getSeason
+Content-Type: application/json
+
+{
+    "fetchUrl":"37680/season/1"
+}

@@ -1,5 +1,5 @@
-import { WhisperSpinner } from 'react-spinners-kit';
 import styled from 'styled-components';
+import { WhisperSpinner } from 'react-spinners-kit';
 
 export default function LoadingSpinner() {
   return (

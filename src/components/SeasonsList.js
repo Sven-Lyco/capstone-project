@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+
 import ButtonSeason from './ButtonSeason';
+import EpisodeCard from './EpisodeCard';
 import Poster from './Poster';
 import defaultPoster from '../assets/images/poster.png';
 import useSeasonDetails from '../hooks/useSeasonDetails';
-import EpisodeCard from './EpisodeCard';
 
 export default function SeasonsList({
   seasons,
@@ -14,19 +15,19 @@ export default function SeasonsList({
   isEpisodeWatched,
 }) {
   const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
-  const currentSeason = seasons?.find(
+  const currentSeason = seasons.find(
     ({ season_number: seasonNumber }) => seasonNumber === currentSeasonNumber
   );
-  const fetchURL = `${seriesId}/season/${currentSeasonNumber}`;
-  const { seasonDetails } = useSeasonDetails(fetchURL);
+  const fetchUrl = `${seriesId}/season/${currentSeasonNumber}`;
+  const { seasonDetails } = useSeasonDetails(fetchUrl);
   const { poster_path: posterPath, name } = currentSeason;
   const seasonEpisodes = seasonDetails.episodes;
 
   return (
     <section>
-      <StyledList role="list">
+      <List role="list">
         {seasons
-          ?.filter(result => result.name !== 'Extras')
+          .filter(result => result.name !== 'Extras')
           .map(({ id, name, season_number: seasonNumber }) => (
             <li key={id}>
               <ButtonSeason
@@ -36,7 +37,7 @@ export default function SeasonsList({
               />
             </li>
           ))}
-      </StyledList>
+      </List>
       <InfoWrapper>
         <Poster
           src={
@@ -48,11 +49,11 @@ export default function SeasonsList({
         />
         <TextBox>
           <span>Staffel {currentSeasonNumber}</span>
-          <p>{seasonEpisodes?.length} Episoden</p>
-          <p>{episodeRunTime}min. pro Episode</p>
+          {seasonEpisodes && <p>{seasonEpisodes.length} Episoden</p>}
+          {episodeRunTime && <p>{episodeRunTime} min. pro Episode</p>}
         </TextBox>
       </InfoWrapper>
-      <StyledEpisodeList role="list">
+      <EpisodeList role="list">
         {seasonEpisodes?.map(episode => (
           <EpisodeCard
             key={episode.id}
@@ -61,7 +62,7 @@ export default function SeasonsList({
             handleCheckEpisode={handleCheckEpisode}
           />
         ))}
-      </StyledEpisodeList>
+      </EpisodeList>
     </section>
   );
 
@@ -70,11 +71,11 @@ export default function SeasonsList({
   }
 }
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
-  padding: 0 0 0 20px;
-  margin: 0;
   display: flex;
+  padding-left: 20px;
+  margin: 0;
   gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -104,7 +105,7 @@ const TextBox = styled.div`
   }
 `;
 
-const StyledEpisodeList = styled.ul`
+const EpisodeList = styled.ul`
   list-style: none;
   padding: 0;
 `;

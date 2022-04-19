@@ -6,7 +6,7 @@ import Button from '../components/Button';
 export default function NotFound() {
   const navigate = useNavigate();
   return (
-    <StyledMain>
+    <Main>
       <AnimatedGradientText>ERROR 404</AnimatedGradientText>
       <p>🎉🥳</p>
       <p>Herzlichen Glückwunsch!</p>
@@ -16,11 +16,11 @@ export default function NotFound() {
         <GoChevronLeft />
         <span>zurück</span>
       </Button>
-    </StyledMain>
+    </Main>
   );
 }
 
-const StyledMain = styled.main`
+const Main = styled.main`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -44,10 +44,10 @@ const AnimatedGradientText = styled.h1`
   animation: ${gradient} 5s ease-in-out infinite;
   background: linear-gradient(
     to right,
-    #f2f2f2,
-    #aebcbf,
-    #454545,
     #121212,
+    #454545,
+    #aebcbf,
+    #f2f2f2,
     #2bd999,
     #3d90d9,
     #f25c78,

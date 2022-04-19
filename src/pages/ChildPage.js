@@ -5,7 +5,7 @@ export default function ChildPage() {
   return (
     <Wrapper>
       <Header />
-      <StyledSection>
+      <Section>
         <p>Du bist leider noch zu jung, um diese Seite nutzen zu können</p>
         <p>
           <a href="https://www.schau-hin.info/sicherheit-risiken/wie-arbeitet-und-entscheidet-die-fsk">
@@ -13,19 +13,19 @@ export default function ChildPage() {
           </a>{' '}
           findest du weitere Informationen 🙂
         </p>
-      </StyledSection>
+      </Section>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
 
-const StyledSection = styled.section`
+const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

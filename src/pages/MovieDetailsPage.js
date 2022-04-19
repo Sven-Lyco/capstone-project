@@ -1,21 +1,22 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+import AddButton from '../components/AddButton';
+import ButtonBack from '../components/ButtonBack';
+import ButtonCheck from '../components/ButtonCheck';
+import CastList from '../components/CastList';
+import DeleteButton from '../components/DeleteButton';
+import FetchError from '../components/FetchError';
+import LoadingSpinner from '../components/LoadingSpinner';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
-import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
-import useMovieDetails from '../hooks/useMovieDetails';
-import useMovie from '../hooks/useMovie';
-import useShowTrailer from '../hooks/useShowTrailer';
-import CastList from '../components/CastList';
 import ProviderList from '../components/ProviderList';
-import ButtonCheckMovie from '../components/ButtonCheckMovie';
-import FetchError from '../components/FetchError';
-import VideoFrame from '../components/VideoFrame';
 import ReloadButton from '../components/ReloadButton';
+import VideoFrame from '../components/VideoFrame';
+
+import useMovie from '../hooks/useMovie';
+import useMovieDetails from '../hooks/useMovieDetails';
+import useShowTrailer from '../hooks/useShowTrailer';
 
 export default function MoviesDetailsPage({
   isChecked,
@@ -54,15 +55,12 @@ export default function MoviesDetailsPage({
 
   return (
     <Wrapper>
-      <StyledButtonBack onClick={() => navigate(-1)}>
-        <StyledArrowBackIcon />
-        <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </StyledButtonBack>
+      <ButtonBack onClick={() => navigate(-1)} />
       {!isLoading && (
         <>
           {showTrailer && <VideoFrame videoUrl={movieTrailerUrl} />}
-          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
-          <StyledHeader>
+          {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
+          <Header>
             <Poster
               src={
                 posterPath
@@ -72,44 +70,37 @@ export default function MoviesDetailsPage({
               alt={`${title}`}
             />
             <StyledHeaderBox>
-              <StyledTitle>{title}</StyledTitle>
+              <Title>{title}</Title>
               <p>
                 {releaseDate
-                  ? releaseDate?.substr(0, 4)
+                  ? releaseDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>
               <p>Bewertung: {rating} / 10</p>
             </StyledHeaderBox>
             <ButtonWrapper>
-              <ButtonCheckMovie
-                id={id}
-                title={title}
-                handleCheckMovie={handleCheckMovie}
-                isMovieWatched={checkIsMovieWatched(id)}
+              <ButtonCheck
+                onClick={() => handleCheckMovie(id, title)}
+                isActive={checkIsMovieWatched(id)}
               />
-              {!isOnWatchlist ? (
-                <StyledAddButton
+              {!isOnWatchlist && (
+                <AddButton
                   onClick={() => onHandleAddMovie(id, title, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
+                />
+              )}
+              {isOnWatchlist && (
+                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>
-          </StyledHeader>
+          </Header>
           {movieWatchProviders && (
             <ProviderList providerList={movieWatchProviders} />
           )}
-          <StyledMain>
+          <Main>
             <h3>Handlung</h3>
             <p>
               {overview
@@ -120,7 +111,7 @@ export default function MoviesDetailsPage({
             <PosterListWrapper>
               <PosterList list={similarMovies} listName="ähnliche Filme" />
             </PosterListWrapper>
-          </StyledMain>
+          </Main>
         </>
       )}
       {isLoading && <LoadingSpinner />}
@@ -135,15 +126,15 @@ export default function MoviesDetailsPage({
 }
 
 const Wrapper = styled.div`
-  position: relative;
   width: 100%;
+  position: relative;
 `;
 
 const PosterListWrapper = styled.div`
   margin: -10px 0 0 -20px;
 `;
 
-const StyledBackdropImage = styled.div`
+const BackdropImage = styled.div`
   z-index: -1;
   position: relative;
   @media (min-width: 576px) {
@@ -162,31 +153,13 @@ const StyledBackdropImage = styled.div`
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
-const StyledButtonBack = styled.button`
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-white);
-`;
-
-const StyledArrowBackIcon = styled(ArrowBackIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
-  border-radius: var(--border-radius);
-`;
-
-const StyledHeader = styled.header`
+const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
 `;
 
-const StyledTitle = styled.span`
+const Title = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
@@ -194,6 +167,7 @@ const StyledTitle = styled.span`
 `;
 
 const StyledHeaderBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -201,18 +175,17 @@ const StyledHeaderBox = styled.div`
   gap: 10px;
   padding: 0;
   margin: 0 10px;
-  width: 100%;
 
   p {
+    margin: 0;
+    padding: 0;
     font-size: large;
     font-style: italic;
     font-weight: 400;
-    margin: 0;
-    padding: 0;
   }
 `;
 
-const StyledMain = styled.main`
+const Main = styled.main`
   margin: 10px 20px;
   padding: 0;
 
@@ -226,40 +199,4 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-`;
-
-const StyledAddButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-orange);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledDeleteIcon = styled(DeleteIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
-`;
-
-const StyledDeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-red);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledPlusIcon = styled(PlusIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
 `;

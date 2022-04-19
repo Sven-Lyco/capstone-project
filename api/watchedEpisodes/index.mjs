@@ -1,7 +1,7 @@
 import WatchedEpisode from '../../backend/models/WatchedEpisode.mjs';
 import connectToMongoDB from '../../backend/db/dbConnect.mjs';
 
-export default async function handler(req, res) {
+export default async function getWatchedEpisodes(req, res) {
   await connectToMongoDB();
   console.log('connected to MongoDB');
 

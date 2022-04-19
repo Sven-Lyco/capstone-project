@@ -11,16 +11,16 @@ export default function useMovie() {
 
   async function handleCheckMovie(movieId, title) {
     const watchedMovie = { movieId, title };
-    const isOnList = watchedMovies?.some(
+    const isOnList = watchedMovies.some(
       movie => movie.movieId === watchedMovie.movieId
     );
 
     if (isOnList) {
-      const filteredItems = watchedMovies?.filter(
+      const filteredItems = watchedMovies.filter(
         result => result.movieId !== movieId
       );
       mutateWatchedMovies(filteredItems, false);
-      const filteredItem = watchedMovies?.find(
+      const filteredItem = watchedMovies.find(
         result => result.movieId === movieId
       );
       const deleteId = filteredItem._id;

@@ -1,29 +1,36 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import Home from './pages/Home';
+
 import ChildPage from './pages/ChildPage';
-import Series from './pages/Series';
-import Movies from './pages/Movies';
-import SeriesDetailsPage from './pages/SeriesDetailsPage';
-import MovieDetailsPage from './pages/MovieDetailsPage';
-import SearchPage from './pages/SearchPage';
-import NotFound from './pages/NotFound';
-import WatchlistPage from './pages/WatchlistPage';
+import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
-import useSeries from './hooks/useSeries';
-import useMovies from './hooks/useMovies';
-import useWatchlist from './hooks/useWatchlist';
-import useEpisodes from './hooks/useEpisodes';
-import useIsAdult from './hooks/useIsAdult';
-import useToggle from './hooks/useToggle';
-import LoadingSpinner from './components/LoadingSpinner';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import MoviesPage from './pages/MoviesPage';
+import NotFoundPage from './pages/NotFoundPage';
+import SearchPage from './pages/SearchPage';
+import SeriesDetailsPage from './pages/SeriesDetailsPage';
+import SeriesPage from './pages/SeriesPage';
+import WatchlistPage from './pages/WatchlistPage';
+
 import FetchError from './components/FetchError';
 import Header from './components/Header';
+import LoadingSpinner from './components/LoadingSpinner';
+
+import useEpisodes from './hooks/useEpisodes';
+import useIsAdult from './hooks/useIsAdult';
+import useMovies from './hooks/useMovies';
+import useSeries from './hooks/useSeries';
+import useToggle from './hooks/useToggle';
+import useWatchlist from './hooks/useWatchlist';
 
 export default function App() {
+  const { pathname } = useLocation();
   const { handleCheckIsAdult } = useIsAdult();
   const { isChecked, handleToggleSwitch } = useToggle();
-  const { pathname } = useLocation();
+  const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
+  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
+    useEpisodes();
+  const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
   const {
     watchlist,
     watchlistError,
@@ -32,10 +39,6 @@ export default function App() {
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
-  const { checkIsEpisodeWatched, handleCheckEpisode, watchedEpisodesError } =
-    useEpisodes();
-  const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
-  const { popularMovies, moviesOnCinema, upcomingMovies } = useMovies();
 
   useEffect(() => {
     window.scrollTo({
@@ -45,16 +48,16 @@ export default function App() {
   }, [pathname]);
 
   if (
+    !topRatedSeries ||
+    !popularSeries ||
+    !seriesOnTv ||
     !popularMovies ||
     !moviesOnCinema ||
     !upcomingMovies ||
-    !popularSeries ||
-    !topRatedSeries ||
-    !seriesOnTv ||
     watchlistError ||
     watchedEpisodesError
   )
-    return <FetchError />;
+    return <FetchError onClick={() => window.location.reload(false)} />;
 
   return (
     <>
@@ -65,16 +68,16 @@ export default function App() {
       moviesOnCinema &&
       upcomingMovies ? (
         <Routes>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/"
-            element={<Home handleCheckIsAdult={handleCheckIsAdult} />}
+            element={<HomePage handleCheckIsAdult={handleCheckIsAdult} />}
           />
           <Route path="/child" element={<ChildPage />} />
           <Route
             path="/serien"
             element={
-              <Series
+              <SeriesPage
                 popularSeries={popularSeries}
                 topRatedSeries={topRatedSeries}
                 seriesOnTv={seriesOnTv}
@@ -109,7 +112,7 @@ export default function App() {
           <Route
             path="/filme"
             element={
-              <Movies
+              <MoviesPage
                 popularMovies={popularMovies}
                 moviesOnCinema={moviesOnCinema}
                 upcomingMovies={upcomingMovies}

@@ -1,22 +1,21 @@
-import { GoSync } from 'react-icons/go';
 import styled from 'styled-components';
+import { GoSync } from 'react-icons/go';
 import Button from './Button';
 
-export default function FetchError() {
+export default function FetchError({ onClick }) {
   return (
-    <Wrapper>
+    <Section>
       <h1>ERROR</h1>
-      <p>Irgendetwas funktioniert nicht,</p>
-      <p>wie es sollte</p>
-      <Button buttonType="normal" onClick={() => window.location.reload(false)}>
+      <p>Irgendetwas funktioniert nicht wie es sollte</p>
+      <Button buttonType="normal" onClick={onClick}>
         <GoSync />
         <span>Seite neu laden</span>
       </Button>
-    </Wrapper>
+    </Section>
   );
 }
 
-const Wrapper = styled.section`
+const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

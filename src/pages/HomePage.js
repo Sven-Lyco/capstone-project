@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
 import Button from '../components/Button';
+import Header from '../components/Header';
 
-export default function Home({ handleCheckIsAdult }) {
+export default function HomePage({ handleCheckIsAdult }) {
   return (
     <Wrapper>
       <Header />
-      <StyledSection>
+      <Section>
         <p>Diese Seite enthält Inhalte für Erwachsene!</p>
         <p>
           Um die Inhalte dieser Seite sehen zu können musst du bestätigen, dass
@@ -18,19 +18,19 @@ export default function Home({ handleCheckIsAdult }) {
         <Button buttonType="red" onClick={() => handleCheckIsAdult()}>
           unter 18
         </Button>
-      </StyledSection>
+      </Section>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
 
-const StyledSection = styled.section`
+const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,7 +1,7 @@
 import Watchlist from '../../backend/models/Watchlist.mjs';
 import connectToMongoDB from '../../backend/db/dbConnect.mjs';
 
-export default async function handler(req, res) {
+export default async function getWatchlist(req, res) {
   await connectToMongoDB();
   console.log('connected to MongoDB');
 

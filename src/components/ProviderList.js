@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import ProviderPoster from './ProviderPoster';
 import defaultPoster from '../assets/images/provider.png';
+import ProviderPoster from './ProviderPoster';
 
 export default function ProviderList({ providerList }) {
   const { buy: buyProviders, flatrate: flatrateProviders, link } = providerList;
+
   return (
     <>
       <ListHeader>
@@ -17,8 +18,8 @@ export default function ProviderList({ providerList }) {
         </a>
       </ListHeader>
       {flatrateProviders ? (
-        <StyledList role="list">
-          {flatrateProviders?.map(
+        <List role="list">
+          {flatrateProviders.map(
             ({ provider_name, logo_path, provider_id }) => (
               <li key={provider_id}>
                 <ProviderPoster
@@ -32,9 +33,9 @@ export default function ProviderList({ providerList }) {
               </li>
             )
           )}
-        </StyledList>
+        </List>
       ) : (
-        <StyledList role="list" listLength={providerList?.length}>
+        <List role="list">
           {buyProviders?.map(({ provider_name, logo_path, provider_id }) => (
             <li key={provider_id}>
               <ProviderPoster
@@ -47,7 +48,7 @@ export default function ProviderList({ providerList }) {
               />
             </li>
           ))}
-        </StyledList>
+        </List>
       )}
     </>
   );
@@ -62,14 +63,14 @@ const ListHeader = styled.h2`
   }
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
-  padding: 20px 20px;
-  margin: 0;
   display: grid;
   grid-template-columns: repeat(20, auto);
   grid-template-rows: 1fr;
   gap: 20px;
+  padding: 20px 20px;
+  margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
   border-bottom: 1px solid var(--color-dark-gray);

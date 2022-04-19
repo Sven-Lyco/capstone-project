@@ -1,13 +1,13 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Poster from './Poster';
+import styled from 'styled-components';
 import defaultPoster from '../assets/images/poster.png';
+import Poster from './Poster';
 
 export default function PosterList({ list, listName }) {
   return (
     <>
-      <ListHeader>{listName}</ListHeader>
-      <StyledList role="list" listLength={list?.length}>
+      {listName && <ListHeader>{listName}</ListHeader>}
+      <List role="list" listLength={list.length}>
         {list.map(({ name, title, poster_path, id }) => (
           <li key={id}>
             <Link to={name ? `/serie/${id}` : `/film/${id}`}>
@@ -22,7 +22,7 @@ export default function PosterList({ list, listName }) {
             </Link>
           </li>
         ))}
-      </StyledList>
+      </List>
     </>
   );
 }
@@ -31,14 +31,14 @@ const ListHeader = styled.h2`
   margin: 10px 0 0 20px;
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
-  padding: 20px;
-  margin: 0;
   display: grid;
   grid-template-columns: ${({ listLength }) =>
     listLength ? `repeat(${listLength}, auto)` : `repeat(20, auto)`};
   grid-template-rows: 1fr;
+  padding: 20px;
+  margin: 0;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;

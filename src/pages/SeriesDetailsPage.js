@@ -1,22 +1,24 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+import PAGES from '../assets/pages';
+
+import AddButton from '../components/AddButton';
+import ButtonBack from '../components/ButtonBack';
+import CastList from '../components/CastList';
+import DeleteButton from '../components/DeleteButton';
+import InnerNavigation from '../components/InnerNavigation';
+import LoadingSpinner from '../components/LoadingSpinner';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
-import LoadingSpinner from '../components/LoadingSpinner';
-import InnerNavigation from '../components/InnerNavigation';
-import { ReactComponent as ArrowBackIcon } from '../assets/icons/arrow_back.svg';
-import { ReactComponent as PlusIcon } from '../assets/icons/plus_icon.svg';
-import { ReactComponent as DeleteIcon } from '../assets/icons/delete_icon.svg';
+import ProviderList from '../components/ProviderList';
+import ReloadButton from '../components/ReloadButton';
+import SeasonsList from '../components/SeasonsList';
+import VideoFrame from '../components/VideoFrame';
+
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
-import SeasonsList from '../components/SeasonsList';
-import CastList from '../components/CastList';
-import ProviderList from '../components/ProviderList';
-import PAGES from '../assets/pages';
-import VideoFrame from '../components/VideoFrame';
-import ReloadButton from '../components/ReloadButton';
 
 export default function SeriesDetailsPage({
   isChecked,
@@ -56,15 +58,12 @@ export default function SeriesDetailsPage({
 
   return (
     <Wrapper>
-      <StyledButtonBack onClick={() => navigate(-1)}>
-        <StyledArrowBackIcon />
-        <ScreenReaderOnly>Zurück</ScreenReaderOnly>
-      </StyledButtonBack>
+      <ButtonBack onClick={() => navigate(-1)} />
       {!isLoading ? (
         <>
           {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
-          {!showTrailer && <StyledBackdropImage backdropPath={backdropPath} />}
-          <StyledHeader>
+          {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
+          <Header>
             <Poster
               src={
                 posterPath
@@ -73,37 +72,32 @@ export default function SeriesDetailsPage({
               }
               alt={`${name}`}
             />
-            <StyledHeaderBox>
-              <StyledTitle>{name}</StyledTitle>
+            <HeaderBox>
+              <Title>{name}</Title>
               <p>
                 {numberOfSeasons}
                 {numberOfSeasons === 1 ? ' Staffel - ' : ' Staffeln - '}
 
                 {firstAirDate
-                  ? firstAirDate?.substr(0, 4)
+                  ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
               <p>Bewertung: {rating} / 10</p>
-            </StyledHeaderBox>
+            </HeaderBox>
             <ButtonWrapper>
-              {!isOnWatchlist ? (
-                <StyledAddButton
+              {!isOnWatchlist && (
+                <AddButton
                   onClick={() => onHandleAddSeries(id, name, posterPath)}
-                >
-                  <StyledPlusIcon />
-                  <ScreenReaderOnly>hinzufügen</ScreenReaderOnly>
-                </StyledAddButton>
-              ) : (
-                <StyledDeleteButton onClick={() => onHandleDeleteItem(id)}>
-                  <StyledDeleteIcon />
-                  <ScreenReaderOnly>entfernen</ScreenReaderOnly>
-                </StyledDeleteButton>
+                />
+              )}
+              {isOnWatchlist && (
+                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
               )}
             </ButtonWrapper>
-          </StyledHeader>
+          </Header>
           <InnerNavigation
             currentPage={currentPage}
             handleNavigation={handleNavigation}
@@ -113,7 +107,7 @@ export default function SeriesDetailsPage({
               {seriesWatchProviders && (
                 <ProviderList providerList={seriesWatchProviders} />
               )}
-              <StyledMain>
+              <Main>
                 <h3>Handlung</h3>
                 <p>
                   {overview
@@ -124,7 +118,7 @@ export default function SeriesDetailsPage({
                 <PosterListWrapper>
                   <PosterList list={similarSeries} listName="ähnliche Serien" />
                 </PosterListWrapper>
-              </StyledMain>
+              </Main>
             </>
           )}
           {currentPage === PAGES.SEASONS && (
@@ -159,7 +153,7 @@ const PosterListWrapper = styled.div`
   margin: -10px -20px;
 `;
 
-const StyledBackdropImage = styled.div`
+const BackdropImage = styled.div`
   z-index: -1;
   position: relative;
   @media (min-width: 576px) {
@@ -180,38 +174,20 @@ const StyledBackdropImage = styled.div`
   box-shadow: inset 0 -65px 50px 0 var(--color-black);
 `;
 
-const StyledButtonBack = styled.button`
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-white);
-`;
-
-const StyledArrowBackIcon = styled(ArrowBackIcon)`
-  background-color: rgba(18, 18, 18, 0.4);
-  border-radius: var(--border-radius);
-`;
-
-const StyledHeader = styled.header`
+const Header = styled.header`
   display: flex;
   max-height: 170px;
   margin: 0 0 20px 20px;
 `;
 
-const StyledTitle = styled.span`
+const Title = styled.span`
   font-size: x-large;
   font-weight: bold;
   margin: 0;
   padding: 20px 0 5px;
 `;
 
-const StyledHeaderBox = styled.div`
+const HeaderBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -230,7 +206,7 @@ const StyledHeaderBox = styled.div`
   }
 `;
 
-const StyledMain = styled.main`
+const Main = styled.main`
   margin: 10px 20px;
   padding: 0;
 
@@ -245,40 +221,4 @@ const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin-right: 12px;
-`;
-
-const StyledAddButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-orange);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledPlusIcon = styled(PlusIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
-`;
-
-const StyledDeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-red);
-  font-size: large;
-  border: none;
-  cursor: pointer;
-`;
-
-const StyledDeleteIcon = styled(DeleteIcon)`
-  background-color: rgba(18, 18, 18, 0.6);
-  border-radius: 50%;
 `;

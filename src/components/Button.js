@@ -14,14 +14,16 @@ export default function Button({
 }
 
 const StyledButton = styled.button`
-  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   align-self: center;
   height: 50px;
   margin: 15px;
   padding: 15px;
   border-radius: 10px;
   border: none;
-  cursor: pointer;
+  font-size: 1em;
 
   ${({ buttonType }) =>
     buttonType === 'normal' &&

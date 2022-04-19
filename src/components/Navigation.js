@@ -9,26 +9,26 @@ import { ReactComponent as InfoIcon } from '../assets/icons/info_icon.svg';
 export default function Navigation() {
   return (
     <StyledNavigation>
-      <StyledLink to="/serien">
+      <Link to="/serien">
         <SeriesIcon />
         <span>Serien</span>
-      </StyledLink>
-      <StyledLink to="/filme">
+      </Link>
+      <Link to="/filme">
         <MovieIcon />
         <span>Filme</span>
-      </StyledLink>
-      <StyledLink to="/suche">
+      </Link>
+      <Link to="/suche">
         <SearchIcon />
         <span>Suche</span>
-      </StyledLink>
-      <StyledLink to="/watchlist">
+      </Link>
+      <Link to="/watchlist">
         <ListIcon />
         <span>Watchlist</span>
-      </StyledLink>
-      <StyledLink to="/info">
+      </Link>
+      <Link to="/info">
         <InfoIcon />
         <span>Info</span>
-      </StyledLink>
+      </Link>
     </StyledNavigation>
   );
 }
@@ -36,17 +36,17 @@ export default function Navigation() {
 const StyledNavigation = styled.nav`
   width: 100%;
   max-width: 768px;
-  padding: 10px 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 10px 0 21px;
   border-top: 1px solid var(--border-color);
+  background-color: var(--color-black);
   position: fixed;
   bottom: 0;
-  background-color: var(--color-black);
 `;
 
-const StyledLink = styled(NavLink)`
+const Link = styled(NavLink)`
   display: flex;
   flex-direction: column;
   justify-content: center;

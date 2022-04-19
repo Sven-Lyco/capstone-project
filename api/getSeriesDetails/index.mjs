@@ -4,6 +4,7 @@ const { API_BASE_SERIES_URL, API_KEY, API_LANGUAGE } = process.env;
 
 export default async function getSeriesDetails(req, res) {
   if (req.method === 'POST') {
+    // To test POST request with _getSeriesDetails.http use: const { id } = req.body;
     const id = req.body;
     const seriesDetailsUrl = `${API_BASE_SERIES_URL}/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
     const fetchSeriesDetailsResponse = await fetch(seriesDetailsUrl);
@@ -28,11 +29,11 @@ export default async function getSeriesDetails(req, res) {
     const seriesTrailer = await fetchSeriesTrailerUrlResponse.json();
 
     res.status(200).json({
-      seriesTrailer,
-      similarSeries,
-      seriesWatchProviders,
       seriesDetails,
+      seriesWatchProviders,
       seriesCredits,
+      similarSeries,
+      seriesTrailer,
     });
     return;
   }

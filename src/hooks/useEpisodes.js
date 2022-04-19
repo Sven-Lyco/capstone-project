@@ -11,16 +11,16 @@ export default function useEpisodes() {
 
   async function handleCheckEpisode(episodeId) {
     const watchedEpisode = { episodeId };
-    const isOnList = watchedEpisodes?.some(
+    const isOnList = watchedEpisodes.some(
       episode => episode.episodeId === watchedEpisode.episodeId
     );
 
     if (isOnList) {
-      const filteredItems = watchedEpisodes?.filter(
+      const filteredItems = watchedEpisodes.filter(
         result => result.episodeId !== episodeId
       );
       mutateWatchedEpisodes(filteredItems, false);
-      const filteredItem = watchedEpisodes?.find(
+      const filteredItem = watchedEpisodes.find(
         result => result.episodeId === episodeId
       );
       const deleteId = filteredItem._id;
@@ -49,7 +49,7 @@ export default function useEpisodes() {
 
   function checkIsEpisodeWatched(episodeId) {
     const watchedEpisode = { episodeId };
-    return watchedEpisodes?.some(
+    return watchedEpisodes.some(
       episode => episode.episodeId === watchedEpisode.episodeId
     );
   }

@@ -28,7 +28,7 @@ export default function useWatchlist() {
 
   async function handleAddSeries(id, name, posterPath) {
     const watchlistItem = { id, name, posterPath };
-    if (watchlist?.find(item => item.id === watchlistItem.id)) {
+    if (watchlist.find(item => item.id === watchlistItem.id)) {
       mutateWatchlist([...watchlist]);
     } else {
       mutateWatchlist([...watchlist, watchlistItem], false);
@@ -44,11 +44,11 @@ export default function useWatchlist() {
   }
 
   async function handleDeleteItem(id) {
-    const filteredItems = watchlist?.filter(result => result.id !== id);
+    const filteredItems = watchlist.filter(result => result.id !== id);
 
     mutateWatchlist(filteredItems, false);
 
-    const filteredItem = watchlist?.filter(result => result.id === id);
+    const filteredItem = watchlist.filter(result => result.id === id);
     const deleteId = filteredItem[0]._id;
 
     await fetch('/api/watchlist', {

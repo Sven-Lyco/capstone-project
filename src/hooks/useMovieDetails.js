@@ -9,7 +9,7 @@ export default function useMovieDetails(id) {
   const [isLoading, setIsLoading] = useState(false);
 
   const movieTrailerUrl = movieTrailer
-    ?.filter(
+    .filter(
       video =>
         video.site === 'YouTube' &&
         (video.type === 'Trailer' || video.type === 'Teaser') &&

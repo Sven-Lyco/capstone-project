@@ -2,23 +2,23 @@ import styled from 'styled-components';
 import { GoSync } from 'react-icons/go';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function ReloadButton({ onClick }) {
+export default function ReloadButton({ onClick, ...buttonProps }) {
   return (
-    <StyledButton onClick={onClick}>
+    <Button {...buttonProps} onClick={onClick}>
       <StyledReloadIcon />
       <ScreenReaderOnly>Seite neu laden</ScreenReaderOnly>
-    </StyledButton>
+    </Button>
   );
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
+  height: 40px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
   padding: 0;
-  height: 40px;
-  width: 40px;
   border: none;
   color: var(--color-blue);
   background-color: rgba(18, 18, 18, 0.6);

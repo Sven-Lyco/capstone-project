@@ -8,7 +8,7 @@ export default function useSeriesDetails(id) {
   const [seriesTrailer, setSeriesTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const seriesTrailerUrl = seriesTrailer
-    ?.filter(
+    .filter(
       video =>
         video.site === 'YouTube' &&
         (video.type === 'Trailer' || video.type === 'Teaser') &&

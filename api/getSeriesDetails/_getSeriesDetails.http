@@ -1,9 +1,9 @@
 @baseURL = http://localhost:3000/api
 
-### POST/seriesDetails
+### POST/getSeriesDetails
 POST {{baseURL}}/getSeriesDetails/
 Content-Type: application/json
 
 {
-    "id":"1399"
+    "id":"37680"
 }

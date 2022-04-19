@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import Header from '../components/Header';
-import ToggleSwitch from '../components/ToggleSwitch';
 import { ReactComponent as TmdbIcon } from '../assets/images/header/tmdb_logo.svg';
+import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 export default function InfoPage({ isChecked, handleToggleSwitch }) {
   return (
     <Wrapper>
       <Header />
-      <StyledSection>
+      <Main>
         <h2>Herzlich Willkommen bei Watcha!</h2>
         <p>
           Mithilfe von Watcha kannst du neue Filme und Serien entdecken und
@@ -62,24 +62,25 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
         >
           <StyledTmdbIcon />
         </a>
-      </StyledSection>
+      </Main>
       <Navigation />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 90px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 70px 0 90px;
 
   h2 {
     text-align: center;
   }
 `;
 
-const StyledSection = styled.section`
+const Main = styled.main`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,18 +95,19 @@ const StyledSection = styled.section`
   }
 `;
 
-const InfoBox = styled.div`
-  border-top: 2px solid var(--border-color);
-  border-bottom: 2px solid var(--border-color);
+const InfoBox = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
 `;
 
 const SettingsWrapper = styled.div`
+  width: 100vw;
   display: flex;
   justify-content: center;
-  width: 100vw;
   margin: 15px 0;
   padding-top: 5px;
 `;

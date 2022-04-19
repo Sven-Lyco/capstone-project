@@ -4,18 +4,18 @@ import PAGES from '../assets/pages';
 export default function InnerNavigation({ currentPage, handleNavigation }) {
   return (
     <Wrapper>
-      <StyledDetailsButton
+      <DetailsButton
         currentPage={currentPage}
         onClick={() => handleNavigation('details')}
       >
         Details
-      </StyledDetailsButton>
-      <StyledSeasonButton
+      </DetailsButton>
+      <SeasonButton
         currentPage={currentPage}
         onClick={() => handleNavigation('seasons')}
       >
         Staffeln
-      </StyledSeasonButton>
+      </SeasonButton>
     </Wrapper>
   );
 }
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const StyledDetailsButton = styled.button`
+const DetailsButton = styled.button`
   width: 100%;
   padding: 3px;
   border: 1px solid var(--border-color);
@@ -40,7 +40,7 @@ const StyledDetailsButton = styled.button`
     currentPage === PAGES.DETAILS ? `var(--border-color)` : `transparent`};
 `;
 
-const StyledSeasonButton = styled.button`
+const SeasonButton = styled.button`
   width: 100%;
   padding: 8px;
   border: 1px solid var(--border-color);

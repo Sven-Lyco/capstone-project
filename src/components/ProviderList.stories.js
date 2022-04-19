@@ -1,7 +1,7 @@
 import ProviderList from './ProviderList';
 
 export default {
-  title: 'components/ProviderList',
+  title: 'components/Lists/ProviderList',
   component: ProviderList,
 };
 
@@ -9,8 +9,6 @@ const Template = args => <ProviderList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  listName: 'Streaming Provider',
-
   providerList: {
     flatrate: [
       { provider_id: 1, provider_name: 'Netflix' },
