@@ -30,7 +30,7 @@ export default function SearchPage() {
         />
       </SearchWrapper>
       {results?.length !== 0 ? (
-        <StyledList>
+        <List role="list">
           {results
             ?.filter(result => result.media_type !== 'person')
             .map(
@@ -43,7 +43,7 @@ export default function SearchPage() {
                 first_air_date,
                 media_type,
               }) => (
-                <StyledListItem key={id}>
+                <ListItem key={id}>
                   <SearchResultCard
                     id={id}
                     name={name}
@@ -53,10 +53,10 @@ export default function SearchPage() {
                     firstAirDate={first_air_date}
                     mediaType={media_type}
                   />
-                </StyledListItem>
+                </ListItem>
               )
             )}
-        </StyledList>
+        </List>
       ) : (
         <InfoBox>
           <SearchIcon />
@@ -89,7 +89,7 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const StyledList = styled.ul`
+const List = styled.ul`
   list-style: none;
   padding: 0 25px;
   margin: 0;
@@ -100,7 +100,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledListItem = styled.li`
+const ListItem = styled.li`
   display: flex;
   font-size: larger;
   color: inherit;
