@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 import AddButton from '../components/AddButton';
 import ButtonBack from '../components/ButtonBack';
@@ -87,11 +88,19 @@ export default function MoviesDetailsPage({
               />
               {!isOnWatchlist && (
                 <AddButton
-                  onClick={() => onHandleAddMovie(id, title, posterPath)}
+                  onClick={() => {
+                    onHandleAddMovie(id, title, posterPath);
+                    toast.success('zur Watchlist hinzugefügt');
+                  }}
                 />
               )}
               {isOnWatchlist && (
-                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
+                <DeleteButton
+                  onClick={() => {
+                    onHandleDeleteItem(id);
+                    toast.error('von Watchlist entfernt');
+                  }}
+                />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
