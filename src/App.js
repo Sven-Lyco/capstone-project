@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ChildPage from './pages/ChildPage';
 import HomePage from './pages/HomePage';
@@ -127,7 +128,19 @@ export default function App() {
           }
         />
       </Routes>
-      <ToastContainer />
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1800}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }

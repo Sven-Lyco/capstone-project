@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 import PAGES from '../assets/pages';
 
@@ -88,11 +89,19 @@ export default function SeriesDetailsPage({
             <ButtonWrapper>
               {!isOnWatchlist && (
                 <AddButton
-                  onClick={() => onHandleAddSeries(id, name, posterPath)}
+                  onClick={() => {
+                    onHandleAddSeries(id, name, posterPath);
+                    toast.success('zur Watchlist hinzugefügt');
+                  }}
                 />
               )}
               {isOnWatchlist && (
-                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
+                <DeleteButton
+                  onClick={() => {
+                    onHandleDeleteItem(id);
+                    toast.error('von Watchlist entfernt');
+                  }}
+                />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
