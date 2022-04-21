@@ -128,7 +128,6 @@ export default function App() {
           }
         />
       </Routes>
-
       <ToastContainer
         position="bottom-center"
         autoClose={1800}
