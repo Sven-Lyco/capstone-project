@@ -1,5 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ChildPage from './pages/ChildPage';
 import HomePage from './pages/HomePage';
@@ -13,8 +15,6 @@ import SeriesPage from './pages/SeriesPage';
 import WatchlistPage from './pages/WatchlistPage';
 
 import FetchError from './components/FetchError';
-import Header from './components/Header';
-import LoadingSpinner from './components/LoadingSpinner';
 
 import useEpisodes from './hooks/useEpisodes';
 import useIsAdult from './hooks/useIsAdult';
@@ -61,85 +61,85 @@ export default function App() {
 
   return (
     <>
-      {topRatedSeries &&
-      popularSeries &&
-      seriesOnTv &&
-      popularMovies &&
-      moviesOnCinema &&
-      upcomingMovies ? (
-        <Routes>
-          <Route path="*" element={<NotFoundPage />} />
-          <Route
-            path="/"
-            element={<HomePage handleCheckIsAdult={handleCheckIsAdult} />}
-          />
-          <Route path="/child" element={<ChildPage />} />
-          <Route
-            path="/serien"
-            element={
-              <SeriesPage
-                popularSeries={popularSeries}
-                topRatedSeries={topRatedSeries}
-                seriesOnTv={seriesOnTv}
-              />
-            }
-          />
-          <Route
-            path="serie/:id"
-            element={
-              <SeriesDetailsPage
-                isChecked={isChecked}
-                watchlist={watchlist}
-                onHandleAddSeries={handleAddSeries}
-                checkIsOnWatchlist={checkIsOnWatchlist}
-                onHandleDeleteItem={handleDeleteItem}
-                handleCheckEpisode={handleCheckEpisode}
-                isEpisodeWatched={checkIsEpisodeWatched}
-              />
-            }
-          />
-          <Route
-            path="film/:id"
-            element={
-              <MovieDetailsPage
-                isChecked={isChecked}
-                onHandleAddMovie={handleAddMovie}
-                checkIsOnWatchlist={checkIsOnWatchlist}
-                onHandleDeleteItem={handleDeleteItem}
-              />
-            }
-          />
-          <Route
-            path="/filme"
-            element={
-              <MoviesPage
-                popularMovies={popularMovies}
-                moviesOnCinema={moviesOnCinema}
-                upcomingMovies={upcomingMovies}
-              />
-            }
-          />
-          <Route path="suche" element={<SearchPage />} />
-          <Route
-            path="watchlist"
-            element={<WatchlistPage watchlist={watchlist} />}
-          />
-          <Route
-            path="info"
-            element={
-              <InfoPage
-                isChecked={isChecked}
-                handleToggleSwitch={handleToggleSwitch}
-              />
-            }
-          />
-        </Routes>
-      ) : (
-        <>
-          <Header />
-          <LoadingSpinner />
-        </>
-      )}
+      <Routes>
+        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/"
+          element={<HomePage handleCheckIsAdult={handleCheckIsAdult} />}
+        />
+        <Route path="/child" element={<ChildPage />} />
+        <Route
+          path="/serien"
+          element={
+            <SeriesPage
+              popularSeries={popularSeries}
+              topRatedSeries={topRatedSeries}
+              seriesOnTv={seriesOnTv}
+            />
+          }
+        />
+        <Route
+          path="serie/:id"
+          element={
+            <SeriesDetailsPage
+              isChecked={isChecked}
+              watchlist={watchlist}
+              onHandleAddSeries={handleAddSeries}
+              checkIsOnWatchlist={checkIsOnWatchlist}
+              onHandleDeleteItem={handleDeleteItem}
+              handleCheckEpisode={handleCheckEpisode}
+              isEpisodeWatched={checkIsEpisodeWatched}
+            />
+          }
+        />
+        <Route
+          path="film/:id"
+          element={
+            <MovieDetailsPage
+              isChecked={isChecked}
+              onHandleAddMovie={handleAddMovie}
+              checkIsOnWatchlist={checkIsOnWatchlist}
+              onHandleDeleteItem={handleDeleteItem}
+            />
+          }
+        />
+        <Route
+          path="/filme"
+          element={
+            <MoviesPage
+              popularMovies={popularMovies}
+              moviesOnCinema={moviesOnCinema}
+              upcomingMovies={upcomingMovies}
+            />
+          }
+        />
+        <Route path="suche" element={<SearchPage />} />
+        <Route
+          path="watchlist"
+          element={<WatchlistPage watchlist={watchlist} />}
+        />
+        <Route
+          path="info"
+          element={
+            <InfoPage
+              isChecked={isChecked}
+              handleToggleSwitch={handleToggleSwitch}
+            />
+          }
+        />
+      </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={1800}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 import AddButton from '../components/AddButton';
 import ButtonBack from '../components/ButtonBack';
@@ -8,6 +9,7 @@ import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
 import FetchError from '../components/FetchError';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Navigation from '../components/Navigation';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
@@ -87,11 +89,19 @@ export default function MoviesDetailsPage({
               />
               {!isOnWatchlist && (
                 <AddButton
-                  onClick={() => onHandleAddMovie(id, title, posterPath)}
+                  onClick={() => {
+                    onHandleAddMovie(id, title, posterPath);
+                    toast.success('zur Watchlist hinzugefügt');
+                  }}
                 />
               )}
               {isOnWatchlist && (
-                <DeleteButton onClick={() => onHandleDeleteItem(id)} />
+                <DeleteButton
+                  onClick={() => {
+                    onHandleDeleteItem(id);
+                    toast.error('von Watchlist entfernt');
+                  }}
+                />
               )}
               {showTrailer && (
                 <ReloadButton onClick={() => window.location.reload(false)} />
@@ -116,6 +126,7 @@ export default function MoviesDetailsPage({
         </>
       )}
       {isLoading && <LoadingSpinner />}
+      <Navigation />
     </Wrapper>
   );
 
@@ -129,10 +140,11 @@ export default function MoviesDetailsPage({
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
+  margin-bottom: 80px;
 `;
 
 const PosterListWrapper = styled.div`
-  margin: -10px 0 0 -20px;
+  margin: 0 -20px 0 -20px;
 `;
 
 const BackdropImage = styled.div`

@@ -90,7 +90,8 @@ const Main = styled.main`
   p {
     margin-top: 10px;
     padding: 0 15px;
-    text-align: center;
+    text-align: justify;
+    hyphens: auto;
     line-height: 1.5;
   }
 `;
@@ -115,7 +116,8 @@ const SettingsWrapper = styled.div`
 const SettingsInfo = styled.p`
   margin-top: 10px;
   padding: 0 15px;
-  text-align: center;
+  text-align: justify;
+  hyphens: auto;
   line-height: 1.5;
   font-size: medium;
   font-style: italic;
