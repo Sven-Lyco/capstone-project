@@ -11,6 +11,7 @@ import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
 import InnerNavigation from '../components/InnerNavigation';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Navigation from '../components/Navigation';
 import Poster from '../components/Poster';
 import PosterList from '../components/PosterList';
 import ProviderList from '../components/ProviderList';
@@ -146,6 +147,7 @@ export default function SeriesDetailsPage({
           <LoadingSpinner />
         </>
       )}
+      <Navigation />
     </Wrapper>
   );
 
@@ -157,6 +159,7 @@ export default function SeriesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  margin-bottom: 90px;
 `;
 
 const PosterListWrapper = styled.div`
