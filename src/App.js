@@ -129,10 +129,10 @@ export default function App() {
         />
       </Routes>
       <ToastContainer
-        position="bottom-center"
+        position="top-center"
         autoClose={1800}
         hideProgressBar={false}
-        newestOnTop
+        newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
