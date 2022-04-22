@@ -62,7 +62,7 @@ export default function SeriesDetailsPage({
   return (
     <Wrapper>
       <ButtonBack onClick={() => navigate(-1)} />
-      {!isLoading ? (
+      {!isLoading && (
         <>
           {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
           {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
@@ -142,11 +142,8 @@ export default function SeriesDetailsPage({
             />
           )}
         </>
-      ) : (
-        <>
-          <LoadingSpinner />
-        </>
       )}
+      {isLoading && <LoadingSpinner />}
       <Navigation />
     </Wrapper>
   );
