@@ -33,6 +33,7 @@ export default function useMovie() {
       });
       mutateWatchedMovies();
     }
+
     if (!isOnList) {
       mutateWatchedMovies([...watchedMovies, watchedMovie], false);
       await fetch('/api/watchedMovies', {
@@ -45,10 +46,12 @@ export default function useMovie() {
       mutateWatchedMovies();
     }
   }
+
   function checkIsMovieWatched(movieId) {
     const watchedMovie = { movieId };
     return watchedMovies?.some(movie => movie.movieId === watchedMovie.movieId);
   }
+
   return {
     watchedMoviesError,
     handleCheckMovie,

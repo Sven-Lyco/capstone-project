@@ -7,7 +7,6 @@ export default function useMovieDetails(id) {
   const [similarMovies, setSimilarMovies] = useState([]);
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const movieTrailerUrl = movieTrailer
     .filter(
       video =>
@@ -41,6 +40,7 @@ export default function useMovieDetails(id) {
     }
     loadMovieDetails();
   }, [id]);
+
   return {
     movieTrailerUrl,
     similarMovies,

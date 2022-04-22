@@ -25,6 +25,7 @@ export default function useSeries() {
     }
     loadSeries();
   }, []);
+
   return {
     popularSeries,
     topRatedSeries,
