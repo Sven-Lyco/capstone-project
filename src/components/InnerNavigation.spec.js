@@ -10,12 +10,16 @@ describe('InnerNavigation', () => {
     expect(navigationButtons).toHaveLength(2);
   });
 
-  it('has onClick function', () => {
+  it('each button has onClick function', () => {
     const handleNavigation = jest.fn();
     render(<InnerNavigation handleNavigation={handleNavigation} />);
 
-    const navigationButton = screen.getByRole('button', { name: /details/i });
-    userEvent.click(navigationButton);
+    const detailsButton = screen.getByRole('button', { name: /details/i });
+    userEvent.click(detailsButton);
+    expect(handleNavigation).toHaveBeenCalled();
+
+    const seasonsButton = screen.getByRole('button', { name: /staffeln/i });
+    userEvent.click(seasonsButton);
     expect(handleNavigation).toHaveBeenCalled();
   });
 });

@@ -8,14 +8,7 @@ describe('EpisodeCard', () => {
   };
 
   it('renders a listitem with correct text', () => {
-    render(
-      <EpisodeCard
-        episode={episode}
-        seriesIsOnWatchlist={true}
-        isEpisodeWatched={true}
-        onCheckEpisode={() => jest.fn()}
-      />
-    );
+    render(<EpisodeCard episode={episode} onCheckEpisode={() => jest.fn()} />);
 
     const element = screen.getByRole('listitem');
     expect(element).toBeInTheDocument();
