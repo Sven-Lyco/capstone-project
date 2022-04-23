@@ -10,4 +10,5 @@ export default function ScrollToTop() {
       behavior: 'smooth',
     });
   }, [pathname]);
+  return null;
 }
