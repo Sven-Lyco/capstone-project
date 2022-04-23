@@ -11,10 +11,10 @@ Content-Type: application/json
   "episodeId": 484344
 }
 
-###DELETE /watchedEpisode
+###DELETE /watchedEpisodes
 DELETE {{baseUrl}}
 Content-Type: application/json
 
 {
-  "_id": "625476854b20e889f3523021"
+  "_id": "6263de72609bb7425f1c0e18"
 }
