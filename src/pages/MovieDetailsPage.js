@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { toast } from 'react-toastify';
 
 import AddButton from '../components/AddButton';
+import BackdropImage from '../components/BackdropImage';
 import ButtonBack from '../components/ButtonBack';
 import ButtonCheck from '../components/ButtonCheck';
 import CastList from '../components/CastList';
@@ -140,30 +141,10 @@ export default function MoviesDetailsPage({
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
-  margin-bottom: 80px;
 `;
 
 const PosterListWrapper = styled.div`
-  margin: 0 -20px 0 -20px;
-`;
-
-const BackdropImage = styled.div`
-  z-index: -1;
-  position: relative;
-  @media (min-width: 576px) {
-    min-height: ${({ backdropPath }) => (backdropPath ? `360px` : `140px`)};
-  }
-  min-height: ${({ backdropPath }) => (backdropPath ? `300px` : `140px`)};
-  height: 100%;
-  background: ${({ backdropPath }) =>
-      backdropPath
-        ? `url(https://image.tmdb.org/t/p/original${backdropPath})`
-        : ''}
-    center 0 no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -60px;
-  box-shadow: inset 0 -65px 50px 0 var(--color-black);
+  margin: 0 -20px 80px -20px;
 `;
 
 const Header = styled.header`

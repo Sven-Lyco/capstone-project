@@ -1,5 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,7 +23,6 @@ import useToggle from './hooks/useToggle';
 import useWatchlist from './hooks/useWatchlist';
 
 export default function App() {
-  const { pathname } = useLocation();
   const { handleCheckIsAdult } = useIsAdult();
   const { isChecked, handleToggleSwitch } = useToggle();
   const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
@@ -39,13 +37,6 @@ export default function App() {
     handleAddSeries,
     handleAddMovie,
   } = useWatchlist();
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }, [pathname]);
 
   if (
     !topRatedSeries ||

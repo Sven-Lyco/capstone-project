@@ -5,6 +5,7 @@ import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 export default function useIsAdult() {
   const navigate = useNavigate();
   const [isAdult, setIsAdult] = useState(loadFromLocal('isAdult') ?? false);
+
   useEffect(() => {
     saveToLocal('isAdult', isAdult);
   }, [isAdult]);
@@ -18,5 +19,6 @@ export default function useIsAdult() {
       navigate('./child');
     }
   }
+
   return { handleCheckIsAdult };
 }

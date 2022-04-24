@@ -40,6 +40,7 @@ export default function useSeriesDetails(id) {
     }
     loadSeriesDetails();
   }, [id]);
+
   return {
     seriesTrailerUrl,
     similarSeries,

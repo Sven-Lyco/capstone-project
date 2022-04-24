@@ -25,6 +25,7 @@ export default function useMovies() {
     }
     loadMovies();
   }, []);
+
   return {
     popularMovies,
     moviesOnCinema,

@@ -24,5 +24,6 @@ export default function useSeasonDetails(url) {
     }
     loadSeason();
   }, [url]);
+
   return { seasonDetails, isLoading };
 }

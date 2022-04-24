@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import PAGES from '../assets/pages';
 
 import AddButton from '../components/AddButton';
+import BackdropImage from '../components/BackdropImage';
 import ButtonBack from '../components/ButtonBack';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
@@ -62,7 +63,7 @@ export default function SeriesDetailsPage({
   return (
     <Wrapper>
       <ButtonBack onClick={() => navigate(-1)} />
-      {!isLoading ? (
+      {!isLoading && (
         <>
           {showTrailer && <VideoFrame videoUrl={seriesTrailerUrl} />}
           {!showTrailer && <BackdropImage backdropPath={backdropPath} />}
@@ -133,20 +134,19 @@ export default function SeriesDetailsPage({
             </>
           )}
           {currentPage === PAGES.SEASONS && (
-            <SeasonsList
-              seriesId={id}
-              seasons={seasons}
-              handleCheckEpisode={handleCheckEpisode}
-              isEpisodeWatched={isEpisodeWatched}
-              episodeRunTime={episode_run_time[0]}
-            />
+            <SeasonsListWrapper>
+              <SeasonsList
+                seriesId={id}
+                seasons={seasons}
+                handleCheckEpisode={handleCheckEpisode}
+                isEpisodeWatched={isEpisodeWatched}
+                episodeRunTime={episode_run_time[0]}
+              />
+            </SeasonsListWrapper>
           )}
         </>
-      ) : (
-        <>
-          <LoadingSpinner />
-        </>
       )}
+      {isLoading && <LoadingSpinner />}
       <Navigation />
     </Wrapper>
   );
@@ -159,32 +159,14 @@ export default function SeriesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 90px;
 `;
 
 const PosterListWrapper = styled.div`
-  margin: -10px -20px;
+  margin: 0 -20px 80px -20px;
 `;
 
-const BackdropImage = styled.div`
-  z-index: -1;
-  position: relative;
-  @media (min-width: 576px) {
-    min-height: ${({ backdropPath }) => (backdropPath ? `360px` : `140px`)};
-  }
-
-  min-height: ${({ backdropPath }) => (backdropPath ? `300px` : `140px`)};
-
-  height: 100%;
-  background: ${({ backdropPath }) =>
-      backdropPath
-        ? `url(https://image.tmdb.org/t/p/original${backdropPath})`
-        : ''}
-    center 0 no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -60px;
-  box-shadow: inset 0 -65px 50px 0 var(--color-black);
+const SeasonsListWrapper = styled.div`
+  margin-bottom: 90px;
 `;
 
 const Header = styled.header`

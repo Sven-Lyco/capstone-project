@@ -58,7 +58,7 @@ const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   list-style: none;
   padding: 0 10px;

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { WhisperSpinner } from 'react-spinners-kit';
+import { ClapSpinner } from 'react-spinners-kit';
 
 export default function LoadingSpinner() {
   return (
     <Wrapper>
-      <WhisperSpinner />
+      <ClapSpinner size={40} frontColor="#2BD999" backColor="#454545" />
     </Wrapper>
   );
 }
