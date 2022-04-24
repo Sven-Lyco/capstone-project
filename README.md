@@ -16,7 +16,7 @@ Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel
 
 **Important:** This demo is optimized for mobile screen!
 
-<!-- ![App screens](/public/images/screens.png) -->
+![App screens](/public/images/screens.png)
 
 ## `Tech Stack`
 
