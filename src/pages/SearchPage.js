@@ -8,7 +8,7 @@ import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
   const { results, handleSearch } = useSearch();
-
+  console.log(results);
   return (
     <Wrapper>
       <Header />
@@ -29,6 +29,13 @@ export default function SearchPage() {
           autoComplete="off"
         />
       </SearchWrapper>
+      {results === undefined && (
+        <InfoBox>
+          <SearchIcon />
+          <span>Bitte gib einen Suchbegriff ein</span>
+          <span>oder ändere deine Suche</span>
+        </InfoBox>
+      )}
       {results?.length !== 0 ? (
         <List role="list">
           {results
