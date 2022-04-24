@@ -15,7 +15,8 @@ Watcha helps you to discover new movies and series and add them to your watchlis
 Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel.app/)
 
 **Important:** This demo is optimized for mobile screen!
-![App screens](/public/images/screens.png)
+
+<!-- ![App screens](/public/images/screens.png) -->
 
 ## `Tech Stack`
 
