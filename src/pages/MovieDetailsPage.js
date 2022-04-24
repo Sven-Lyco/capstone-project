@@ -141,11 +141,10 @@ export default function MoviesDetailsPage({
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
-  margin-bottom: 80px;
 `;
 
 const PosterListWrapper = styled.div`
-  margin: 0 -20px 0 -20px;
+  margin: 0 -20px 80px -20px;
 `;
 
 const Header = styled.header`

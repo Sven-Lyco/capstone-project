@@ -134,13 +134,15 @@ export default function SeriesDetailsPage({
             </>
           )}
           {currentPage === PAGES.SEASONS && (
-            <SeasonsList
-              seriesId={id}
-              seasons={seasons}
-              handleCheckEpisode={handleCheckEpisode}
-              isEpisodeWatched={isEpisodeWatched}
-              episodeRunTime={episode_run_time[0]}
-            />
+            <SeasonsListWrapper>
+              <SeasonsList
+                seriesId={id}
+                seasons={seasons}
+                handleCheckEpisode={handleCheckEpisode}
+                isEpisodeWatched={isEpisodeWatched}
+                episodeRunTime={episode_run_time[0]}
+              />
+            </SeasonsListWrapper>
           )}
         </>
       )}
@@ -157,11 +159,14 @@ export default function SeriesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 90px;
 `;
 
 const PosterListWrapper = styled.div`
-  margin: -10px -20px;
+  margin: 0 -20px 80px -20px;
+`;
+
+const SeasonsListWrapper = styled.div`
+  margin-bottom: 90px;
 `;
 
 const Header = styled.header`
