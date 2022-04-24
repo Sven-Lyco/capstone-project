@@ -8,7 +8,6 @@ import useSearch from '../hooks/useSearch';
 
 export default function SearchPage() {
   const { results, handleSearch } = useSearch();
-  console.log(results);
   return (
     <Wrapper>
       <Header />
