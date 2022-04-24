@@ -10,7 +10,7 @@ export default styled.div`
   height: 100%;
   background: ${({ backdropPath }) =>
       backdropPath
-        ? `url(https://image.tmdb.org/t/p/original${backdropPath})`
+        ? `url(https://image.tmdb.org/t/p/w1280${backdropPath})`
         : ''}
     center 0 no-repeat;
   background-size: cover;

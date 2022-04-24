@@ -55,7 +55,7 @@ const ImageBox = styled.div`
   width: ${({ stillPath }) => (stillPath ? `70px` : '0px')};
   height: auto;
   background: ${({ stillPath }) =>
-      stillPath ? `url(https://image.tmdb.org/t/p/original${stillPath})` : ''}
+      stillPath ? `url(https://image.tmdb.org/t/p/w300${stillPath})` : ''}
     center 0 no-repeat;
   background-size: cover;
   background-position: center;

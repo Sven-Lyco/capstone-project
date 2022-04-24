@@ -52,6 +52,7 @@ const List = styled.ul`
   li {
     padding: 0;
     margin: 0;
+    max-width: 120px;
   }
 `;
 
