@@ -1,5 +1,5 @@
+import { GoChevronLeft, GoHome } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
-import { GoHome, GoChevronLeft } from 'react-icons/go';
 import styled, { keyframes } from 'styled-components';
 import Button from '../components/Button';
 

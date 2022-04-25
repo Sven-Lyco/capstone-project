@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Poster from '../components/Poster';

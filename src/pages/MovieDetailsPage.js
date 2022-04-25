@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { toast } from 'react-toastify';
-
+import styled from 'styled-components';
 import AddButton from '../components/AddButton';
 import BackdropImage from '../components/BackdropImage';
 import ButtonBack from '../components/ButtonBack';
@@ -17,7 +16,6 @@ import ProviderList from '../components/ProviderList';
 import RatingCircle from '../components/RatingCircle';
 import ReloadButton from '../components/ReloadButton';
 import VideoFrame from '../components/VideoFrame';
-
 import useMovie from '../hooks/useMovie';
 import useMovieDetails from '../hooks/useMovieDetails';
 import useShowTrailer from '../hooks/useShowTrailer';

@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { toast } from 'react-toastify';
-
+import styled from 'styled-components';
 import PAGES from '../assets/pages';
-
 import AddButton from '../components/AddButton';
 import BackdropImage from '../components/BackdropImage';
 import ButtonBack from '../components/ButtonBack';
@@ -20,7 +18,6 @@ import RatingCircle from '../components/RatingCircle';
 import ReloadButton from '../components/ReloadButton';
 import SeasonsList from '../components/SeasonsList';
 import VideoFrame from '../components/VideoFrame';
-
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
 

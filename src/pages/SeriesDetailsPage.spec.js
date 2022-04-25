@@ -1,6 +1,6 @@
-import SeriesDetailsPage from './SeriesDetailsPage';
-import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import SeriesDetailsPage from './SeriesDetailsPage';
 
 describe('SeriesDetailsPage', () => {
   const checkIsOnWatchlist = jest.fn();
