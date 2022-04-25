@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import { useNavigate } from 'react-router-dom';
+import { loadFromLocal, saveToLocal } from '../utils/localStorage';
 
 export default function useIsAdult() {
   const navigate = useNavigate();

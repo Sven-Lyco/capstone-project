@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import { loadFromLocal, saveToLocal } from '../utils/localStorage';
 
 export default function useToggle() {
   const [isChecked, setIsChecked] = useState(
