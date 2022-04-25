@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { GoSync } from 'react-icons/go';
+import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function ReloadButton({ onClick, ...buttonProps }) {

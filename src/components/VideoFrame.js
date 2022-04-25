@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import ReactPlayer from 'react-player/youtube';
+import styled from 'styled-components';
 
 export default function VideoFrame({ videoUrl }) {
   const [playing, setPlaying] = useState(false);

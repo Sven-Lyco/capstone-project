@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as SeriesIcon } from '../assets/icons/series_icon.svg';
+import { ReactComponent as InfoIcon } from '../assets/icons/info_icon.svg';
 import { ReactComponent as MovieIcon } from '../assets/icons/movie_icon.svg';
 import { ReactComponent as SearchIcon } from '../assets/icons/search_icon.svg';
+import { ReactComponent as SeriesIcon } from '../assets/icons/series_icon.svg';
 import { ReactComponent as ListIcon } from '../assets/icons/watchlist_icon.svg';
-import { ReactComponent as InfoIcon } from '../assets/icons/info_icon.svg';
 
 export default function Navigation() {
   return (

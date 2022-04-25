@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-
+import defaultPoster from '../assets/images/poster.png';
+import useSeasonDetails from '../hooks/useSeasonDetails';
 import ButtonSeason from './ButtonSeason';
 import EpisodeCard from './EpisodeCard';
 import Poster from './Poster';
-import defaultPoster from '../assets/images/poster.png';
-import useSeasonDetails from '../hooks/useSeasonDetails';
 
 export default function SeasonsList({
   seasons,

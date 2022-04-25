@@ -1,6 +1,6 @@
-import ReloadButton from './ReloadButton';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import ReloadButton from './ReloadButton';
 
 describe('ReloadButton', () => {
   it('renders a button', () => {

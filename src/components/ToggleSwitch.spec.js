@@ -1,6 +1,6 @@
-import ToggleSwitch from './ToggleSwitch';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import ToggleSwitch from './ToggleSwitch';
 
 describe('ToggleSwitch', () => {
   it('renders a checkbox as a toggle switch', () => {

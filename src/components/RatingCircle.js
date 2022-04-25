@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import {
-  CircularProgressbarWithChildren,
   buildStyles,
+  CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
+import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
 export default function RatingCircle({ rating }) {

@@ -1,6 +1,6 @@
-import InnerNavigation from './InnerNavigation';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import InnerNavigation from './InnerNavigation';
 
 describe('InnerNavigation', () => {
   it('renders two buttons', () => {

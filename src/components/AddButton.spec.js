@@ -1,6 +1,6 @@
-import AddButton from './AddButton';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import AddButton from './AddButton';
 
 describe('AddButton', () => {
   it('renders a button', () => {

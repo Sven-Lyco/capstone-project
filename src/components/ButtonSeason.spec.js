@@ -1,6 +1,6 @@
-import ButtonSeason from './ButtonSeason';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import ButtonSeason from './ButtonSeason';
 
 describe('ButtonSeason', () => {
   it('renders a button', () => {

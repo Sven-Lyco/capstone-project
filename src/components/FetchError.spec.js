@@ -1,5 +1,5 @@
-import FetchError from './FetchError';
 import { render, screen } from '@testing-library/react';
+import FetchError from './FetchError';
 
 describe('FetchError', () => {
   it('renders the Page with heading and a button', () => {

@@ -1,5 +1,5 @@
-import RatingCircle from './RatingCircle';
 import { render, screen } from '@testing-library/react';
+import RatingCircle from './RatingCircle';
 
 const rating = 6;
 

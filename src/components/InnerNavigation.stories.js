@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
-import InnerNavigation from './InnerNavigation';
 import PAGES from '../assets/pages';
+import InnerNavigation from './InnerNavigation';
 
 export default {
   title: 'components/Navigation/InnerNavigation',

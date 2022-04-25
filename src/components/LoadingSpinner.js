@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { ClapSpinner } from 'react-spinners-kit';
+import styled from 'styled-components';
 
 export default function LoadingSpinner() {
   return (
