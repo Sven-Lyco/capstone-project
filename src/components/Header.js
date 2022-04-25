@@ -27,6 +27,7 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid var(--border-color);
   position: fixed;
   top: 0;
+  z-index: 2;
 
   h1 {
     margin: 0;

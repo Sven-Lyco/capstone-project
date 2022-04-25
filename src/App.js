@@ -18,8 +18,10 @@ import SearchPage from './pages/SearchPage';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import SeriesPage from './pages/SeriesPage';
 import WatchlistPage from './pages/WatchlistPage';
+import ScrollToTop from './utils/ScrollToTop';
 
 export default function App() {
+  ScrollToTop();
   const { handleCheckIsAdult } = useIsAdult();
   const { isChecked, handleToggleSwitch } = useToggle();
   const { popularSeries, topRatedSeries, seriesOnTv } = useSeries();
