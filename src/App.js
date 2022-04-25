@@ -1,7 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import FetchError from './components/FetchError';
+import useEpisodes from './hooks/useEpisodes';
+import useIsAdult from './hooks/useIsAdult';
+import useMovies from './hooks/useMovies';
+import useSeries from './hooks/useSeries';
+import useToggle from './hooks/useToggle';
+import useWatchlist from './hooks/useWatchlist';
 import ChildPage from './pages/ChildPage';
 import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
@@ -12,15 +18,6 @@ import SearchPage from './pages/SearchPage';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import SeriesPage from './pages/SeriesPage';
 import WatchlistPage from './pages/WatchlistPage';
-
-import FetchError from './components/FetchError';
-
-import useEpisodes from './hooks/useEpisodes';
-import useIsAdult from './hooks/useIsAdult';
-import useMovies from './hooks/useMovies';
-import useSeries from './hooks/useSeries';
-import useToggle from './hooks/useToggle';
-import useWatchlist from './hooks/useWatchlist';
 
 export default function App() {
   const { handleCheckIsAdult } = useIsAdult();
