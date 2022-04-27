@@ -50,4 +50,5 @@ Have a look at the hosted version on Vercel: [Watcha Demo](https://watcha.vercel
 ### Side Note
 
 > All data comes from [The Movie Database API](https://www.themoviedb.org/)
-> , the data of providers comes from JustWatch in partnership with The Movie Database API
+> , the data of providers comes from JustWatch in partnership with The Movie Database API.
+> This product uses the TMDB API but is not endorsed or certified by TMDB.
