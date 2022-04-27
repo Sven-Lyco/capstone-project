@@ -45,8 +45,8 @@ export default function InfoPage({ isChecked, handleToggleSwitch }) {
           </SettingsWrapper>
         </InfoBox>
         <p>
-          Alle angezeigten Inhalte dieser App werden von The Movie Database
-          bereitgestellt.
+          Dieses Produkt verwendet die TMDB-API, wird aber nicht von TMDB
+          unterstützt oder zertifiziert.
         </p>
         <p>
           Die einzelnen Listen von Streaminganbietern, auf den Detailseiten von
