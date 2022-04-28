@@ -86,10 +86,10 @@ const SearchWrapper = styled.div`
   position: sticky;
   top: 58px;
   input {
-    padding: 10px 8px;
+    padding: 10px 12px;
     width: 100%;
     color: inherit;
-    border-radius: var(--border-radius);
+    border-radius: 22px;
     border: transparent;
     background-color: var(--color-dark-gray);
   }
