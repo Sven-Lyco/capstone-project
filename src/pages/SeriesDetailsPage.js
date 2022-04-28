@@ -125,7 +125,12 @@ export default function SeriesDetailsPage({
                 </p>
                 <CastList castList={seriesCast} listName="Hauptdarsteller" />
                 <PosterListWrapper>
-                  <PosterList list={similarSeries} listName="ähnliche Serien" />
+                  {similarSeries.length > 1 && (
+                    <PosterList
+                      list={similarSeries}
+                      listName="ähnliche Serien"
+                    />
+                  )}
                 </PosterListWrapper>
               </Main>
             </>
