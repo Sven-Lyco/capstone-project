@@ -119,7 +119,9 @@ export default function MoviesDetailsPage({
             </p>
             <CastList castList={movieCast} listName="Hauptdarsteller" />
             <PosterListWrapper>
-              <PosterList list={similarMovies} listName="ähnliche Filme" />
+              {similarMovies.length > 1 && (
+                <PosterList list={similarMovies} listName="ähnliche Filme" />
+              )}
             </PosterListWrapper>
           </Main>
         </>
