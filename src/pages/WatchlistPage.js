@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useMovie from '../hooks/useMovie';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Poster from '../components/Poster';
 
 export default function WatchlistPage({ watchlist }) {
+  const { checkIsMovieWatched } = useMovie();
   return (
     <Wrapper>
       <Header />
@@ -25,6 +27,7 @@ export default function WatchlistPage({ watchlist }) {
                       : require('../assets/images/poster.png')
                   }
                   alt={name ? `${name}` : `${title}`}
+                  isWatched={checkIsMovieWatched(id)}
                 />
               </Link>
             </li>
