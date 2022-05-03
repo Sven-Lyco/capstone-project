@@ -1,4 +1,5 @@
 import Poster from './Poster';
+import defaultPoster from '../assets/images/poster.png';
 
 export default {
   title: 'components/Poster/Poster',
@@ -10,5 +11,6 @@ const Template = args => <Poster {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   alt: 'Poster',
-  src: require('../assets/images/poster.png'),
+  isWatched: true,
+  src: defaultPoster,
 };
