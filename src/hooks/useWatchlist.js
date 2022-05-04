@@ -29,7 +29,7 @@ export default function useWatchlist() {
   async function handleAddSeries(id, name, posterPath) {
     const watchlistItem = { id, name, posterPath };
     if (watchlist.find(item => item.id === watchlistItem.id)) {
-      mutateWatchlist([...watchlist]);
+      return;
     } else {
       mutateWatchlist([...watchlist, watchlistItem], false);
       await fetch('/api/watchlist', {
