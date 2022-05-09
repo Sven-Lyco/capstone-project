@@ -6,8 +6,10 @@ import PAGES from '../assets/pages';
 import AddButton from '../components/AddButton';
 import BackdropImage from '../components/BackdropImage';
 import ButtonBack from '../components/ButtonBack';
+import ButtonCheck from '../components/ButtonCheck';
 import CastList from '../components/CastList';
 import DeleteButton from '../components/DeleteButton';
+import FetchError from '../components/FetchError';
 import InnerNavigation from '../components/InnerNavigation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Navigation from '../components/Navigation';
@@ -18,6 +20,7 @@ import RatingCircle from '../components/RatingCircle';
 import ReloadButton from '../components/ReloadButton';
 import SeasonsList from '../components/SeasonsList';
 import VideoFrame from '../components/VideoFrame';
+import useSeries from '../hooks/useSeries';
 import useSeriesDetails from '../hooks/useSeriesDetails';
 import useShowTrailer from '../hooks/useShowTrailer';
 
@@ -56,6 +59,10 @@ export default function SeriesDetailsPage({
     isChecked,
     trailerUrl: seriesTrailerUrl,
   });
+  const { watchedSeriesError, handleCheckSeries, checkIsSeriesWatched } =
+    useSeries();
+
+  if (watchedSeriesError) return <FetchError />;
 
   return (
     <Wrapper>
@@ -86,6 +93,10 @@ export default function SeriesDetailsPage({
               <RatingCircle rating={rating} />
             </HeaderBox>
             <ButtonWrapper>
+              <ButtonCheck
+                onClick={() => handleCheckSeries(id, name)}
+                isActive={checkIsSeriesWatched(id)}
+              />
               {!isOnWatchlist && (
                 <AddButton
                   onClick={() => {
@@ -218,5 +229,4 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-right: 12px;
 `;
