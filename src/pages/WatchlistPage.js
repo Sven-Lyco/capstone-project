@@ -52,7 +52,7 @@ export default function WatchlistPage({ watchlist }) {
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 80px;
+  margin: 70px 0 90px;
 `;
 
 const InfoBox = styled.section`
