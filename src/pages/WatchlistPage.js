@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useMovie from '../hooks/useMovie';
+import useSeries from '../hooks/useSeries';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Poster from '../components/Poster';
 
 export default function WatchlistPage({ watchlist }) {
+  const { checkIsMovieWatched } = useMovie();
+  const { checkIsSeriesWatched } = useSeries();
+
   return (
     <Wrapper>
       <Header />
@@ -25,6 +30,7 @@ export default function WatchlistPage({ watchlist }) {
                       : require('../assets/images/poster.png')
                   }
                   alt={name ? `${name}` : `${title}`}
+                  isWatched={checkIsWatched(id)}
                 />
               </Link>
             </li>
@@ -34,10 +40,19 @@ export default function WatchlistPage({ watchlist }) {
       <Navigation />
     </Wrapper>
   );
+
+  function checkIsWatched(id) {
+    if (checkIsMovieWatched(id)) {
+      return true;
+    }
+    if (checkIsSeriesWatched(id)) {
+      return true;
+    }
+  }
 }
 
 const Wrapper = styled.div`
-  margin: 70px 0 80px;
+  margin: 70px 0 90px;
 `;
 
 const InfoBox = styled.section`

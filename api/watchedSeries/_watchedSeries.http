@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3000/api/watchedSeries
+
+###GET /watchedSeries
+GET {{baseUrl}}
+
+###POST /watchedSeries
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "seriesId": "12598",
+  "name": "Black Lagoon"
+}
+
+###DELETE /watchedSeries
+DELETE {{baseUrl}}
+Content-Type: application/json
+
+{
+  "_id": "6279165e090c3c7727cfea8a"
+}
