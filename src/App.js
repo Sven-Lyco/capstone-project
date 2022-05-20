@@ -14,6 +14,7 @@ import InfoPage from './pages/InfoPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import MoviesPage from './pages/MoviesPage';
 import NotFoundPage from './pages/NotFoundPage';
+import PersonDetailsPage from './pages/PersonDetailsPage';
 import SearchPage from './pages/SearchPage';
 import SeriesDetailsPage from './pages/SeriesDetailsPage';
 import SeriesPage from './pages/SeriesPage';
@@ -117,6 +118,7 @@ export default function App() {
             />
           }
         />
+        <Route path="person/:id" element={<PersonDetailsPage />} />
       </Routes>
       <ToastContainer
         position="top-center"
