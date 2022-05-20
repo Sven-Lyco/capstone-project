@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import defaultPoster from '../assets/images/profile.png';
 import PosterActor from './PosterActor';
+import { Link } from 'react-router-dom';
 
 export default function CastList({ castList, listName }) {
   return (
@@ -10,14 +11,16 @@ export default function CastList({ castList, listName }) {
         <List role="list" listLength={castList.length}>
           {castList.map(({ id, name, character, profile_path }) => (
             <li key={id}>
-              <PosterActor
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w300${profile_path}`
-                    : defaultPoster
-                }
-                alt={name}
-              />
+              <Link to={`/person/${id}`}>
+                <PosterActor
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                      : defaultPoster
+                  }
+                  alt={name}
+                />
+              </Link>
               <ActorName>{name}</ActorName>
               <CharacterName>{character}</CharacterName>
             </li>
