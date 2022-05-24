@@ -37,31 +37,32 @@ export default function SearchPage() {
       )}
       {results?.length !== 0 ? (
         <List role="list">
-          {results
-            ?.filter(result => result.media_type !== 'person')
-            .map(
-              ({
-                id,
-                name,
-                title,
-                poster_path,
-                release_date,
-                first_air_date,
-                media_type,
-              }) => (
-                <ListItem key={id}>
-                  <SearchResultCard
-                    id={id}
-                    name={name}
-                    title={title}
-                    posterPath={poster_path}
-                    releaseDate={release_date}
-                    firstAirDate={first_air_date}
-                    mediaType={media_type}
-                  />
-                </ListItem>
-              )
-            )}
+          {console.log(results)}
+          {results?.map(
+            ({
+              id,
+              name,
+              title,
+              poster_path,
+              profile_path,
+              release_date,
+              first_air_date,
+              media_type,
+            }) => (
+              <ListItem key={id}>
+                <SearchResultCard
+                  id={id}
+                  name={name}
+                  title={title}
+                  posterPath={poster_path}
+                  profilePath={profile_path}
+                  releaseDate={release_date}
+                  firstAirDate={first_air_date}
+                  mediaType={media_type}
+                />
+              </ListItem>
+            )
+          )}
         </List>
       ) : (
         <InfoBox>
