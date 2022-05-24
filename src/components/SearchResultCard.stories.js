@@ -32,3 +32,10 @@ Movie.args = {
   releaseDate: '2022',
   mediaType: 'movie',
 };
+
+export const Actor = Template.bind({});
+Actor.args = {
+  id: 123,
+  name: 'John Doe',
+  mediaType: 'person',
+};
