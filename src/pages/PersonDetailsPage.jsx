@@ -11,9 +11,12 @@ export default function PersonDetailsPage() {
   const { personDetails, isLoading } = usePerson(id);
   const { profile_path, name, biography, birthday, place_of_birth, deathday } =
     personDetails;
-  const year = birthday?.substring(0, 4);
-  const month = birthday?.substring(5, 7);
-  const day = birthday?.substring(8, 10);
+  const bYear = birthday?.substring(0, 4);
+  const bMonth = birthday?.substring(5, 7);
+  const bDay = birthday?.substring(8, 10);
+  const dYear = deathday?.substring(0, 4);
+  const dMonth = deathday?.substring(5, 7);
+  const dDay = deathday?.substring(8, 10);
 
   return (
     <>
@@ -22,17 +25,26 @@ export default function PersonDetailsPage() {
         {!isLoading && (
           <>
             <Wrapper>
-              <Image
-                src={`https://image.tmdb.org/t/p/original${profile_path}`}
-                alt={`${name}`}
-              />
+              {profile_path && (
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${profile_path}`}
+                  alt={`${name}`}
+                />
+              )}
               <InnerWrapper>
                 <section>
                   <h1>{name}</h1>
-                  <p>
-                    Geboren am: {day}.{month}.{year} <br /> in {place_of_birth}
-                  </p>
-                  {deathday && <p>Gestorben am: {deathday}</p>}
+                  {birthday && (
+                    <p>
+                      Geboren am: {bDay}.{bMonth}.{bYear} <br /> in{' '}
+                      {place_of_birth}
+                    </p>
+                  )}
+                  {deathday && (
+                    <p>
+                      Gestorben am: {dDay}.{dMonth}.{dYear}
+                    </p>
+                  )}
                 </section>
               </InnerWrapper>
             </Wrapper>
