@@ -5,7 +5,7 @@ import SearchResultCard from './SearchResultCard';
 const name = 'Suits';
 
 describe('SearchResultCard', () => {
-  it('renders a Poster of a movie or series', () => {
+  it('renders a Poster of a movie, series or an actor', () => {
     render(
       <MemoryRouter>
         <SearchResultCard />
@@ -24,5 +24,16 @@ describe('SearchResultCard', () => {
     );
     const posterListAltTexts = screen.getByAltText('Suits');
     expect(posterListAltTexts).toBeInTheDocument();
+  });
+
+  it('has a Link', () => {
+    render(
+      <MemoryRouter>
+        <SearchResultCard name={name} />
+      </MemoryRouter>
+    );
+
+    const Link = screen.getByRole('link');
+    expect(Link).toBeInTheDocument();
   });
 });

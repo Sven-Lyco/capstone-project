@@ -7,6 +7,7 @@ export default function SearchResultCard({
   name,
   title,
   posterPath,
+  profilePath,
   releaseDate,
   firstAirDate,
   mediaType,
@@ -15,22 +16,39 @@ export default function SearchResultCard({
 
   return (
     <>
-      <StyledLink to={name ? `/serie/${id}` : `/film/${id}`}>
-        <Poster
-          src={
-            posterPath
-              ? `https://image.tmdb.org/t/p/w300${posterPath}`
-              : require('../assets/images/poster.png')
-          }
-          alt={name ? `${name}` : `${title}`}
-        />
-
-        <TextBox>
-          <span>{name ? `${name}` : `${title}`}</span>
-          <p>{date ? date.substr(0, 4) : 'kein Release Datum vorhanden'}</p>
-          <p>{mediaType === 'movie' ? 'Film' : 'Serie'}</p>
-        </TextBox>
-      </StyledLink>
+      {mediaType !== 'person' && (
+        <StyledLink to={name ? `/serie/${id}` : `/film/${id}`}>
+          <Poster
+            src={
+              posterPath
+                ? `https://image.tmdb.org/t/p/w300${posterPath}`
+                : require('../assets/images/poster.png')
+            }
+            alt={name ? `${name}` : `${title}`}
+          />
+          <TextBox>
+            <span>{name ? `${name}` : `${title}`}</span>
+            {date && <p>{date.substr(0, 4)}</p>}
+            <p>{mediaType === 'movie' ? 'Film' : 'Serie'}</p>
+          </TextBox>
+        </StyledLink>
+      )}
+      {mediaType === 'person' && (
+        <StyledLink to={`/person/${id}`}>
+          <Poster
+            src={
+              profilePath
+                ? `https://image.tmdb.org/t/p/w300${profilePath}`
+                : require('../assets/images/profile.png')
+            }
+            alt={name}
+          />
+          <TextBox>
+            <span>{name}</span>
+            <p>Schauspieler:in</p>
+          </TextBox>
+        </StyledLink>
+      )}
     </>
   );
 }
