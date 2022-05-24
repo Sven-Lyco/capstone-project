@@ -37,7 +37,6 @@ export default function SearchPage() {
       )}
       {results?.length !== 0 ? (
         <List role="list">
-          {console.log(results)}
           {results?.map(
             ({
               id,
