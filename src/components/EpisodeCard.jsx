@@ -12,7 +12,7 @@ export default function EpisodeCard({
     <ListItem>
       <ImageBox stillPath={still_path} />
       <section>
-        <p>Episode: {episode_number}</p>
+        <p>Episode {episode_number}</p>
         <span>{name}</span>
       </section>
       <ButtonWrapper>
@@ -34,6 +34,7 @@ const ListItem = styled.li`
   background-color: var(--color-dark-gray);
 
   p {
+    font-size: 0.95rem;
     padding: 0;
     margin: 0;
   }
@@ -44,6 +45,8 @@ const ListItem = styled.li`
     color: var(--color-light-gray);
     font-size: 0.8rem;
     font-style: italic;
+    text-align: justify;
+    hyphens: auto;
   }
 
   section {
@@ -52,7 +55,8 @@ const ListItem = styled.li`
 `;
 
 const ImageBox = styled.div`
-  width: ${({ stillPath }) => (stillPath ? `70px` : '0px')};
+  width: ${({ stillPath }) => (stillPath ? `100%` : '0')};
+  max-width: 90px;
   height: auto;
   background: ${({ stillPath }) =>
       stillPath ? `url(https://image.tmdb.org/t/p/w300${stillPath})` : ''}
