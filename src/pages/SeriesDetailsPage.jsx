@@ -90,7 +90,7 @@ export default function SeriesDetailsPage({
                   ? firstAirDate.substr(0, 4)
                   : 'kein Release Datum vorhanden'}
               </p>
-              <RatingCircle rating={rating} />
+              <RatingCircle rating={Number(rating?.toFixed(1))} />
             </HeaderBox>
             <ButtonWrapper>
               <ButtonCheck

@@ -74,7 +74,6 @@ export default function App() {
           element={
             <SeriesDetailsPage
               isChecked={isChecked}
-              watchlist={watchlist}
               onHandleAddSeries={handleAddSeries}
               checkIsOnWatchlist={checkIsOnWatchlist}
               onHandleDeleteItem={handleDeleteItem}
