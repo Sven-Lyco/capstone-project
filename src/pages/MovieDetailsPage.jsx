@@ -79,7 +79,7 @@ export default function MoviesDetailsPage({
                   : 'kein Release Datum vorhanden'}{' '}
                 - {calcMovieTime(runtime)}
               </p>
-              <RatingCircle rating={rating} />
+              <RatingCircle rating={Number(rating?.toFixed(1))} />
             </StyledHeaderBox>
             <ButtonWrapper>
               <ButtonCheck
