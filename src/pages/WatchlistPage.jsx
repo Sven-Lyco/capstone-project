@@ -53,6 +53,9 @@ export default function WatchlistPage({ watchlist }) {
 
 const Wrapper = styled.div`
   margin: 70px 0 90px;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 `;
 
 const InfoBox = styled.section`

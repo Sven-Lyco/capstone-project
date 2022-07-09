@@ -73,6 +73,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 70px 0 90px;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 
   h2 {
     text-align: center;

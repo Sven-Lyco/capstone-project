@@ -19,7 +19,7 @@ export default function PersonDetailsPage() {
   const dDay = deathday?.substring(8, 10);
 
   return (
-    <>
+    <ContentWrapper>
       <Main>
         <ButtonBack onClick={() => navigate(-1)} />
         {!isLoading && (
@@ -61,9 +61,15 @@ export default function PersonDetailsPage() {
         {isLoading && <LoadingSpinner />}
       </Main>
       <Navigation />
-    </>
+    </ContentWrapper>
   );
 }
+
+const ContentWrapper = styled.div`
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+`;
 
 const Main = styled.main`
   width: 100%;

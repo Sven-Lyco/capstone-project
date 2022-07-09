@@ -23,4 +23,7 @@ export default function MoviesPage({
 
 const Wrapper = styled.div`
   margin: 70px 0 80px;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 `;

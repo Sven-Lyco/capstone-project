@@ -141,6 +141,9 @@ export default function MoviesDetailsPage({
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 `;
 
 const PosterListWrapper = styled.div`

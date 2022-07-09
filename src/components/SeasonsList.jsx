@@ -76,8 +76,15 @@ const List = styled.ul`
   padding-left: 20px;
   margin: 0;
   gap: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: scroll hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-padding-left: 20px;
+
+  li {
+    scroll-snap-align: start;
+  }
 `;
 
 const InfoWrapper = styled.div`
