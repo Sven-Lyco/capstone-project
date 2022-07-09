@@ -40,11 +40,15 @@ const List = styled.ul`
   padding: 20px;
   margin: 0;
   gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: scroll hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-padding-left: 20px;
 
   li {
     padding: 0;
     margin: 0;
+    scroll-snap-align: start;
   }
 `;

@@ -77,6 +77,9 @@ export default function SearchPage() {
 
 const Wrapper = styled.div`
   margin: 60px 0 85px;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 `;
 
 const SearchWrapper = styled.div`

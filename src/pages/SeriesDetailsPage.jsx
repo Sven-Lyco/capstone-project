@@ -172,6 +172,9 @@ export default function SeriesDetailsPage({
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  overflow: scroll hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 `;
 
 const PosterListWrapper = styled.div`

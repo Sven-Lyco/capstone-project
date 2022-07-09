@@ -71,12 +71,16 @@ const List = styled.ul`
   gap: 20px;
   padding: 20px 20px;
   margin: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
   border-bottom: 1px solid var(--color-dark-gray);
+  overflow: scroll hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-padding-left: 20px;
 
   li {
     padding: 0;
     margin: 0;
+    scroll-snap-align: start;
   }
 `;
